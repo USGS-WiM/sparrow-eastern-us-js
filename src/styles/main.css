@@ -1,0 +1,1033 @@
+html, body {
+    height: 100%;
+    overflow:hidden;
+}
+
+body {
+    padding-top: 50px;
+  /*  background-image: url("../images/wimlogoCompact.png");*/
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-color:#474747;
+}
+
+.user-guide-header {
+    display: block;
+    text-align: center;
+    font-size: 18pt;
+    box-sizing: border-box;
+    padding: 10px 0 25px;
+    color: black !important;
+    opacity: 1 !important;
+}
+.user-guide-item:nth-child(even) {
+    background-color: rgba(0,0,0,.04);
+}
+.user-guide-item {
+    display: block;
+    box-sizing: border-box;
+    padding: 35px 15px 35px 0;
+    border-bottom: 1px solid rgba(0,0,0,.1);
+}
+.user-guide-item .user-guide-item-image {
+    display: inline-block;
+    width: 100%;
+    height: auto;
+    /*max-height: 150px;*/
+}
+.user-guide-item img {
+    display: block;
+    margin: 0 auto;
+    width: auto;
+    max-height: 220px;
+    max-width: 100%;
+    border: 4px solid rgba(0,0,0,.15);
+}
+.user-guide-item p {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-flex-grow: 2;
+    flex-grow: 2;
+    padding-left: 15px!important;
+    padding-right: 20px!important;
+    font-size: 12pt;
+    max-width: none;
+}
+.user-guide-item p b {
+    color: rgba(0,0,0,1);
+    display: block;
+    font-weight: bolder;
+    font-size: 18px;
+    padding-bottom: 6px;
+}
+
+.keepit100 {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+@media (max-width: 767px) {
+    #geosearchButtonText {
+        display: none;
+    }
+
+    #legendButtonNavBar {
+        display: none;
+    }
+
+    /*.basemapThumb {*/
+    /*display: none;*/
+    /*}*/
+}
+
+.overflow-y-hidden {
+    overflow-y: hidden;
+}
+
+@media (min-width: 768px) {
+    #legendButtonSidebar {
+        display: none;
+    }
+}
+
+.basemapThumb {
+    border:1px solid #ffffff;
+    border-radius: 5px;
+}
+
+/*basemapBtn elements manually set to width of widest - temp solution until dynamic solution is implemented */
+.basemapBtn {
+    width: 86px;
+    margin-bottom: 2px;
+    padding:2px;
+}
+
+
+.esriSimpleSliderTL {
+    top: 5px;
+    left: 5px;
+    background-color: rgb(255,255,255);
+    background-color: rgba(255,255,255,0.8);
+}
+
+#homeButton {
+    position: fixed !important;
+    top: 175px;
+    left: 15px;
+    z-index: 50;
+    margin: 0 !important;
+    border-radius: 3px !important;
+}
+
+#locateButton {
+    position: fixed;
+    border-radius: 3px !important;
+    top: 215px;
+    left: 15px;
+    z-index: 50;
+    margin: 0 !important;
+}
+
+.hover-content {
+    display:none;
+}
+
+.identification {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 8.5pt;
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 0 0 0 8px;
+    opacity: .75;
+    font-weight: bolder !important;
+    text-align: center;
+    color: rgba(0,0,0,0.85);
+    transition: 0.1s;
+}
+.indentification:hover{
+    transition: 0.1s;
+}
+.sidebar-footer{
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: center;
+    justify-content: center;
+    text-align: center;
+    box-sizing: border-box;
+    padding: 0 10px 10px 10px;
+    font-size: 8pt;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+.sidebar-footer a{
+    display: inline-block;
+    box-sizing: border-box;
+    padding: 0 6px;
+}
+
+.latLngScale {
+    position:absolute;
+    padding:4px;
+    bottom:1.6em;
+    left: 20px;
+    /*width:250px*/
+    /*height:320px;*/
+    z-index:1;
+    color: black;
+    background-color: rgb(255,255,255);
+    background-color: rgba(255,255,255,0.8);
+    box-shadow: 0 1px 5px rgba(0,0,0,0.65);
+    border-radius: 4px;
+}
+
+.latLngScale:hover .hover-content {
+    display:inline-block;
+}
+
+.lyrTogDiv {
+    width: 100%;
+    padding: 1px;
+    font-weight: bold;
+}
+
+.alert {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+#legendDiv {
+    overflow-y: auto;
+    /*max-height: inherit;*/
+}
+
+#legendCollapse {
+    /*max-height: inherit;*/
+}
+
+/*#legendElement {*/
+/*position:absolute;*/
+/*padding:4px;*/
+/*top:1em;*/
+/*right:10px;*/
+/*z-index:1;*/
+/*color: black;*/
+/*background-color: rgb(255,255,255);*/
+/*background-color: rgba(255,255,255,0.8);*/
+/*box-shadow: 0 1px 5px rgba(0,0,0,0.65);*/
+/*min-width: 200px;*/
+/*border-radius: 4px;*/
+/*overflow: auto;*/
+
+/*}*/
+
+.alert-info {
+    color: #333;
+    background-color: #f5f5f5;
+    border-color: #ddd;
+}
+
+.legendClass {
+    position:absolute;
+    top:5px;
+    right:5px;
+    z-index:3;
+    color: black;
+    background-color: rgb(255,255,255);
+    background-color: rgba(255,255,255,0.8);
+    box-shadow: 0 1px 5px rgba(0,0,0,0.65);
+    /*min-width: 150px;*/
+    border-radius: 4px;
+}
+
+.legendHeading {
+    color: black;
+    background-color: rgb(255,255,255);
+    background-color: rgba(255,255,255,0.8);
+    text-decoration: none !important;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+#legendButtonSidebar {
+    width: 100%;
+}
+
+.lgi-zoom {
+    color: white;
+    background-color: black;
+    border: none !important;
+    padding: 5px 5px !important;
+}
+
+a.lgi-zoom {
+    color: white;
+}
+
+a.lgi-zoom:hover {
+    color: black;
+}
+
+.lyrTog {
+    width: 100%;
+    padding: 1px;
+    font-weight: bold;
+}
+
+.map {
+    overflow: auto;
+}
+
+#mapDiv {
+    min-height: 100%;
+    max-height: 100%;
+}
+
+.opacity {
+    padding-left: 10px;
+}
+
+.opacitySlider {
+    position: absolute;
+    color: white;
+    width: 200px;
+    padding: 10px;
+    /*padding-bottom: 40px;*/
+    opacity: 0.8;
+    border: solid 1px white;
+    background-color: black;
+    z-index: 1000;
+    border-radius: 5px;
+}
+
+.modal-dialog {
+    padding-top: 60px;
+}
+
+.navbar-brand {
+    padding:7px 4px;
+}
+
+.navbar-dark {
+    border-width:0;
+    background-color:#474747;
+    color:#ffffff;
+    font-family:arial,sans-serif;
+    top:0;
+    position:fixed;
+    width:inherit;
+}
+
+.no-col-padding {
+    padding: 0;
+}
+
+.panel-heading a:after {
+    font-family:'Glyphicons Halflings';
+    content:"\e114";
+    float: right;
+    color: gray;
+}
+.panel-heading a.collapsed:after {
+    content:"\e080";
+}
+
+#tableTabPane {
+    background-color: white /* lobipanel table tab shouldn't be transparent*/
+}
+.row-map {
+    background: #eee;
+}
+
+
+[class*="col-"] {
+    background-color: #eee;
+    border: 1px solid #E7E7E7;
+    /*text-align: center;*/
+}
+
+#wim_logo {
+    width: 75px;
+    height: auto;
+    margin: 0;
+    transition: 0.15s;
+    padding: 0;
+}
+
+#wim_logo:hover{
+    cursor: pointer;
+    transition: 0.15s;
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+}
+
+.wim-sidebar-panel {
+    margin-bottom: 2px;
+}
+/*needs the overflow and z-index for select overflow*/
+#sidebar {
+    top: 70px;
+    padding-bottom: 50px;
+    overflow:visible !important;
+    z-index:1000;
+}
+input[type="checkbox"], input[type="radio"] {
+    float: left;
+}
+
+.zoomDialog {
+    position: absolute;
+    color: white;
+    /*width: 200px;*/
+    padding: 5px;
+    /*padding-bottom: 40px;*/
+    opacity: 0.9;
+    border: solid 1px white;
+    background-color: black;
+    z-index: 1000;
+    border-radius: 5px;
+}
+
+.zoomClose {
+    color: white;
+}
+
+.selectpicker{
+    padding:5px;
+}
+
+.select-label{
+    padding-top:20px;
+}
+
+/*.radio{
+    padding-left:25px;
+}
+
+.radio label {
+    padding-left:5px;
+}*/
+
+/* tablesorter added css for highlighting */
+/* TABLE BACKGROUND color (match the original theme) */
+table.hover-highlight td:before,
+table.focus-highlight td:before {
+  background: #fff;
+}
+
+/* HOVER ROW highlight colors */
+table.hover-highlight tbody > tr:hover > td, /* override tablesorter theme row hover */
+table.hover-highlight tbody > tr.odd:hover > td,
+table.hover-highlight tbody > tr.even:hover > td {
+  background-color: #ffa;
+}
+
+/* End tablesorter added css */
+.chartWindowMaximize{
+    position:absolute;
+    top: 200;
+    right: 200;
+    z-index:3;
+    color: black;
+    background-color: rgba(255,255,255,0.4);
+    box-shadow: 0 1px 5px rgba(0,0,0,0.65);
+    border-radius: 4px;
+    visibility: hidden;
+}
+
+.chartWindowMinimize {
+    position:absolute;
+    background-color: rgba(255,255,255,0.4);
+    height: 200px;
+    width: 200px;
+    bottom: 0;
+    right: 0;
+    top: 120;
+    z-index: 20000;
+}
+
+
+#chartClose {
+    cursor: pointer;
+    display: inline;
+    padding-top: 3px;
+    padding-right: 6px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+#chartMinimize {
+    cursor: pointer;
+    display: inline;
+    padding-right: 15px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#chartMaximize {
+    cursor: pointer;
+    display: inline;
+    padding-right: 15px;
+    font-size: 20px;
+    font-weight: bold;
+}
+/*
+#chartWindowDiv{
+    top:65px !important;
+}
+*/
+.hover{
+    background-color: antiquewhite;
+}
+.navbar-brand>img{
+    display: inline-block;
+}
+
+
+#tableBody{
+    font-size:12px;
+}
+
+.table thead tr td{
+    font-size: 12px;
+}
+
+.table th {
+    font-size: 12px;
+}
+
+.ui-widget-header{
+    border: none;
+    background: rgb(30,39,50);
+    padding: 5px;
+    font-weight: 300;
+    letter-spacing: 1.25px;
+    font-family: arial, sans-serif;
+}
+.esriControlsBR {display: none;}
+
+
+/*Fixing table resize bar*/
+#resultsTable{
+  display: block;
+  height: 75%;
+  height: calc(100% - 110px);
+  overflow-x: scroll;
+  margin: 0 auto 5px auto;
+}
+/* Tooltip */
+.grp1-warning + .tooltip > .tooltip-inner {
+    background-color: #73AD21;
+    color: #FFFFFF;
+    border: 1px solid green;
+    padding: 15px;
+    font-size: 20px;
+}
+.grp1-warning{
+  color:red;
+  padding:5px;
+}
+.grp1-warning:hover {
+  color:red;
+}
+
+.grp2-warning + .tooltip > .tooltip-inner {
+    background-color: #73AD21;
+    color: #FFFFFF;
+    border: 1px solid green;
+    padding: 15px;
+    font-size: 20px;
+}
+.grp2-warning{
+  color:red;
+  padding:5px;
+}
+.grp2-warning:hover {
+  color:red;
+}
+
+.grp3-warning{
+  color:red;
+  padding:5px;
+}
+.grp3-warning:hover {
+  color:red;
+}
+
+.esriLegendLayerLabel{
+    visibility: collapse;
+}
+
+.esriLegendServiceLabel{
+    font-size: 12px;
+}
+
+/*used in geosearch modal body*/
+.wim-alert {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 14px 18px;
+    margin: 10px 0;
+    font-size: 9pt;
+    letter-spacing: .8px;
+    border: 1px solid #d3d3d3;
+    color: #fff;
+    border-radius: 3px;
+    font-weight: 400;
+    background-color: #e2e2e2;
+    color: #2d3146;
+}
+
+
+
+/*Mitch Mar 9*/
+#legendElement{
+    max-width: 280px;
+    height: auto !important;
+    overflow: auto;  /*Erik Edited from scroll to auto 3/17/17*/
+    max-height: 400px;
+    position: fixed !important;
+    top: 80px !important;
+}
+#chartWindowPanelTitle{
+    font-size: 14px;
+    font-weight: 600;
+}
+#sidebar{
+    overflow-x: scroll !important;
+    overflow-y: hidden !important;
+}
+.dropdown-menu li a{
+    font-size: 12.5px;
+    line-height: 14px;
+    padding: 8px 6px;
+}
+.dropdown-menu li a span{
+    overflow: hidden;
+    display: block !important;
+    white-space: pre-wrap;
+    word-wrap: break-word !important;
+}
+.dropdown-menu li a .glyphicon{
+    display: none !important;
+}
+
+.alert-info{
+    background-color: transparent !important;
+    border: none;
+    padding: 15px 10px 5px 10px;
+}
+#toggle{
+    padding: 25px 0 !important;
+}
+.panel-body{
+
+}
+.panel-body .btn{
+    display: block;
+    width: 100%;
+}
+.panel-body button{
+    display: block;
+    width: 100%;
+}
+
+.btn-group{
+    display: block;
+    width: 100% !important;
+    margin-bottom: 10px !important;
+}
+
+.input-group{
+    display: block;
+    width: 100%;
+}
+
+.radio{
+    margin: 8px 0;
+}
+.radio label{
+    padding: 0 0 0 18px;
+}
+.radio input{
+    margin: 3px 0 0 0 !important;
+    padding: 0;
+}
+
+.text-list{
+    background: none !important;
+    text-align: left !important;
+    padding-left: 25px !important;
+
+}
+#customSelect p {
+    padding-left: 10px;
+    margin-bottom: 0;
+}
+
+
+
+/*Geosearch Styles*/
+#geosearch_usgs{
+  display: -webkit-flex !important;
+  display: flex !important;
+  width: 100%;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+.search-api-container{
+  margin: 0 auto !important;
+  border: 0px solid transparent !important;
+}
+.search-api-container span{
+  -webkit-flex-grow: 2;
+  flex-grow: 2;
+  /*width: 100% !important;*/
+  display: block;
+}
+.search-api-container input{
+  display: block;
+  -webkit-flex-grow: 2;
+  flex-grow: 2;
+  font-size: 18px !important;
+  font-weight: 300 !important;
+  letter-spacing: 0.5px !important;
+  border-right: 0px;
+  border: 1px solid rgba(0,0,0,0.25) !important;
+  border-radius: 0px !important;
+  padding: 0 15px !important;
+  margin-top: 15px !important;
+  margin-bottom: 15px !important;
+  border-top-right-radius: 3px !important;
+  border-bottom-right-radius: 3px !important;
+  border-left: 0px solid black !important;
+}
+.search-api-container input:focus{
+  border: none !important;
+  border: 1px solid #0F8AFF !important;
+  border-left: 0px solid black !important;
+  outline: none !important;
+}
+.search-api-icon{
+  border: 1px solid rgba(0,0,0,0.25) !important;
+  border-right: 0px solid black !important;
+}
+.search-api-button{
+  display: none !important;
+}
+.geosearch-body{
+  font-size: 12px;
+}
+
+
+/*Toast message*/
+#toast-fixed{
+  position: fixed;
+  bottom: 0px;
+  right: 15px;
+  z-index: 1000000;
+  max-width: 280px;
+  width: auto;
+}
+
+#page-loader{
+  width: 83.33333333%;
+  position: fixed !important;
+  left: auto;
+  top: 55px !important;
+  padding-bottom: 100px !important;
+  right: 0 !important;
+}
+@media (max-width: 1200px) {
+  #page-loader{
+    width: 75%;
+  }
+}
+@media (max-width: 992px) {
+  #page-loader{
+    width: 100%;
+  }
+}
+
+
+
+/*Sidebar Tweaks*/
+#sidebar .wim-sidebar-panel .panel-heading h4 a{
+  font-style: normal !important;
+}
+/*Sidebar Carrots*/
+/*Right*/
+#sidebar .wim-sidebar-panel .panel-heading h4 a.collapsed:after{
+  content: '\f3d3' !important;
+}
+/*Down*/
+#sidebar .wim-sidebar-panel .panel-heading h4 a:after{
+  content: '\f3d0' !important;
+}
+
+/*Lobipanel tweaks*/
+.lobipanel.panel-unpin{
+  margin-left: -50px;
+  max-height: 90vh;
+}
+
+/*New close button*/
+#chartClose b{
+  /*font-size: 0;
+  color: rgba(0,0,0,0);*/
+  width: 30px;
+  height: 22px;
+  display: block;
+  font-size: 0px;
+  position: relative;
+  top: -14px;
+}
+#chartClose b:before{
+  content: '\f12a';
+  font-family: 'Ionicons';
+  display: block;
+  color: rgba(0,0,0,0.5);
+  text-align: center;
+  font-size: 16px;
+}
+
+ul.nav-tabs{
+  background-color: white !important;
+  /*border-radius: 4px !important;*/
+  padding: 0 !important;
+  margin-bottom: 5px;
+  border: 4px solid rgba(0,0,0,0.15);
+}
+ul.nav-tabs li{
+  padding: 0 !important;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 0px !important;
+}
+ul.nav-tabs li a{
+  border-radius: 0px !important;
+  margin: 0 !important;
+  border: none !important;
+  box-sizing: border-box;
+  border-bottom: 3px solid transparent;
+  border-top: 3px solid transparent;
+  padding-top: 11px !important;
+}
+ul.nav-tabs li a:hover,
+ul.nav-tabs li a:focus,
+ul.nav-tabs li a:active{
+  cursor: pointer;
+  color: #10152C !important;
+}
+ul.nav-tabs li.active a{
+  color: #10152C;
+  border-bottom: 3px solid #0F8AFF !important;
+}
+
+
+/*Modal tab tweaks*/
+.modal-content #aboutModalBody ul li a {
+  font-weight: 500 !important;
+  font-size: 12px !important;
+  letter-spacing: 0px !important;
+}
+.modal-content #aboutModalBody ul li.active a {
+  background-color: transparent !important;
+  color: black !important;
+  font-weight: 500 !important;
+}
+
+/*Modal tab tweaks*/
+.modal-content #ddModalBody ul li a {
+  font-weight: 500 !important;
+  font-size: 12px !important;
+  letter-spacing: 0px !important;
+}
+.modal-content #ddModalBody ul li.active a {
+  background-color: transparent !important;
+  color: black !important;
+  font-weight: 500 !important;
+}
+
+.modal-content #ddModalBody {
+  padding: 0 0px;
+}
+.modal-content #ddModalBody ul {
+  background-color: #ECEEF3;
+  border: none;
+  padding: 0;
+  margin: 0 auto;
+  text-align: center;
+}
+.modal-content #ddModalBody ul li {
+  border-radius: 0;
+}
+.modal-content #ddModalBody ul li.active {
+  border: none;
+}
+.modal-content #ddModalBody ul li.active a {
+  border: none;
+  margin: 0 auto;
+  border-radius: 0;
+  padding: 10px 15px 9px 15px;
+  background-color: #6F758E;
+  color: #FFFFFF;
+}
+.modal-content #ddModalBody ul li.active a:hover {
+  border: none;
+  background-color: #6F758E;
+}
+.modal-content #ddModalBody ul li a {
+  border-radius: 0;
+  color: #6F758E;
+  border: none;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+}
+.modal-content #ddModalBody ul li a:hover {
+  border: none;
+  background-color: rgba(111, 117, 142, 0.15);
+}
+.modal-content #ddModalBody .tab-content {
+  box-sizing: border-box;
+  padding: 25px;
+  color: #6F758E;
+}
+.modal-content #ddModalBody .tab-content h3 {
+  margin: 0 auto;
+}
+.modal-content #ddModalBody .tab-content p {
+  box-sizing: border-box;
+  padding: 10px 0;
+}
+
+
+
+
+/*Map Zoom Controls*/
+#mapDiv{
+  padding-top: 30px;
+}
+@media (min-width: 992px) {
+  #mapDiv_zoom_slider{
+    left: 27% !important;
+    left: calc(25% + 13px) !important;
+  }
+  #homeButton,
+  #locateButton {
+      left: 27%;
+      left: calc(25% + 15px);
+  }
+}
+@media (min-width: 1200px) {
+  #mapDiv_zoom_slider{
+    left: 16.6666666% !important;
+    left: calc(16.66666% + 13px) !important;
+  }
+  #homeButton,
+  #locateButton {
+      left: 16.666666%;
+      left: calc(16.666666% + 15px);
+  }
+}
+
+
+.wim-nav .container .nav-title{
+    width: 270px !important;
+}
+/*
+Mitch GH Issues Aug 28
+*/
+
+.panel h6{
+    margin: 0 auto 5px auto !important;
+}
+
+.panel hr{
+    margin: 10px auto !important;
+}
+
+.panel-body{
+    padding-top: 8px !important;
+    padding-bottom: 8px !important;
+}
+
+.lobipanel>.panel-heading .dropdown{
+    height: 35px !important;
+}
+
+/*Panel Loading*/
+.content-loading .tab-pane{
+    opacity: 0;
+}
+.content-loading:before{
+    display: -webkit-flex;
+    display: flex;
+    font-size: 18px;
+    font-weight: 500;
+    text-transform: capitalize;
+    -webkit-flex-direction: column;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    -webkit-justify-content: center;
+    justify-content: center;
+    text-align: center;
+    content: 'loading...';
+    background-image: url(../images/usgsanimated.svg);
+    height: 100%;
+    position: absolute;
+    top: 0;
+    color: white;
+    left: 0;
+    background-color: #10152C;
+    background-repeat: no-repeat;
+    background-size: 100px auto;
+    background-position: center 35%;
+    width: 100%;
+}
+
+/*Data Download Modal Changes*/
+.data-download .user-guide-header{
+    padding: 0;
+}
+.data-download .user-guide-item{
+    padding: 10px 0;
+    text-align: center;
+}
+.data-download .user-guide-item p{
+    padding: 5px 0;
+    margin: 0;
+    text-align: center;
+}
+.data-download .user-guide-item button{
+    margin: 0 10px;
+}
+
+/*override wim min css default settings of 5000 to keep loading screen behind*/
+.wim-nav{
+  z-index:3000;
+}
+
+.tempLoading{
+  visibility: visible;
+  width:800px;
+  height:800px;
+  top:10%;
+  left:25%;
+}
+
+.modal {
+    z-index: 10050 !important;
+}
