@@ -27,7 +27,7 @@ CONFIG FILE FOR USE WITH SPARROW-MARB
 Also removes PNAME and replaces it with MRB_ID and ST_MRB_ID
 */
 
-var appTitle = "Eastern U.S. Nutrient Loading";
+var appTitle = "Eastern United States Nutrient Loading";
 var appVersion = "v0.9.0";
 
 var serviceBaseURL = "https://gis.wim.usgs.gov/arcgis/rest/services/SparrowEast/SparrowEast/MapServer/"; //important! UPDATE rest service URL
@@ -42,10 +42,12 @@ var mapCenter = [-96.64, 40.744];
 defaultZoomLevel = 5;
 
 //download locations
+/** 
 var phosphorusShapefileURL = 'https://test.wim.usgs.gov/SparrowMARBV2/downloads/marb_shapefiles_phosphorus.zip';
 var nitrogenShapefileURL = 'https://test.wim.usgs.gov/SparrowMARBV2/downloads/marb_shapefiles_nitrogen.zip';
 var phosCalibrationURL = 'https://test.wim.usgs.gov/SparrowMARBV2/downloads/marb_phosphorus_calibration_sites.zip';
 var nitroCalibrationURL = 'https://test.wim.usgs.gov/SparrowMARBV2/downloads/marb_nitrogen_calibration_sites.zip';
+**/
 
 var tableOutFields = [
     { field: "FID", name: "Unique Feature Id"},
@@ -1001,7 +1003,9 @@ var Group3_tn = [
             { attribute: "GP3_AL_S3", label: mappedDefinitions.al + ' ' + nitrogenSourceDefinitions.s3},
             { attribute: "GP3_AL_S4", label: mappedDefinitions.al + ' ' + nitrogenSourceDefinitions.s4},
             { attribute: "GP3_AL_S5", label: mappedDefinitions.al + ' ' + nitrogenSourceDefinitions.s5},
-            { attribute: "GP3_AL_S6", label: mappedDefinitions.al + ' ' + nitrogenSourceDefinitions.s6}
+            { attribute: "GP3_AL_S6", label: mappedDefinitions.al + ' ' + nitrogenSourceDefinitions.s6},
+            { attribute: "GP3_AL_S7", label: mappedDefinitions.al + ' ' + nitrogenSourceDefinitions.s7},
+            { attribute: "GP3_AL_S8", label: mappedDefinitions.al + ' ' + nitrogenSourceDefinitions.s8}
         ]
     },
     {
@@ -1014,7 +1018,9 @@ var Group3_tn = [
             { attribute: "GP3_DAL_S3", label: mappedDefinitions.dal + ' ' + nitrogenSourceDefinitions.s3},
             { attribute: "GP3_DAL_S4", label: mappedDefinitions.dal + ' ' + nitrogenSourceDefinitions.s4},
             { attribute: "GP3_DAL_S5", label: mappedDefinitions.dal + ' ' + nitrogenSourceDefinitions.s5},
-            { attribute: "GP3_DAL_S6", label: mappedDefinitions.dal + ' ' + nitrogenSourceDefinitions.s6}
+            { attribute: "GP3_DAL_S6", label: mappedDefinitions.dal + ' ' + nitrogenSourceDefinitions.s6},
+            { attribute: "GP3_DAL_S7", label: mappedDefinitions.dal + ' ' + nitrogenSourceDefinitions.s7},
+            { attribute: "GP3_DAL_S8", label: mappedDefinitions.dal + ' ' + nitrogenSourceDefinitions.s8}
         ] 
     },
     {
@@ -1027,7 +1033,9 @@ var Group3_tn = [
             { attribute: "GP3_AY_S3", label: mappedDefinitions.ay + ' ' + nitrogenSourceDefinitions.s3},
             { attribute: "GP3_AY_S4", label: mappedDefinitions.ay + ' ' + nitrogenSourceDefinitions.s4},
             { attribute: "GP3_AY_S5", label: mappedDefinitions.ay + ' ' + nitrogenSourceDefinitions.s5},
-            { attribute: "GP3_AY_S6", label: mappedDefinitions.ay + ' ' + nitrogenSourceDefinitions.s6}
+            { attribute: "GP3_AY_S6", label: mappedDefinitions.ay + ' ' + nitrogenSourceDefinitions.s6},
+            { attribute: "GP3_AY_S7", label: mappedDefinitions.ay + ' ' + nitrogenSourceDefinitions.s7},
+            { attribute: "GP3_AY_S8", label: mappedDefinitions.ay + ' ' + nitrogenSourceDefinitions.s8}
         ]
     },
     {
@@ -1040,7 +1048,9 @@ var Group3_tn = [
             { attribute: "GP3_DAY_S3", label: mappedDefinitions.day + ' ' + nitrogenSourceDefinitions.s3},
             { attribute: "GP3_DAY_S4", label: mappedDefinitions.day + ' ' + nitrogenSourceDefinitions.s4},
             { attribute: "GP3_DAY_S5", label: mappedDefinitions.day + ' ' + nitrogenSourceDefinitions.s5},
-            { attribute: "GP3_DAY_S6", label: mappedDefinitions.day + ' ' + nitrogenSourceDefinitions.s6}
+            { attribute: "GP3_DAY_S6", label: mappedDefinitions.day + ' ' + nitrogenSourceDefinitions.s6},
+            { attribute: "GP3_DAY_S7", label: mappedDefinitions.day + ' ' + nitrogenSourceDefinitions.s7},
+            { attribute: "GP3_DAY_S8", label: mappedDefinitions.day + ' ' + nitrogenSourceDefinitions.s8}
         ]
     }
 ]
@@ -1057,7 +1067,9 @@ var Group2_tn = [
             { attribute: "GP2_AL_S3", label: mappedDefinitions.al + ' ' + nitrogenSourceDefinitions.s3},
             { attribute: "GP2_AL_S4", label: mappedDefinitions.al + ' ' + nitrogenSourceDefinitions.s4},
             { attribute: "GP2_AL_S5", label: mappedDefinitions.al + ' ' + nitrogenSourceDefinitions.s5},
-            { attribute: "GP2_AL_S6", label: mappedDefinitions.al + ' ' + nitrogenSourceDefinitions.s6}
+            { attribute: "GP2_AL_S6", label: mappedDefinitions.al + ' ' + nitrogenSourceDefinitions.s6},
+            { attribute: "GP2_AL_S7", label: mappedDefinitions.al + ' ' + nitrogenSourceDefinitions.s7},
+            { attribute: "GP2_AL_S8", label: mappedDefinitions.al + ' ' + nitrogenSourceDefinitions.s8}
         ]
     },
     {
@@ -1070,7 +1082,9 @@ var Group2_tn = [
             { attribute: "GP2_DAL_S3", label: mappedDefinitions.dal + ' ' + nitrogenSourceDefinitions.s3},
             { attribute: "GP2_DAL_S4", label: mappedDefinitions.dal + ' ' + nitrogenSourceDefinitions.s4},
             { attribute: "GP2_DAL_S5", label: mappedDefinitions.dal + ' ' + nitrogenSourceDefinitions.s5},
-            { attribute: "GP2_DAL_S6", label: mappedDefinitions.dal + ' ' + nitrogenSourceDefinitions.s6}
+            { attribute: "GP2_DAL_S6", label: mappedDefinitions.dal + ' ' + nitrogenSourceDefinitions.s6},
+            { attribute: "GP2_DAL_S7", label: mappedDefinitions.dal + ' ' + nitrogenSourceDefinitions.s7},
+            { attribute: "GP2_DAL_S8", label: mappedDefinitions.dal + ' ' + nitrogenSourceDefinitions.s8}
         ] 
     },
     {
@@ -1083,7 +1097,9 @@ var Group2_tn = [
             { attribute: "GP2_AY_S3", label: mappedDefinitions.ay + ' ' + nitrogenSourceDefinitions.s3},
             { attribute: "GP2_AY_S4", label: mappedDefinitions.ay + ' ' + nitrogenSourceDefinitions.s4},
             { attribute: "GP2_AY_S5", label: mappedDefinitions.ay + ' ' + nitrogenSourceDefinitions.s5},
-            { attribute: "GP2_AY_S6", label: mappedDefinitions.ay + ' ' + nitrogenSourceDefinitions.s6}
+            { attribute: "GP2_AY_S6", label: mappedDefinitions.ay + ' ' + nitrogenSourceDefinitions.s6},
+            { attribute: "GP2_AY_S7", label: mappedDefinitions.ay + ' ' + nitrogenSourceDefinitions.s7},
+            { attribute: "GP2_AY_S8", label: mappedDefinitions.ay + ' ' + nitrogenSourceDefinitions.s8}
         ]
     },
     {
@@ -1096,7 +1112,9 @@ var Group2_tn = [
             { attribute: "GP2_DAY_S3", label: mappedDefinitions.day + ' ' + nitrogenSourceDefinitions.s3},
             { attribute: "GP2_DAY_S4", label: mappedDefinitions.day + ' ' + nitrogenSourceDefinitions.s4},
             { attribute: "GP2_DAY_S5", label: mappedDefinitions.day + ' ' + nitrogenSourceDefinitions.s5},
-            { attribute: "GP2_DAY_S6", label: mappedDefinitions.day + ' ' + nitrogenSourceDefinitions.s6}
+            { attribute: "GP2_DAY_S6", label: mappedDefinitions.day + ' ' + nitrogenSourceDefinitions.s6},
+            { attribute: "GP2_DAY_S7", label: mappedDefinitions.day + ' ' + nitrogenSourceDefinitions.s7},
+            { attribute: "GP2_DAY_S8", label: mappedDefinitions.day + ' ' + nitrogenSourceDefinitions.s8}
         ]
     }
 ]
@@ -1113,7 +1131,9 @@ var Group1_tn = [
             { attribute: "GP1_AL_S3", label: mappedDefinitions.al + ' ' + nitrogenSourceDefinitions.s3},
             { attribute: "GP1_AL_S4", label: mappedDefinitions.al + ' ' + nitrogenSourceDefinitions.s4},
             { attribute: "GP1_AL_S5", label: mappedDefinitions.al + ' ' + nitrogenSourceDefinitions.s5},
-            { attribute: "GP1_AL_S6", label: mappedDefinitions.al + ' ' + nitrogenSourceDefinitions.s6}        
+            { attribute: "GP1_AL_S6", label: mappedDefinitions.al + ' ' + nitrogenSourceDefinitions.s6},
+            { attribute: "GP1_AL_S7", label: mappedDefinitions.al + ' ' + nitrogenSourceDefinitions.s7}, 
+            { attribute: "GP1_AL_S8", label: mappedDefinitions.al + ' ' + nitrogenSourceDefinitions.s8}         
         ]
     },
     {
@@ -1126,7 +1146,9 @@ var Group1_tn = [
             { attribute: "GP1_DAL_S3", label: mappedDefinitions.dal + ' ' + nitrogenSourceDefinitions.s3},
             { attribute: "GP1_DAL_S4", label: mappedDefinitions.dal + ' ' + nitrogenSourceDefinitions.s4},
             { attribute: "GP1_DAL_S5", label: mappedDefinitions.dal + ' ' + nitrogenSourceDefinitions.s5},
-            { attribute: "GP1_DAL_S6", label: mappedDefinitions.dal + ' ' + nitrogenSourceDefinitions.s6}        
+            { attribute: "GP1_DAL_S6", label: mappedDefinitions.dal + ' ' + nitrogenSourceDefinitions.s6},
+            { attribute: "GP1_DAL_S7", label: mappedDefinitions.dal + ' ' + nitrogenSourceDefinitions.s7},
+            { attribute: "GP1_DAL_S8", label: mappedDefinitions.dal + ' ' + nitrogenSourceDefinitions.s8}         
         ] 
     },
     {
@@ -1139,7 +1161,9 @@ var Group1_tn = [
             { attribute: "GP1_AY_S3", label: mappedDefinitions.ay + ' ' + nitrogenSourceDefinitions.s3},
             { attribute: "GP1_AY_S4", label: mappedDefinitions.ay + ' ' + nitrogenSourceDefinitions.s4},
             { attribute: "GP1_AY_S5", label: mappedDefinitions.ay + ' ' + nitrogenSourceDefinitions.s5},
-            { attribute: "GP1_AY_S6", label: mappedDefinitions.ay + ' ' + nitrogenSourceDefinitions.s6}
+            { attribute: "GP1_AY_S6", label: mappedDefinitions.ay + ' ' + nitrogenSourceDefinitions.s6},
+            { attribute: "GP1_AY_S7", label: mappedDefinitions.ay + ' ' + nitrogenSourceDefinitions.s7},
+            { attribute: "GP1_AY_S8", label: mappedDefinitions.ay + ' ' + nitrogenSourceDefinitions.s8}
         ]
     },
     {
@@ -1152,7 +1176,9 @@ var Group1_tn = [
             { attribute: "GP1_DAY_S3", label: mappedDefinitions.day + ' ' + nitrogenSourceDefinitions.s3},
             { attribute: "GP1_DAY_S4", label: mappedDefinitions.day + ' ' + nitrogenSourceDefinitions.s4},
             { attribute: "GP1_DAY_S5", label: mappedDefinitions.day + ' ' + nitrogenSourceDefinitions.s5},
-            { attribute: "GP1_DAY_S6", label: mappedDefinitions.day + ' ' + nitrogenSourceDefinitions.s6}
+            { attribute: "GP1_DAY_S6", label: mappedDefinitions.day + ' ' + nitrogenSourceDefinitions.s6},
+            { attribute: "GP1_DAY_S7", label: mappedDefinitions.day + ' ' + nitrogenSourceDefinitions.s7},
+            { attribute: "GP1_DAY_S8", label: mappedDefinitions.day + ' ' + nitrogenSourceDefinitions.s8}
         ]
     }
 ]
@@ -1168,7 +1194,9 @@ var ST_tn = [
             { attribute: "ST_AL_S3", label: mappedDefinitions.al + ' ' + nitrogenSourceDefinitions.s3},
             { attribute: "ST_AL_S4", label: mappedDefinitions.al + ' ' + nitrogenSourceDefinitions.s4},
             { attribute: "ST_AL_S5", label: mappedDefinitions.al + ' ' + nitrogenSourceDefinitions.s5},
-            { attribute: "ST_AL_S6", label: mappedDefinitions.al + ' ' + nitrogenSourceDefinitions.s6}
+            { attribute: "ST_AL_S6", label: mappedDefinitions.al + ' ' + nitrogenSourceDefinitions.s6},
+            { attribute: "ST_AL_S7", label: mappedDefinitions.al + ' ' + nitrogenSourceDefinitions.s7},
+            { attribute: "ST_AL_S8", label: mappedDefinitions.al + ' ' + nitrogenSourceDefinitions.s8}
         ]
     },
     {
@@ -1181,7 +1209,9 @@ var ST_tn = [
             { attribute: "ST_DAL_S3", label: mappedDefinitions.dal + ' ' + nitrogenSourceDefinitions.s3},
             { attribute: "ST_DAL_S4", label: mappedDefinitions.dal + ' ' + nitrogenSourceDefinitions.s4},
             { attribute: "ST_DAL_S5", label: mappedDefinitions.dal + ' ' + nitrogenSourceDefinitions.s5},        
-            { attribute: "ST_DAL_S6", label: mappedDefinitions.dal + ' ' + nitrogenSourceDefinitions.s6}
+            { attribute: "ST_DAL_S6", label: mappedDefinitions.dal + ' ' + nitrogenSourceDefinitions.s6},
+            { attribute: "ST_DAL_S7", label: mappedDefinitions.dal + ' ' + nitrogenSourceDefinitions.s7},
+            { attribute: "ST_DAL_S8", label: mappedDefinitions.dal + ' ' + nitrogenSourceDefinitions.s8}
         ] 
     },
     {
@@ -1194,7 +1224,9 @@ var ST_tn = [
             { attribute: "ST_AY_S3", label: mappedDefinitions.ay + ' ' + nitrogenSourceDefinitions.s3},
             { attribute: "ST_AY_S4", label: mappedDefinitions.ay + ' ' + nitrogenSourceDefinitions.s4},
             { attribute: "ST_AY_S5", label: mappedDefinitions.ay + ' ' + nitrogenSourceDefinitions.s5},
-            { attribute: "ST_AY_S6", label: mappedDefinitions.ay + ' ' + nitrogenSourceDefinitions.s6}
+            { attribute: "ST_AY_S6", label: mappedDefinitions.ay + ' ' + nitrogenSourceDefinitions.s6},
+            { attribute: "ST_AY_S7", label: mappedDefinitions.ay + ' ' + nitrogenSourceDefinitions.s7},
+            { attribute: "ST_AY_S8", label: mappedDefinitions.ay + ' ' + nitrogenSourceDefinitions.s8}
         ]
     },
     {
@@ -1207,7 +1239,9 @@ var ST_tn = [
             { attribute: "ST_DAY_S3", label: mappedDefinitions.day + ' ' + nitrogenSourceDefinitions.s3},
             { attribute: "ST_DAY_S4", label: mappedDefinitions.day + ' ' + nitrogenSourceDefinitions.s4},
             { attribute: "ST_DAY_S5", label: mappedDefinitions.day + ' ' + nitrogenSourceDefinitions.s5},
-            { attribute: "ST_DAY_S6", label: mappedDefinitions.day + ' ' + nitrogenSourceDefinitions.s6}        
+            { attribute: "ST_DAY_S6", label: mappedDefinitions.day + ' ' + nitrogenSourceDefinitions.s6},
+            { attribute: "ST_DAY_S7", label: mappedDefinitions.day + ' ' + nitrogenSourceDefinitions.s7},
+            { attribute: "ST_DAY_S8", label: mappedDefinitions.day + ' ' + nitrogenSourceDefinitions.s8}        
         
         ]
     }
@@ -1224,7 +1258,9 @@ var Catchments_st_tn = [
             { attribute: "ACCL_S3", label: catchmentDefinitions_tn.accl + ' ' + nitrogenSourceDefinitions.s3},
             { attribute: "ACCL_S4", label: catchmentDefinitions_tn.accl + ' ' + nitrogenSourceDefinitions.s4},
             { attribute: "ACCL_S5", label: catchmentDefinitions_tn.accl + ' ' + nitrogenSourceDefinitions.s5},
-            { attribute: "ACCL_S6", label: catchmentDefinitions_tn.accl + ' ' + nitrogenSourceDefinitions.s6}
+            { attribute: "ACCL_S6", label: catchmentDefinitions_tn.accl + ' ' + nitrogenSourceDefinitions.s6},
+            { attribute: "ACCL_S7", label: catchmentDefinitions_tn.accl + ' ' + nitrogenSourceDefinitions.s7},
+            { attribute: "ACCL_S8", label: catchmentDefinitions_tn.accl + ' ' + nitrogenSourceDefinitions.s8}
         ]
     },
     {
@@ -1237,7 +1273,9 @@ var Catchments_st_tn = [
             { attribute: "INCL_S3", label: catchmentDefinitions_tn.incl + ' ' + nitrogenSourceDefinitions.s3},
             { attribute: "INCL_S4", label: catchmentDefinitions_tn.incl + ' ' + nitrogenSourceDefinitions.s4},
             { attribute: "INCL_S5", label: catchmentDefinitions_tn.incl + ' ' + nitrogenSourceDefinitions.s5},
-            { attribute: "INCL_S6", label: catchmentDefinitions_tn.incl + ' ' + nitrogenSourceDefinitions.s6}
+            { attribute: "INCL_S6", label: catchmentDefinitions_tn.incl + ' ' + nitrogenSourceDefinitions.s6},
+            { attribute: "INCL_S7", label: catchmentDefinitions_tn.incl + ' ' + nitrogenSourceDefinitions.s7},
+            { attribute: "INCL_S8", label: catchmentDefinitions_tn.incl + ' ' + nitrogenSourceDefinitions.s8}
         ] 
     },
     {
@@ -1250,7 +1288,9 @@ var Catchments_st_tn = [
             { attribute: "ACCY_S3", label: catchmentDefinitions_tn.accy + ' ' + nitrogenSourceDefinitions.s3},
             { attribute: "ACCY_S4", label: catchmentDefinitions_tn.accy + ' ' + nitrogenSourceDefinitions.s4},
             { attribute: "ACCY_S5", label: catchmentDefinitions_tn.accy + ' ' + nitrogenSourceDefinitions.s5},
-            { attribute: "ACCY_S6", label: catchmentDefinitions_tn.accy + ' ' + nitrogenSourceDefinitions.s6}
+            { attribute: "ACCY_S6", label: catchmentDefinitions_tn.accy + ' ' + nitrogenSourceDefinitions.s6},
+            { attribute: "ACCY_S7", label: catchmentDefinitions_tn.accy + ' ' + nitrogenSourceDefinitions.s7},
+            { attribute: "ACCY_S8", label: catchmentDefinitions_tn.accy + ' ' + nitrogenSourceDefinitions.s8}
         ]
     },
     {
@@ -1263,7 +1303,9 @@ var Catchments_st_tn = [
             { attribute: "INCY_S3", label: catchmentDefinitions_tn.incy + ' ' + nitrogenSourceDefinitions.s3},
             { attribute: "INCY_S4", label: catchmentDefinitions_tn.incy + ' ' + nitrogenSourceDefinitions.s4},
             { attribute: "INCY_S5", label: catchmentDefinitions_tn.incy + ' ' + nitrogenSourceDefinitions.s5},
-            { attribute: "INCY_S6", label: catchmentDefinitions_tn.incy + ' ' + nitrogenSourceDefinitions.s6}
+            { attribute: "INCY_S6", label: catchmentDefinitions_tn.incy + ' ' + nitrogenSourceDefinitions.s6},
+            { attribute: "INCY_S7", label: catchmentDefinitions_tn.incy + ' ' + nitrogenSourceDefinitions.s7},
+            { attribute: "INCY_S8", label: catchmentDefinitions_tn.incy + ' ' + nitrogenSourceDefinitions.s8}
         ]
     },
     {
@@ -1276,7 +1318,9 @@ var Catchments_st_tn = [
             { attribute: "DACCL_S3", label: catchmentDefinitions_tn.daccl + ' ' + nitrogenSourceDefinitions.s3},
             { attribute: "DACCL_S4", label: catchmentDefinitions_tn.daccl + ' ' + nitrogenSourceDefinitions.s4},
             { attribute: "DACCL_S5", label: catchmentDefinitions_tn.daccl + ' ' + nitrogenSourceDefinitions.s5},
-            { attribute: "DACCL_S6", label: catchmentDefinitions_tn.daccl + ' ' + nitrogenSourceDefinitions.s6}
+            { attribute: "DACCL_S6", label: catchmentDefinitions_tn.daccl + ' ' + nitrogenSourceDefinitions.s6},
+            { attribute: "DACCL_S7", label: catchmentDefinitions_tn.daccl + ' ' + nitrogenSourceDefinitions.s7},
+            { attribute: "DACCL_S8", label: catchmentDefinitions_tn.daccl + ' ' + nitrogenSourceDefinitions.s8}
         ]
     },
     {
@@ -1289,7 +1333,9 @@ var Catchments_st_tn = [
             { attribute: "DACCY_S3", label: catchmentDefinitions_tn.daccy + ' ' + nitrogenSourceDefinitions.s3},
             { attribute: "DACCY_S4", label: catchmentDefinitions_tn.daccy + ' ' + nitrogenSourceDefinitions.s4},
             { attribute: "DACCY_S5", label: catchmentDefinitions_tn.daccy + ' ' + nitrogenSourceDefinitions.s5},
-            { attribute: "DACCY_S6", label: catchmentDefinitions_tn.daccy + ' ' + nitrogenSourceDefinitions.s6}
+            { attribute: "DACCY_S6", label: catchmentDefinitions_tn.daccy + ' ' + nitrogenSourceDefinitions.s6},
+            { attribute: "DACCY_S7", label: catchmentDefinitions_tn.daccy + ' ' + nitrogenSourceDefinitions.s7},
+            { attribute: "DACCY_S8", label: catchmentDefinitions_tn.daccy + ' ' + nitrogenSourceDefinitions.s8}
         ]
     },
     {
@@ -1302,7 +1348,9 @@ var Catchments_st_tn = [
             { attribute: "DINCL_S3", label: catchmentDefinitions_tn.dincl + ' ' + nitrogenSourceDefinitions.s3},
             { attribute: "DINCL_S4", label: catchmentDefinitions_tn.dincl + ' ' + nitrogenSourceDefinitions.s4},
             { attribute: "DINCL_S5", label: catchmentDefinitions_tn.dincl + ' ' + nitrogenSourceDefinitions.s5},
-            { attribute: "DINCL_S6", label: catchmentDefinitions_tn.dincl + ' ' + nitrogenSourceDefinitions.s6}
+            { attribute: "DINCL_S6", label: catchmentDefinitions_tn.dincl + ' ' + nitrogenSourceDefinitions.s6},
+            { attribute: "DINCL_S7", label: catchmentDefinitions_tn.dincl + ' ' + nitrogenSourceDefinitions.s7},
+            { attribute: "DINCL_S8", label: catchmentDefinitions_tn.dincl + ' ' + nitrogenSourceDefinitions.s8}
         ]
     },
     {
@@ -1315,7 +1363,9 @@ var Catchments_st_tn = [
             { attribute: "DINCY_S3", label: catchmentDefinitions_tn.dincy + ' ' + nitrogenSourceDefinitions.s3},
             { attribute: "DINCY_S4", label: catchmentDefinitions_tn.dincy + ' ' + nitrogenSourceDefinitions.s4},
             { attribute: "DINCY_S5", label: catchmentDefinitions_tn.dincy + ' ' + nitrogenSourceDefinitions.s5},
-            { attribute: "DINCY_S6", label: catchmentDefinitions_tn.dincy + ' ' + nitrogenSourceDefinitions.s6}
+            { attribute: "DINCY_S6", label: catchmentDefinitions_tn.dincy + ' ' + nitrogenSourceDefinitions.s6},
+            { attribute: "DINCY_S7", label: catchmentDefinitions_tn.dincy + ' ' + nitrogenSourceDefinitions.s7},
+            { attribute: "DINCY_S8", label: catchmentDefinitions_tn.dincy + ' ' + nitrogenSourceDefinitions.s8}
         ]
     }
 ]
@@ -1331,7 +1381,9 @@ var Group3_st_tn = [
             { attribute: "SG3_AL_S3", label: mappedDefinitions.al + ' ' + nitrogenSourceDefinitions.s3},
             { attribute: "SG3_AL_S4", label: mappedDefinitions.al + ' ' + nitrogenSourceDefinitions.s4},
             { attribute: "SG3_AL_S5", label: mappedDefinitions.al + ' ' + nitrogenSourceDefinitions.s5},
-            { attribute: "SG3_AL_S6", label: mappedDefinitions.al + ' ' + nitrogenSourceDefinitions.s6}
+            { attribute: "SG3_AL_S6", label: mappedDefinitions.al + ' ' + nitrogenSourceDefinitions.s6},
+            { attribute: "SG3_AL_S7", label: mappedDefinitions.al + ' ' + nitrogenSourceDefinitions.s7},
+            { attribute: "SG3_AL_S8", label: mappedDefinitions.al + ' ' + nitrogenSourceDefinitions.s8}
         ]
     },
     {
@@ -1344,7 +1396,9 @@ var Group3_st_tn = [
             { attribute: "SG3_DAL_S3", label: mappedDefinitions.dal + ' ' + nitrogenSourceDefinitions.s3},
             { attribute: "SG3_DAL_S4", label: mappedDefinitions.dal + ' ' + nitrogenSourceDefinitions.s4},
             { attribute: "SG3_DAL_S5", label: mappedDefinitions.dal + ' ' + nitrogenSourceDefinitions.s5},
-            { attribute: "SG3_DAL_S6", label: mappedDefinitions.dal + ' ' + nitrogenSourceDefinitions.s6}
+            { attribute: "SG3_DAL_S6", label: mappedDefinitions.dal + ' ' + nitrogenSourceDefinitions.s6},
+            { attribute: "SG3_DAL_S7", label: mappedDefinitions.dal + ' ' + nitrogenSourceDefinitions.s7},
+            { attribute: "SG3_DAL_S8", label: mappedDefinitions.dal + ' ' + nitrogenSourceDefinitions.s8}
         ] 
     },
     {
@@ -1357,7 +1411,9 @@ var Group3_st_tn = [
             { attribute: "SG3_AY_S3", label: mappedDefinitions.ay + ' ' + nitrogenSourceDefinitions.s3},
             { attribute: "SG3_AY_S4", label: mappedDefinitions.ay + ' ' + nitrogenSourceDefinitions.s4},
             { attribute: "SG3_AY_S5", label: mappedDefinitions.ay + ' ' + nitrogenSourceDefinitions.s5},
-            { attribute: "SG3_AY_S6", label: mappedDefinitions.ay + ' ' + nitrogenSourceDefinitions.s6}
+            { attribute: "SG3_AY_S6", label: mappedDefinitions.ay + ' ' + nitrogenSourceDefinitions.s6},
+            { attribute: "SG3_AY_S7", label: mappedDefinitions.ay + ' ' + nitrogenSourceDefinitions.s7},
+            { attribute: "SG3_AY_S8", label: mappedDefinitions.ay + ' ' + nitrogenSourceDefinitions.s8}
         ]
     },
     {
@@ -1370,7 +1426,9 @@ var Group3_st_tn = [
             { attribute: "SG3_DAY_S3", label: mappedDefinitions.day + ' ' + nitrogenSourceDefinitions.s3},
             { attribute: "SG3_DAY_S4", label: mappedDefinitions.day + ' ' + nitrogenSourceDefinitions.s4},
             { attribute: "SG3_DAY_S5", label: mappedDefinitions.day + ' ' + nitrogenSourceDefinitions.s5},
-            { attribute: "SG3_DAY_S6", label: mappedDefinitions.day + ' ' + nitrogenSourceDefinitions.s6}
+            { attribute: "SG3_DAY_S6", label: mappedDefinitions.day + ' ' + nitrogenSourceDefinitions.s6},
+            { attribute: "SG3_DAY_S7", label: mappedDefinitions.day + ' ' + nitrogenSourceDefinitions.s7},
+            { attribute: "SG3_DAY_S8", label: mappedDefinitions.day + ' ' + nitrogenSourceDefinitions.s8}
         ]
     }
 ]
@@ -1386,7 +1444,9 @@ var Group2_st_tn = [
             { attribute: "SG2_AL_S3", label: mappedDefinitions.al + ' ' + nitrogenSourceDefinitions.s3},
             { attribute: "SG2_AL_S4", label: mappedDefinitions.al + ' ' + nitrogenSourceDefinitions.s4},
             { attribute: "SG2_AL_S5", label: mappedDefinitions.al + ' ' + nitrogenSourceDefinitions.s5},
-            { attribute: "SG2_AL_S6", label: mappedDefinitions.al + ' ' + nitrogenSourceDefinitions.s6}
+            { attribute: "SG2_AL_S6", label: mappedDefinitions.al + ' ' + nitrogenSourceDefinitions.s6},
+            { attribute: "SG2_AL_S7", label: mappedDefinitions.al + ' ' + nitrogenSourceDefinitions.s7},
+            { attribute: "SG2_AL_S8", label: mappedDefinitions.al + ' ' + nitrogenSourceDefinitions.s8}
         ]
     },
     {
@@ -1399,7 +1459,9 @@ var Group2_st_tn = [
             { attribute: "SG2_DAL_S3", label: mappedDefinitions.dal + ' ' + nitrogenSourceDefinitions.s3},
             { attribute: "SG2_DAL_S4", label: mappedDefinitions.dal + ' ' + nitrogenSourceDefinitions.s4},
             { attribute: "SG2_DAL_S5", label: mappedDefinitions.dal + ' ' + nitrogenSourceDefinitions.s5},        
-            { attribute: "SG2_DAL_S6", label: mappedDefinitions.dal + ' ' + nitrogenSourceDefinitions.s6}
+            { attribute: "SG2_DAL_S6", label: mappedDefinitions.dal + ' ' + nitrogenSourceDefinitions.s6},
+            { attribute: "SG2_DAL_S7", label: mappedDefinitions.dal + ' ' + nitrogenSourceDefinitions.s7},
+            { attribute: "SG2_DAL_S8", label: mappedDefinitions.dal + ' ' + nitrogenSourceDefinitions.s8}
         ] 
     },
     {
@@ -1412,7 +1474,9 @@ var Group2_st_tn = [
             { attribute: "SG2_AY_S3", label: mappedDefinitions.ay + ' ' + nitrogenSourceDefinitions.s3},
             { attribute: "SG2_AY_S4", label: mappedDefinitions.ay + ' ' + nitrogenSourceDefinitions.s4},
             { attribute: "SG2_AY_S5", label: mappedDefinitions.ay + ' ' + nitrogenSourceDefinitions.s5},        
-            { attribute: "SG2_AY_S6", label: mappedDefinitions.ay + ' ' + nitrogenSourceDefinitions.s6}
+            { attribute: "SG2_AY_S6", label: mappedDefinitions.ay + ' ' + nitrogenSourceDefinitions.s6},
+            { attribute: "SG2_AY_S7", label: mappedDefinitions.ay + ' ' + nitrogenSourceDefinitions.s7},
+            { attribute: "SG2_AY_S8", label: mappedDefinitions.ay + ' ' + nitrogenSourceDefinitions.s8}
         ]
     },
     {
@@ -1425,7 +1489,9 @@ var Group2_st_tn = [
             { attribute: "SG2_DAY_S3", label: mappedDefinitions.day + ' ' + nitrogenSourceDefinitions.s3},
             { attribute: "SG2_DAY_S4", label: mappedDefinitions.day + ' ' + nitrogenSourceDefinitions.s4},
             { attribute: "SG2_DAY_S5", label: mappedDefinitions.day + ' ' + nitrogenSourceDefinitions.s5},        
-            { attribute: "SG2_DAY_S6", label: mappedDefinitions.day + ' ' + nitrogenSourceDefinitions.s6}
+            { attribute: "SG2_DAY_S6", label: mappedDefinitions.day + ' ' + nitrogenSourceDefinitions.s6},
+            { attribute: "SG2_DAY_S7", label: mappedDefinitions.day + ' ' + nitrogenSourceDefinitions.s7},
+            { attribute: "SG2_DAY_S8", label: mappedDefinitions.day + ' ' + nitrogenSourceDefinitions.s8}
         ]
     }
 ]
@@ -1441,7 +1507,9 @@ var Group1_st_tn = [
             { attribute: "SG1_AL_S3", label: mappedDefinitions.al + ' ' + nitrogenSourceDefinitions.s3},
             { attribute: "SG1_AL_S4", label: mappedDefinitions.al + ' ' + nitrogenSourceDefinitions.s4},
             { attribute: "SG1_AL_S5", label: mappedDefinitions.al + ' ' + nitrogenSourceDefinitions.s5},        
-            { attribute: "SG1_AL_S6", label: mappedDefinitions.al + ' ' + nitrogenSourceDefinitions.s6}
+            { attribute: "SG1_AL_S6", label: mappedDefinitions.al + ' ' + nitrogenSourceDefinitions.s6},
+            { attribute: "SG1_AL_S7", label: mappedDefinitions.al + ' ' + nitrogenSourceDefinitions.s7},
+            { attribute: "SG1_AL_S8", label: mappedDefinitions.al + ' ' + nitrogenSourceDefinitions.s8}
         ]
     },
     {
@@ -1454,7 +1522,9 @@ var Group1_st_tn = [
             { attribute: "SG1_DAL_S3", label: mappedDefinitions.dal + ' ' + nitrogenSourceDefinitions.s3},
             { attribute: "SG1_DAL_S4", label: mappedDefinitions.dal + ' ' + nitrogenSourceDefinitions.s4},
             { attribute: "SG1_DAL_S5", label: mappedDefinitions.dal + ' ' + nitrogenSourceDefinitions.s5},        
-            { attribute: "SG1_DAL_S6", label: mappedDefinitions.dal + ' ' + nitrogenSourceDefinitions.s6}
+            { attribute: "SG1_DAL_S6", label: mappedDefinitions.dal + ' ' + nitrogenSourceDefinitions.s6},
+            { attribute: "SG1_DAL_S7", label: mappedDefinitions.dal + ' ' + nitrogenSourceDefinitions.s7},
+            { attribute: "SG1_DAL_S8", label: mappedDefinitions.dal + ' ' + nitrogenSourceDefinitions.s8}
         ] 
     },
     {
@@ -1467,7 +1537,9 @@ var Group1_st_tn = [
             { attribute: "SG1_AY_S3", label: mappedDefinitions.ay + ' ' + nitrogenSourceDefinitions.s3},
             { attribute: "SG1_AY_S4", label: mappedDefinitions.ay + ' ' + nitrogenSourceDefinitions.s4},
             { attribute: "SG1_AY_S5", label: mappedDefinitions.ay + ' ' + nitrogenSourceDefinitions.s5},
-            { attribute: "SG1_AY_S6", label: mappedDefinitions.ay + ' ' + nitrogenSourceDefinitions.s6}
+            { attribute: "SG1_AY_S6", label: mappedDefinitions.ay + ' ' + nitrogenSourceDefinitions.s6},
+            { attribute: "SG1_AY_S7", label: mappedDefinitions.ay + ' ' + nitrogenSourceDefinitions.s7},
+            { attribute: "SG1_AY_S8", label: mappedDefinitions.ay + ' ' + nitrogenSourceDefinitions.s8}
         ]
     },
     {
@@ -1480,7 +1552,9 @@ var Group1_st_tn = [
             { attribute: "SG1_DAY_S3", label: mappedDefinitions.day + ' ' + nitrogenSourceDefinitions.s3},
             { attribute: "SG1_DAY_S4", label: mappedDefinitions.day + ' ' + nitrogenSourceDefinitions.s4},
             { attribute: "SG1_DAY_S5", label: mappedDefinitions.day + ' ' + nitrogenSourceDefinitions.s5}, 
-            { attribute: "SG1_DAY_S6", label: mappedDefinitions.day + ' ' + nitrogenSourceDefinitions.s6}
+            { attribute: "SG1_DAY_S6", label: mappedDefinitions.day + ' ' + nitrogenSourceDefinitions.s6},
+            { attribute: "SG1_DAY_S7", label: mappedDefinitions.day + ' ' + nitrogenSourceDefinitions.s7},
+            { attribute: "SG1_DAY_S8", label: mappedDefinitions.day + ' ' + nitrogenSourceDefinitions.s8}
         ]
     }
 ]
@@ -2311,7 +2385,8 @@ require([
 
     // in event-handlers.js
     loadEventHandlers();
-
+    
+    //TODO fix uglifying error that occurs here.
     if(esri.layers.Layer.prototype._errorHandler == 'function' )  {  
         esri.layers.Layer.prototype._errorHandler = function(error)  {  
             if ( error && error.message && error.message == "xhr cancelled" )  {
@@ -3019,7 +3094,8 @@ require([
     }//END createTableQuery()
 
     app.createChartQuery = function(optionalWhereClause){   
-        if (app.polygonResponseCount > 2500) {
+        //need to check if optionalWhereClause is undefined because onClick events can trigger chart
+        if (app.polygonResponseCount > 2500 && optionalWhereClause == undefined ) {
             //don't show chart
             $("#toast_title").html("Warning");
             $("#toast_body").html("Cannot show chart for "+ app.polygonResponseCount + " features. Please narrow your data and try again.");  
@@ -3486,11 +3562,11 @@ require([
                 case 0:
                     return 'Catchment ID';
                 case 1:
-                    return 'HUC8';
+                    return 'HUC12';
                 case 2:
-                    return 'Tributary';
+                    return 'HUC8';
                 case 3:
-                    return 'Main River Basin';
+                    return 'River Basin';
                 case 4:
                     return 'State';
             }
