@@ -194,6 +194,23 @@ require([
 
     // in event-handlers.js
     loadEventHandlers();
+    
+    //TODO fix uglifying error that occurs here.
+    if(esri.layers.Layer.prototype._errorHandler == 'function' )  {  
+        esri.layers.Layer.prototype._errorHandler = function(error)  {  
+            if ( error && error.message && error.message == "xhr cancelled" )  {
+                return;  
+                this.onError(error);  
+            }
+                
+        }  
+       
+        dojo.config.deferredOnError = function(e){}  
+        dojo._ioSetArgs2 = dojo._ioSetArgs;  
+        dojo._ioSetArgs = function(_14,_15,_16,_17)  {  
+        return dojo._ioSetArgs2(_14,_15,_16,function(a,b){return a;});  
+     }  
+    }  
 
     //fire initial query to populate AOIs
     //UPDATE IMPORTANT!  check layer and field names to make sure the fields exist in the service layers
@@ -886,7 +903,8 @@ require([
     }//END createTableQuery()
 
     app.createChartQuery = function(optionalWhereClause){   
-        if (app.polygonResponseCount > 2500) {
+        //need to check if optionalWhereClause is undefined because onClick events can trigger chart
+        if (app.polygonResponseCount > 2500 && optionalWhereClause == undefined ) {
             //don't show chart
             $("#toast_title").html("Warning");
             $("#toast_body").html("Cannot show chart for "+ app.polygonResponseCount + " features. Please narrow your data and try again.");  
@@ -1353,11 +1371,11 @@ require([
                 case 0:
                     return 'Catchment ID';
                 case 1:
-                    return 'HUC8';
+                    return 'HUC12';
                 case 2:
-                    return 'Tributary';
+                    return 'HUC8';
                 case 3:
-                    return 'Main River Basin';
+                    return 'River Basin';
                 case 4:
                     return 'State';
             }
