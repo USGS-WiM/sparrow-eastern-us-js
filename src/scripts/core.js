@@ -194,10 +194,11 @@ require([
 
     // in event-handlers.js
     loadEventHandlers();
-
-    if( typeof esri.layers.Layer.prototype._errorHandler == 'function' )  {  
+    
+    //TODO fix uglifying error that occurs here.
+    if(esri.layers.Layer.prototype._errorHandler == 'function' )  {  
         esri.layers.Layer.prototype._errorHandler = function(error)  {  
-            if( error && error.message && error.message == "xhr cancelled" )  {
+            if ( error && error.message && error.message == "xhr cancelled" )  {
                 return;  
                 this.onError(error);  
             }
@@ -902,7 +903,8 @@ require([
     }//END createTableQuery()
 
     app.createChartQuery = function(optionalWhereClause){   
-        if (app.polygonResponseCount > 2500) {
+        //need to check if optionalWhereClause is undefined because onClick events can trigger chart
+        if (app.polygonResponseCount > 2500 && optionalWhereClause == undefined ) {
             //don't show chart
             $("#toast_title").html("Warning");
             $("#toast_body").html("Cannot show chart for "+ app.polygonResponseCount + " features. Please narrow your data and try again.");  
@@ -1369,11 +1371,11 @@ require([
                 case 0:
                     return 'Catchment ID';
                 case 1:
-                    return 'HUC8';
+                    return 'HUC12';
                 case 2:
-                    return 'Tributary';
+                    return 'HUC8';
                 case 3:
-                    return 'Main River Basin';
+                    return 'River Basin';
                 case 4:
                     return 'State';
             }

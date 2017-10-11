@@ -20,18 +20,18 @@ function camelize(str) {
     }).replace(/\s+/g, '');
 }
 /*
-Created By Erik Myers 09/14/2017
+Created By Erik Myers 10/4/2017
 CONFIG FILE FOR USE WITH SPARROW-MARB
 
-THIS CONFIG REMOVES CATCHMENT AND AGGREGATE LABELS FROM THE CHARTOUTFIELS OBJECTS TO SHORTEN CHART AND DISPLAYED METRIC LABELS.
+
 Also removes PNAME and replaces it with MRB_ID and ST_MRB_ID
 */
 
-var appTitle = "MARB Nutrient Loading";
+var appTitle = "Eastern U.S. Nutrient Loading";
 var appVersion = "v0.9.0";
 
-var serviceBaseURL = "http://gis.wim.usgs.gov/arcgis/rest/services/SparrowMARBV2/SparrowMARB/MapServer/"; //important! UPDATE rest service URL
-var chartUnits = " (kg/yr.)"
+var serviceBaseURL = "https://gis.wim.usgs.gov/arcgis/rest/services/SparrowEast/SparrowEast/MapServer/"; //important! UPDATE rest service URL
+var chartUnits = " (kg/yr.)";
 
 var groupResultsInitIndex = 1; //sets the default layer for the application.  In this case service layer 1 == HUC8.
 
@@ -49,8 +49,8 @@ var nitroCalibrationURL = 'https://test.wim.usgs.gov/SparrowMARBV2/downloads/mar
 
 var tableOutFields = [
     { field: "FID", name: "Unique Feature Id"},
-    { field: "GRP1", name: "Main River Basin"},
-    { field: "GRP2", name: "Tributary"},
+    { field: "GRP1", name: "River Basin"},
+    { field: "GRP2", name: "HUC8"},
     { field: "GRP_3_NA_1", name: "Join Field"},
     { field: "Area_g3", name: "HUC10 area (mi2)"}   
 ]
@@ -71,18 +71,18 @@ var stateTableOutFields = [
 
 var aggregateDefinitions = {
     st : "State",
-    gp1 : "Main River Basin",
-    gp2 : "Tributary",
-    gp3 : "HUC8",
-    sg1 : "State_Main River Basin",
-    sg2 : "State_Tributary",
-    sg3 : "State_HUC8"
+    gp1 : "River Basin",
+    gp2 : "HUC8",
+    gp3 : "HUC12",
+    sg1 : "State_River Basin",
+    sg2 : "State_HUC8",
+    sg3 : "State_HUC12"
 }
 
 // key, value pairs come from PHOSPHORUS attribute definitions Excel file
 var catchmentDefinitions = {
-    mrb_id : "Catchment ID",
-    st_mrb_id: "Catchment ID by State",
+    mrb_id : "SPARROW Reach ID",
+    st_mrb_id: "SPARROW Reach ID by State",
     pname : "Catchment Name",
     accl : "Accumulated load (kg)",
     incl : "Incremental load (kg)",
@@ -96,8 +96,8 @@ var catchmentDefinitions = {
 
 //Nitrogen same as Phosphorus in this model
 var catchmentDefinitions_tn = {
-    mrb_id : "Catchment ID",
-    st_mrb_id: "Catchment ID by State",
+    mrb_id : "SPARROW Reach ID",
+    st_mrb_id: "SPARROW Reach ID by State",
     pname : "Catchment Name",
     accl : "Accumulated load (kg)",
     incl : "Incremental load (kg)",
@@ -119,7 +119,9 @@ var mappedDefinitions = {
     dap: "Percent of delivered aggregated load"
 }
 
-/***UPDATE IMPORTANT! complete with source data Excel key***/
+/***UPDATE IMPORTANT! complete with source data Excel key
+ * THESE ARE NOT AVAILABLE YET!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ * ***/
 var phosphorusSourceDefinitons = {
     s1 : "Sewerage Point Sources",
     s2 : "Urban Land",
@@ -132,12 +134,14 @@ var phosphorusSourceDefinitons = {
 
 /***UPDATE IMPORTANT! complete with source data Excel key***/
 var nitrogenSourceDefinitions = {
-    s1 : "Sewerage Point Sources",
+    s1 : "Wastewater",
     s2 : "Urban Land",
-    s3 : "Atmospheric Deposition",
-    s4 : "Manure (confined)",
-    s5 : "Farm Fertilizer",
-    s6 : "Fixation and Legume Sources"
+    s3 : "Manure",
+    s4 : "Fertilizer Applied to Agricultural Land",
+    s5 : "Deposition from Power Plant Air Emissions",
+    s6 : "Deposition from Other Industrial Air Emissions",
+    s7 : "Deposition from Vehicle Emissions",
+    s8 : "Deposition from Background"
 }
 
 
@@ -874,7 +878,9 @@ var Catchments_tn = [
             { attribute: "ACCL_S3", label: catchmentDefinitions_tn.accl + ' ' + nitrogenSourceDefinitions.s3},
             { attribute: "ACCL_S4", label: catchmentDefinitions_tn.accl + ' ' + nitrogenSourceDefinitions.s4},
             { attribute: "ACCL_S5", label: catchmentDefinitions_tn.accl + ' ' + nitrogenSourceDefinitions.s5},
-            { attribute: "ACCL_S6", label: catchmentDefinitions_tn.accl + ' ' + nitrogenSourceDefinitions.s6}
+            { attribute: "ACCL_S6", label: catchmentDefinitions_tn.accl + ' ' + nitrogenSourceDefinitions.s6},
+            { attribute: "ACCL_S7", label: catchmentDefinitions_tn.accl + ' ' + nitrogenSourceDefinitions.s7},
+            { attribute: "ACCL_S8", label: catchmentDefinitions_tn.accl + ' ' + nitrogenSourceDefinitions.s8}
         ]
     },
     {
@@ -882,12 +888,14 @@ var Catchments_tn = [
         name: catchmentDefinitions_tn.incl, 
         chartOutfields: [
             { attribute: "MRB_ID", label: catchmentDefinitions.mrb_id }, 
-            { attribute: "INCL_S1", label: catchmentDefinitions_tn.incl + ' ' + nitrogenSourceDefinitions.s1},
-            { attribute: "INCL_S2", label: catchmentDefinitions_tn.incl + ' ' + nitrogenSourceDefinitions.s2},
-            { attribute: "INCL_S3", label: catchmentDefinitions_tn.incl + ' ' + nitrogenSourceDefinitions.s3},
-            { attribute: "INCL_S4", label: catchmentDefinitions_tn.incl + ' ' + nitrogenSourceDefinitions.s4},
-            { attribute: "INCL_S5", label: catchmentDefinitions_tn.incl + ' ' + nitrogenSourceDefinitions.s5},
-            { attribute: "INCL_S6", label: catchmentDefinitions_tn.incl + ' ' + nitrogenSourceDefinitions.s6}
+            { attribute: "incl_s1", label: catchmentDefinitions_tn.incl + ' ' + nitrogenSourceDefinitions.s1},
+            { attribute: "incl_s2", label: catchmentDefinitions_tn.incl + ' ' + nitrogenSourceDefinitions.s2},
+            { attribute: "incl_s3", label: catchmentDefinitions_tn.incl + ' ' + nitrogenSourceDefinitions.s3},
+            { attribute: "incl_s4", label: catchmentDefinitions_tn.incl + ' ' + nitrogenSourceDefinitions.s4},
+            { attribute: "incl_s5", label: catchmentDefinitions_tn.incl + ' ' + nitrogenSourceDefinitions.s5},
+            { attribute: "incl_s6", label: catchmentDefinitions_tn.incl + ' ' + nitrogenSourceDefinitions.s6},
+            { attribute: "incl_s7", label: catchmentDefinitions_tn.incl + ' ' + nitrogenSourceDefinitions.s7},
+            { attribute: "incl_s8", label: catchmentDefinitions_tn.incl + ' ' + nitrogenSourceDefinitions.s8}
         ] 
     },
     {
@@ -895,12 +903,14 @@ var Catchments_tn = [
         name: catchmentDefinitions_tn.accy,
         chartOutfields: [
             { attribute: "MRB_ID",  label: catchmentDefinitions.mrb_id },
-            { attribute: "ACCY_S1", label: catchmentDefinitions_tn.accy + ' ' + nitrogenSourceDefinitions.s1},
-            { attribute: "ACCY_S2", label: catchmentDefinitions_tn.accy + ' ' + nitrogenSourceDefinitions.s2},
-            { attribute: "ACCY_S3", label: catchmentDefinitions_tn.accy + ' ' + nitrogenSourceDefinitions.s3},
-            { attribute: "ACCY_S4", label: catchmentDefinitions_tn.accy + ' ' + nitrogenSourceDefinitions.s4},
-            { attribute: "ACCY_S5", label: catchmentDefinitions_tn.accy + ' ' + nitrogenSourceDefinitions.s5},
-            { attribute: "ACCY_S6", label: catchmentDefinitions_tn.accy + ' ' + nitrogenSourceDefinitions.s6}
+            { attribute: "accy_s1", label: catchmentDefinitions_tn.accy + ' ' + nitrogenSourceDefinitions.s1},
+            { attribute: "accy_s2", label: catchmentDefinitions_tn.accy + ' ' + nitrogenSourceDefinitions.s2},
+            { attribute: "accy_s3", label: catchmentDefinitions_tn.accy + ' ' + nitrogenSourceDefinitions.s3},
+            { attribute: "accy_s4", label: catchmentDefinitions_tn.accy + ' ' + nitrogenSourceDefinitions.s4},
+            { attribute: "accy_s5", label: catchmentDefinitions_tn.accy + ' ' + nitrogenSourceDefinitions.s5},
+            { attribute: "accy_s6", label: catchmentDefinitions_tn.accy + ' ' + nitrogenSourceDefinitions.s6},
+            { attribute: "accy_s7", label: catchmentDefinitions_tn.accy + ' ' + nitrogenSourceDefinitions.s7},
+            { attribute: "accy_s8", label: catchmentDefinitions_tn.accy + ' ' + nitrogenSourceDefinitions.s8}
         ]
     },
     {
@@ -908,12 +918,14 @@ var Catchments_tn = [
         name: catchmentDefinitions_tn.incy,
         chartOutfields: [
             { attribute: "MRB_ID",  label: catchmentDefinitions.mrb_id },
-            { attribute: "INCY_S1", label: catchmentDefinitions_tn.incy + ' ' + nitrogenSourceDefinitions.s1},
-            { attribute: "INCY_S2", label: catchmentDefinitions_tn.incy + ' ' + nitrogenSourceDefinitions.s2},
-            { attribute: "INCY_S3", label: catchmentDefinitions_tn.incy + ' ' + nitrogenSourceDefinitions.s3},
-            { attribute: "INCY_S4", label: catchmentDefinitions_tn.incy + ' ' + nitrogenSourceDefinitions.s4},
-            { attribute: "INCY_S5", label: catchmentDefinitions_tn.incy + ' ' + nitrogenSourceDefinitions.s5},
-            { attribute: "INCY_S6", label: catchmentDefinitions_tn.incy + ' ' + nitrogenSourceDefinitions.s6}
+            { attribute: "incy_s1", label: catchmentDefinitions_tn.incy + ' ' + nitrogenSourceDefinitions.s1},
+            { attribute: "incy_s2", label: catchmentDefinitions_tn.incy + ' ' + nitrogenSourceDefinitions.s2},
+            { attribute: "incy_s3", label: catchmentDefinitions_tn.incy + ' ' + nitrogenSourceDefinitions.s3},
+            { attribute: "incy_s4", label: catchmentDefinitions_tn.incy + ' ' + nitrogenSourceDefinitions.s4},
+            { attribute: "incy_s5", label: catchmentDefinitions_tn.incy + ' ' + nitrogenSourceDefinitions.s5},
+            { attribute: "incy_s6", label: catchmentDefinitions_tn.incy + ' ' + nitrogenSourceDefinitions.s6},
+            { attribute: "incy_s7", label: catchmentDefinitions_tn.incy + ' ' + nitrogenSourceDefinitions.s7},
+            { attribute: "incy_s8", label: catchmentDefinitions_tn.incy + ' ' + nitrogenSourceDefinitions.s8}
         ]
     },
     {
@@ -926,7 +938,9 @@ var Catchments_tn = [
             { attribute: "DACCL_S3", label: catchmentDefinitions_tn.daccl + ' ' + nitrogenSourceDefinitions.s3},
             { attribute: "DACCL_S4", label: catchmentDefinitions_tn.daccl + ' ' + nitrogenSourceDefinitions.s4},
             { attribute: "DACCL_S5", label: catchmentDefinitions_tn.daccl + ' ' + nitrogenSourceDefinitions.s5},
-            { attribute: "DACCL_S6", label: catchmentDefinitions_tn.daccl + ' ' + nitrogenSourceDefinitions.s6}
+            { attribute: "DACCL_S6", label: catchmentDefinitions_tn.daccl + ' ' + nitrogenSourceDefinitions.s6},
+            { attribute: "DACCL_S7", label: catchmentDefinitions_tn.daccl + ' ' + nitrogenSourceDefinitions.s7},
+            { attribute: "DACCL_S8", label: catchmentDefinitions_tn.daccl + ' ' + nitrogenSourceDefinitions.s8}
         ]
     },
     {
@@ -939,7 +953,9 @@ var Catchments_tn = [
             { attribute: "DACCY_S3", label: catchmentDefinitions_tn.daccy + ' ' + nitrogenSourceDefinitions.s3},
             { attribute: "DACCY_S4", label: catchmentDefinitions_tn.daccy + ' ' + nitrogenSourceDefinitions.s4},
             { attribute: "DACCY_S5", label: catchmentDefinitions_tn.daccy + ' ' + nitrogenSourceDefinitions.s5},
-            { attribute: "DACCY_S6", label: catchmentDefinitions_tn.daccy + ' ' + nitrogenSourceDefinitions.s6}
+            { attribute: "DACCY_S6", label: catchmentDefinitions_tn.daccy + ' ' + nitrogenSourceDefinitions.s6},
+            { attribute: "DACCY_S7", label: catchmentDefinitions_tn.daccy + ' ' + nitrogenSourceDefinitions.s7},
+            { attribute: "DACCY_S8", label: catchmentDefinitions_tn.daccy + ' ' + nitrogenSourceDefinitions.s8}
         ]
     },
     {
@@ -952,7 +968,9 @@ var Catchments_tn = [
             { attribute: "DINCL_S3", label: catchmentDefinitions_tn.dincl + ' ' + nitrogenSourceDefinitions.s3},
             { attribute: "DINCL_S4", label: catchmentDefinitions_tn.dincl + ' ' + nitrogenSourceDefinitions.s4},
             { attribute: "DINCL_S5", label: catchmentDefinitions_tn.dincl + ' ' + nitrogenSourceDefinitions.s5},
-            { attribute: "DINCL_S6", label: catchmentDefinitions_tn.dincl + ' ' + nitrogenSourceDefinitions.s6}
+            { attribute: "DINCL_S6", label: catchmentDefinitions_tn.dincl + ' ' + nitrogenSourceDefinitions.s6},
+            { attribute: "DINCL_S7", label: catchmentDefinitions_tn.dincl + ' ' + nitrogenSourceDefinitions.s7},
+            { attribute: "DINCL_S8", label: catchmentDefinitions_tn.dincl + ' ' + nitrogenSourceDefinitions.s8}
         ]
     },
     {
@@ -965,7 +983,9 @@ var Catchments_tn = [
             { attribute: "DINCY_S3", label: catchmentDefinitions_tn.dincy + ' ' + nitrogenSourceDefinitions.s3},
             { attribute: "DINCY_S4", label: catchmentDefinitions_tn.dincy + ' ' + nitrogenSourceDefinitions.s4},
             { attribute: "DINCY_S5", label: catchmentDefinitions_tn.dincy + ' ' + nitrogenSourceDefinitions.s5},
-            { attribute: "DINCY_S6", label: catchmentDefinitions_tn.dincy + ' ' + nitrogenSourceDefinitions.s6}
+            { attribute: "DINCY_S6", label: catchmentDefinitions_tn.dincy + ' ' + nitrogenSourceDefinitions.s6},
+            { attribute: "DINCY_S7", label: catchmentDefinitions_tn.dincy + ' ' + nitrogenSourceDefinitions.s7},
+            { attribute: "DINCY_S8", label: catchmentDefinitions_tn.dincy + ' ' + nitrogenSourceDefinitions.s8}
         ]
     }
 ]
@@ -1600,7 +1620,7 @@ require([
             "showGroupHeading": true,
             "includeInLayerList": true,
             "layers": {
-                "MARB Streams" : {
+                "All Reaches" : {
                     "url": serviceBaseURL,
                     "visibleLayers": [20],
                     "options": {
@@ -1609,24 +1629,41 @@ require([
                     },
                     "wimOptions": {
                         "type": "layer",
-                        "layerType": "agisFeature",
+                        "layerType": "agisDynamic",
                         "includeInLayerList": true,
                         "hasOpacitySlider": true,
                         "hasZoomto": false,
                         "includeLegend" : false
                     }
                 },
-                "MARB SPARROW Model Area" : {
+                "Major Reaches" : {
+                    "url": serviceBaseURL,
+                    "visibleLayers": [22],
+                    "options": {
+                        "id": "majorStreams",
+                        "visible": false
+                    },
+                    "wimOptions": {
+                        "type": "layer",
+                        "layerType": "agisDynamic",
+                        "includeInLayerList": true,
+                        "hasOpacitySlider": true,
+                        "hasZoomto": false,
+                        "includeLegend" : false
+                    }
+                },
+
+                "SPARROW Model Area" : {
                     "url": serviceBaseURL,
                     "visibleLayers": [21],
                     "options": {
                         "id": "modelArea",
-                        "visible": false,
-                        "opacity": 0.50
+                        "visible": true,
+                        "opacity": 0.75
                     },
                     "wimOptions": {
                         "type": "layer",
-                        "layerType": "agisFeature",
+                        "layerType": "agisDynamic",
                         "includeInLayerList": true,
                         "hasOpacitySlider": true,
                         "hasZoomto": false,
@@ -2092,8 +2129,6 @@ $( document ).ready(function() {
   $(".nav-title").html(appTitle);
 });
 
-
-
 require([
     'esri/arcgis/utils',
     'esri/map',
@@ -2182,6 +2217,7 @@ require([
     app.customChartClicked = false; // when custom chart button clicked, need to let the chart know to show 'Show Full Chart' button
     app.shiftKey = false; // store if they are selecting (click) or unselecting (shift+click)
     app.formattedHighlightString; // from custom defined chart click, store first view in case they zoom in and want to reset back to this
+    app.polygonResponseCount; // stores count of response that gets updated everytime the map refreshes (generateRenderer function)
 
     /* values come from config file */
     app.defaultMapCenter = mapCenter;
@@ -2276,9 +2312,25 @@ require([
     // in event-handlers.js
     loadEventHandlers();
 
+    if(esri.layers.Layer.prototype._errorHandler == 'function' )  {  
+        esri.layers.Layer.prototype._errorHandler = function(error)  {  
+            if ( error && error.message && error.message == "xhr cancelled" )  {
+                return;  
+                this.onError(error);  
+            }
+                
+        }  
+       
+        dojo.config.deferredOnError = function(e){}  
+        dojo._ioSetArgs2 = dojo._ioSetArgs;  
+        dojo._ioSetArgs = function(_14,_15,_16,_17)  {  
+        return dojo._ioSetArgs2(_14,_15,_16,function(a,b){return a;});  
+     }  
+    }  
+
     //fire initial query to populate AOIs
     //UPDATE IMPORTANT!  check layer and field names to make sure the fields exist in the service layers
-    setupQueryTask(serviceBaseURL + 5, ['ST', 'GP3', 'GP2', 'GP1' ], '1=1');
+    setupQueryTask(serviceBaseURL + 5, ['St', 'gp3', 'gp2', 'gp1' ], '1=1');
 
     app.setLayerDefObj = function(newObj){
 
@@ -2736,295 +2788,6 @@ require([
         }
     }
 
-    /*app.updateAOIs = function(selectedId){
-        // for four AOI options
-        var filteredAOIOptions = [];
-
-        var grp3Options = [];
-        var grp2Options = [];
-        var grp1Options = [];
-        var stOptions = [];
-
-        switch(selectedId) {
-            //ST SELECT CHANGED
-            case 'st-select':
-                //filter the grp1- and grp3-select options using the selected ST__________________________________________________________________________________________________________________________________________
-                if (layerDefObj.AOI2) {
-                    $('#grp1-select').empty(); $('#grp3-select').empty();
-                    filteredAOIOptions = AllAOIOptions.filter(function(s){ return s.ST === layerDefObj.AOIST && s.GP2 === layerDefObj.AOI2; });  //grp2 AND ST have values
-                }
-                else {
-                    $('#grp1-select').empty(); $('#grp3-select').empty();
-                    filteredAOIOptions = AllAOIOptions.filter(function(s){ return s.ST === layerDefObj.AOIST; });
-                }
-                if (filteredAOIOptions.length === 0) {
-                    filteredAOIOptions = AllAOIOptions;
-                }
-
-                /*______________________________________________________
-                    filteredAOIOptions Array of Objects Example         ]
-                [{                                                      ]
-                    GP1: "Conasauga River",                             ]
-                    GRP_2_NAM: "03150101",                              ]
-                    GP3:"0315010101",                                   ]
-                    ST:"GA"   <--- Selected State                       ]
-                },                                                      ]
-                {                                                       ]
-                    GP1: "Conasauga River",                             ]
-                    GRP_2_NAM: "03150101",                              ]
-                    GP3:"0315010102",  <-- Obj for every HUC10          ]
-                    ST:"GA"                                             ]
-                }]                                                      ]
-                ________________________________________________________]
-                
-
-                //get unique group 1 values
-                grp1Options = getUniqueArray(filteredAOIOptions, 'GP1');
-                grp3Options = getUniqueArray(filteredAOIOptions, 'GP3');
-
-                //set other two AOI options and reselect if previously selected
-                appendSelectOptions(grp1Options, '#grp1-select', 'AOI1', grp3Options, '#grp3-select', 'AOI3');
-
-                //filter the grp2- and grp3-select options using the selected ST__________________________________________________________________________________________________________________________________________
-                filteredAOIOptions = [];
-                //need to know if ST and grp1 have values
-                if (layerDefObj.AOI1) {
-                    $('#grp2-select').empty(); $('#grp3-select').empty();
-                    filteredAOIOptions = AllAOIOptions.filter(function(s){ return s.ST === layerDefObj.AOIST && s.GP1 === layerDefObj.AOI1; }); //ST and grp1 have selected vals
-                }
-                else {
-                    $('#grp2-select').empty(); $('#grp3-select').empty();
-                    filteredAOIOptions = AllAOIOptions.filter(function(s){ return s.ST === layerDefObj.AOIST; });
-                }
-                if (filteredAOIOptions.length === 0) {
-                    filteredAOIOptions = AllAOIOptions;
-                }
-
-                //get unique group2 and group3 values
-                grp2Options = getUniqueArray(filteredAOIOptions, 'GP2');
-                grp3Options = getUniqueArray(filteredAOIOptions, 'GP3')
-
-                //set other two AOI options and reselect if previously selected
-                appendSelectOptions(grp2Options, '#grp2-select', 'AOI2', grp3Options, '#grp3-select', 'AOI3');
-
-                //filter the grp1- and grp2-select options using the selected ST__________________________________________________________________________________________________________________________________________
-                filteredAOIOptions = [];
-                //need to know if ST and grp1 have values
-                if (layerDefObj.AOI3) {
-                    $('#grp1-select').empty(); $('#grp2-select').empty();
-                    filteredAOIOptions = AllAOIOptions.filter(function(s){ return s.ST === layerDefObj.AOIST && s.GP3 === layerDefObj.AOI3; }); //ST and grp3 have selected vals
-                }
-                else {
-                    $('#grp1-select').empty(); $('#grp2-select').empty();
-                    filteredAOIOptions = AllAOIOptions.filter(function(s){ return s.ST === layerDefObj.AOIST; });
-                }
-                if (filteredAOIOptions.length === 0) {
-                    filteredAOIOptions = AllAOIOptions;
-                }
-
-                //get unique group2 and group3 values
-                grp1Options = getUniqueArray(filteredAOIOptions, 'GP1');
-                grp2Options = getUniqueArray(filteredAOIOptions, 'GP2');
-
-                //set other two AOI options and reselect if previously selected
-                appendSelectOptions(grp1Options, '#grp1-select', 'AOI1', grp2Options, '#grp2-select', 'AOI2');
-                break;
-
-            //Group 1 SELECT CHANGED
-            case 'grp1-select':
-                //filter the st- and grp3-select options using the selected GRP1__________________________________________________________________________________________________________________________________________
-                if (layerDefObj.AOI2) {
-                    $('#st-select').empty(); $('#grp3-select').empty();
-                    filteredAOIOptions = AllAOIOptions.filter(function(s){ return s.GP2 === layerDefObj.AOI2 && s.GP1 === layerDefObj.AOI1; });
-                }
-                else {
-                    $('#st-select').empty(); $('#grp3-select').empty();
-                    filteredAOIOptions = AllAOIOptions.filter(function(s){ return s.GP1 === layerDefObj.AOI1; });
-                }
-                if (filteredAOIOptions.length === 0) {
-                    filteredAOIOptions = AllAOIOptions;
-                }
-
-                //get unique states in the selected grp1
-                stOptions = getUniqueArray(filteredAOIOptions, 'ST');
-                grp3Options = getUniqueArray(filteredAOIOptions, 'GP3');
-
-                //set other two AOI options and reselect if previously selected
-                appendSelectOptions(stOptions, '#st-select', 'AOIST', grp3Options, '#grp3-select', 'AOI3');
-
-                //filter the grp2- and grp3-select options using the selected GRP1__________________________________________________________________________________________________________________________________________
-                filteredAOIOptions = [];
-                //need to know if gr1 and st have values
-                if (layerDefObj.AOIST) {
-                    $('#grp2-select').empty(); $('#grp3-select').empty();
-                    filteredAOIOptions = AllAOIOptions.filter(function(s){ return s.GP1 == layerDefObj.AOI1 && s.ST == layerDefObj.AOIST; }); //ST and Grp1 have selected vals
-                }
-                else {
-                    $('#grp2-select').empty(); $('#grp3-select').empty();
-                    filteredAOIOptions = AllAOIOptions.filter(function(s){ return s.GP1 == layerDefObj.AOI1 });
-                }
-                if (filteredAOIOptions.length == 0) {
-                    filteredAOIOptions = AllAOIOptions;
-                }
-
-                //get unique group2 options from the grp1 selection
-                grp2Options = getUniqueArray(filteredAOIOptions, 'GP2');
-                grp3Options = getUniqueArray(filteredAOIOptions, 'GP3');
-
-                //set other two AOI options and reselect if previously selected
-                appendSelectOptions(grp2Options, '#grp2-select', 'AOI2', grp3Options, '#grp3-select', 'AOI3');
-
-                //filter the grp2- and st-select options using the selected GRP1__________________________________________________________________________________________________________________________________________
-                filteredAOIOptions = [];
-                //need to know if ST and grp1 have values
-                if (layerDefObj.AOI3) {
-                    $('#grp2-select').empty(); $('#st-select').empty();
-                    filteredAOIOptions = AllAOIOptions.filter(function(s){ return s.GP1 === layerDefObj.AOI1 && s.GP3 === layerDefObj.AOI3; }); //ST and grp3 have selected vals
-                }
-                else {
-                    $('#grp2-select').empty(); $('#st-select').empty();
-                    filteredAOIOptions = AllAOIOptions.filter(function(s){ return s.GP1 === layerDefObj.AOI1; });
-                }
-                if (filteredAOIOptions.length === 0) {
-                    filteredAOIOptions = AllAOIOptions;
-                }
-
-                //get unique group2 and group3 values
-                grp2Options = getUniqueArray(filteredAOIOptions, 'GP2');
-                stOptions = getUniqueArray(filteredAOIOptions, 'ST');
-
-                //set other two AOI options and reselect if previously selected
-                appendSelectOptions(grp2Options, '#grp2-select', 'AOI2', stOptions, '#st-select', 'AOIST');
-                break;
-
-            //Group 2 SELECT CHANGED
-            case 'grp2-select':
-                //filter the grp1- and grp3-select options using the selected GRP2__________________________________________________________________________________________________________________________________________
-                if (layerDefObj.AOIST) {
-                    $('#grp1-select').empty(); $('#grp3-select').empty();
-                    filteredAOIOptions = AllAOIOptions.filter(function(s){ return s.GP2 === layerDefObj.AOI2 && s.ST === layerDefObj.AOIST; });
-                }
-                else {
-                    $('#grp1-select').empty(); $('#grp3-select').empty();
-                    filteredAOIOptions = AllAOIOptions.filter(function(s){ return s.GP2 === layerDefObj.AOI2; });
-                }
-                if (filteredAOIOptions.length === 0) {
-                    filteredAOIOptions = AllAOIOptions;
-                }
-
-                grp1Options = getUniqueArray(filteredAOIOptions, 'GP1');
-                grp3Options = getUniqueArray(filteredAOIOptions, 'GP3');
-
-                //set other two AOI options and reselect if previously selected
-                appendSelectOptions(grp1Options, '#grp1-select', 'AOI1', grp3Options, '#grp3-select', 'AOI3');
-
-                filteredAOIOptions= [];
-                //filter the st- and grp3-select options using the selected GRP2__________________________________________________________________________________________________________________________________________
-                if (layerDefObj.AOI1) {
-                    $('#st-select').empty(); $('#grp3-select').empty();
-                    filteredAOIOptions = AllAOIOptions.filter(function(s){ return s.GP2 === layerDefObj.AOI2 && s.GP1 === layerDefObj.AOI1; });
-                }
-                else {
-                    $('#st-select').empty(); $('#grp3-select').empty();
-                    filteredAOIOptions = AllAOIOptions.filter(function(s){ return s.GP2 === layerDefObj.AOI2; });
-                }
-                if (filteredAOIOptions.length == 0) {
-                    filteredAOIOptions = AllAOIOptions;
-                }
-
-                stOptions = getUniqueArray(filteredAOIOptions, 'ST');
-                grp3Options = getUniqueArray(filteredAOIOptions, 'GP3');
-
-                //set other two AOI options and reselect if previously selected
-                appendSelectOptions(stOptions, '#st-select', 'AOIST', grp3Options, '#grp3-select', 'AOI3');
-
-                //filter the grp1- and st-select options using the selected GRP2__________________________________________________________________________________________________________________________________________
-                filteredAOIOptions = [];
-                //need to know if ST and grp1 have values
-                if (layerDefObj.AOI3) {
-                    $('#st-select').empty(); $('#grp1-select').empty();
-                    filteredAOIOptions = AllAOIOptions.filter(function(s){ return s.GP2 === layerDefObj.AOI2 && s.GP3 === layerDefObj.AOI3; }); //ST and grp3 have selected vals
-                }
-                else {
-                    $('#st-select').empty(); $('#grp1-select').empty();
-                    filteredAOIOptions = AllAOIOptions.filter(function(s){ return s.GP2 === layerDefObj.AOI2; });
-                }
-                if (filteredAOIOptions.length === 0) {
-                    filteredAOIOptions = AllAOIOptions;
-                }
-
-                //get unique group2 and group3 values
-                grp1Options = getUniqueArray(filteredAOIOptions, 'GP1');
-                stOptions = getUniqueArray(filteredAOIOptions, 'ST');
-
-                //set other two AOI options and reselect if previously selected
-                appendSelectOptions(grp1Options, '#grp1-select', 'AOI1', stOptions, '#st-select', 'AOIST');
-                break;
-            // Group 3 SELECT CHANGED
-            case 'grp3-select':
-                //filter the grp1- and grp2-select options using the selected GRP3__________________________________________________________________________________________________________________________________________
-                if (layerDefObj.AOIST) {
-                    $('#grp1-select').empty();  $('#grp2-select').empty();
-                    filteredAOIOptions = AllAOIOptions.filter(function(s){ return s.GP3 === layerDefObj.AOI3 && s.ST === layerDefObj.AOIST; });
-                }
-                else {
-                    $('#grp1-select').empty();  $('#grp2-select').empty();
-                    filteredAOIOptions = AllAOIOptions.filter(function(s){ return s.GP3 === layerDefObj.AOI3; });
-                }
-                if (filteredAOIOptions.length === 0) {
-                    filteredAOIOptions = AllAOIOptions;
-                }
-
-                grp1Options = getUniqueArray(filteredAOIOptions, 'GP1');
-                grp2Options = getUniqueArray(filteredAOIOptions, 'GP2');
-
-                //set other two AOI options and reselect if previously selected
-                appendSelectOptions(grp1Options, '#grp1-select', 'AOI1', grp2Options, '#grp2-select', 'AOI2');
-
-                filteredAOIOptions= [];
-                //filter the st- and grp2-select options using the selected GRP3__________________________________________________________________________________________________________________________________________
-                if (layerDefObj.AOI1) {
-                    $('#st-select').empty();  $('#grp2-select').empty();
-                    filteredAOIOptions = AllAOIOptions.filter(function(s){ return s.GP3 === layerDefObj.AOI3 && s.GP1 === layerDefObj.AOI1; });
-                }
-                else {
-                    $('#st-select').empty();  $('#grp2-select').empty();
-                    filteredAOIOptions = AllAOIOptions.filter(function(s){ return s.GP3 === layerDefObj.AOI3; });
-                }
-                if (filteredAOIOptions.length == 0) {
-                    filteredAOIOptions = AllAOIOptions;
-                }
-
-                stOptions = getUniqueArray(filteredAOIOptions, 'ST');
-                grp2Options = getUniqueArray(filteredAOIOptions, 'GP2');
-                //set other two AOI options and reselect if previously selected
-                appendSelectOptions(stOptions, '#st-select', 'AOIST', grp2Options, '#grp2-select', 'AOI2');
-
-
-                filteredAOIOptions = [];
-                //filter the st- and grp1-select options using the selected GRP3__________________________________________________________________________________________________________________________________________
-                if (layerDefObj.AOI2) {
-                    $('#st-select').empty();  $('#grp1-select').empty();
-                    filteredAOIOptions = AllAOIOptions.filter(function(s){ return s.GP3 === layerDefObj.AOI3 && s.GP2 === layerDefObj.AOI2; }); //ST and grp3 have selected vals
-                }
-                else {
-                    $('#st-select').empty();  $('#grp1-select').empty();
-                    filteredAOIOptions = AllAOIOptions.filter(function(s){ return s.GP3 === layerDefObj.AOI3; });
-                }
-                if (filteredAOIOptions.length === 0) {
-                    filteredAOIOptions = AllAOIOptions;
-                }
-
-                //get unique group2 and group3 values
-                grp1Options = getUniqueArray(filteredAOIOptions, 'GP1');
-                stOptions = getUniqueArray(filteredAOIOptions, 'ST');
-                //set other two AOI options and reselect if previously selected
-                appendSelectOptions(grp1Options, '#grp1-select', 'AOI1', stOptions, '#st-select', 'AOIST');
-                break;
-
-        }
-    }*/
-
     //function used several times in above switch case
     var appendSelectOptions = function(firstOptions, select1_ID, firstAOI){
         //set the filtered state options
@@ -3256,62 +3019,69 @@ require([
     }//END createTableQuery()
 
     app.createChartQuery = function(optionalWhereClause){   
-        
-        if( $("#chartWindowDiv").css("visibility") != "visible" ) {
-           $('#chartWindowDiv').css({
-                'visibility': 'visible',
-                'height': '800px',
-                'width': '800px',
-                'top': '50px',
-                'left': '510px'
-            });
-            $("#chartWindowContent").addClass("content-loading");
-        }  else {
-            $("#chartWindowContent").addClass("content-loading");
-        }
-
-        
+        if (app.polygonResponseCount > 2500) {
+            //don't show chart
+            $("#toast_title").html("Warning");
+            $("#toast_body").html("Cannot show chart for "+ app.polygonResponseCount + " features. Please narrow your data and try again.");  
+            $("#toast-fixed").fadeIn();
+            setTimeout(function(){ 
+                $("#toast-fixed").fadeOut();
+            }, 5000);
+        } else {
+            if( $("#chartWindowDiv").css("visibility") != "visible" ) {
+                $('#chartWindowDiv').css({
+                    'visibility': 'visible',
+                    'height': '800px',
+                    'width': '800px',
+                    'top': '50px',
+                    'left': '510px'
+                });
+                $("#chartWindowContent").addClass("content-loading");
+            }  else {
+                $("#chartWindowContent").addClass("content-loading");
+            }        
  
-        $('#chartContainer').empty();
-        //console.log('creating chart query');
-        var chartQueryTask;
-        var sparrowLayerId = app.map.getLayer('SparrowRanking').visibleLayers[0];
+            $('#chartContainer').empty();
+            //console.log('creating chart query');
+            var chartQueryTask;
+            var sparrowLayerId = app.map.getLayer('SparrowRanking').visibleLayers[0];
 
-        if (optionalWhereClause == undefined){
-            if (app.map.getLayer('SparrowRanking').layerDefinitions){
-                var whereClause = app.map.getLayer('SparrowRanking').layerDefinitions[sparrowLayerId];
+            if (optionalWhereClause == undefined){
+                if (app.map.getLayer('SparrowRanking').layerDefinitions){
+                    var whereClause = app.map.getLayer('SparrowRanking').layerDefinitions[sparrowLayerId];
+                } else{
+                    var whereClause = '1=1';
+                }
             } else{
-                var whereClause = '1=1';
+                var whereClause = optionalWhereClause;
             }
-        } else{
-            var whereClause = optionalWhereClause;
-        }
 
-        //add map layer ID to query URL
-        var SparrowRankingUrl = serviceBaseURL + sparrowLayerId;
+            //add map layer ID to query URL
+            var SparrowRankingUrl = serviceBaseURL + sparrowLayerId;
 
-        //setup QueryTask
-        chartQueryTask = new esri.tasks.QueryTask(SparrowRankingUrl);
+            //setup QueryTask
+            chartQueryTask = new esri.tasks.QueryTask(SparrowRankingUrl);
 
-        //Returns chartOutfields Object form config --i.e. {attribute: "VALUE", label: "VALUE"}
-        var chartFieldsObj = getChartOutfields(sparrowLayerId);
+            //Returns chartOutfields Object form config --i.e. {attribute: "VALUE", label: "VALUE"}
+            var chartFieldsObj = getChartOutfields(sparrowLayerId);
 
-        //grab attributes from chartOutfields object
-        var outfieldsArr = [];
-        $.each(chartFieldsObj, function(index, obj){
-            outfieldsArr.push( obj.attribute ); //get attribute value ONLY
-        });
+            //grab attributes from chartOutfields object
+            var outfieldsArr = [];
+            $.each(chartFieldsObj, function(index, obj){
+                outfieldsArr.push( obj.attribute ); //get attribute value ONLY
+            });
 
-        //setup esri query
-        var chartQuery = new esri.tasks.Query();
-        chartQuery.returnGeometry = false;
-        chartQuery.outFields = getExtraOutfields(outfieldsArr, sparrowLayerId);
-        chartQuery.where = whereClause;
+            //setup esri query
+            var chartQuery = new esri.tasks.Query();
+            chartQuery.returnGeometry = false;
+            chartQuery.outFields = getExtraOutfields(outfieldsArr, sparrowLayerId);
+            chartQuery.where = whereClause;
 
-        chartQueryTask.execute(chartQuery, showChart);
+            chartQueryTask.execute(chartQuery, showChart);
 
-        //$('#chartWindowDiv').addClass("content-loading");
-        $('#chartTabContent').addClass("content-loading");
+            //$('#chartWindowDiv').addClass("content-loading");
+            $('#chartTabContent').addClass("content-loading");
+        } // end polygoncount is less that 2500
     }//END app.createChartQuery
 
     app.downloadChartPNG = function(){
@@ -3350,7 +3120,6 @@ require([
 
         return configObject;
     }
-
 
     function setupQueryTask(url, outFieldsArr, whereClause){
         var queryTask;
@@ -3584,7 +3353,7 @@ require([
             //push the feature attributes AFTER removing all the "AREA" atributes.
             featureSort.push(feature.attributes);
         });
-       /* var singleChart = false;
+        /* var singleChart = false;
         var checkArr = ["ACCY", "INCY"];
         $.each(checkArr, function(index, val){
             if( featureSort[0].hasOwnProperty(val) ){
@@ -3609,7 +3378,7 @@ require([
             return parseFloat(b.total) - parseFloat(a.total);
         });
 
-       /* if (singleChart === true){
+        /* if (singleChart === true){
             $.each(featureSort, function(index, obj){
                 delete obj.total;
             });
@@ -3647,7 +3416,7 @@ require([
             value.y !== undefined ? columnLabels.push(value.y) : columnLabels.push(value);
         });  //removes AND returns column labels ( chartArr[0] )
 
-       //get chartOutfields from config --i.e {attribute: "VALUE", label: "value"}
+        //get chartOutfields from config --i.e {attribute: "VALUE", label: "value"}
         var sparrowLayerId = app.map.getLayer('SparrowRanking').visibleLayers[0];
         var chartLabelsObj = getChartOutfields(sparrowLayerId);
         var chartLabelsArr = [];
@@ -3656,12 +3425,12 @@ require([
         });
 
         // initial table for Table tab
-         tableArr = tableFeatures; // featureSort;
-         labelArr = [];
-         $.each(chartLabelsArr, function(index, value){
+        tableArr = tableFeatures; // featureSort;
+        labelArr = [];
+        $.each(chartLabelsArr, function(index, value){
             labelArr.push(value);
         });
-     //   labelArr.push("Area"); // for all but catchments
+        //   labelArr.push("Area"); // for all but catchments
         /*if (sparrowLayerId == 0 || sparrowLayerId == 8) {
             labelArr[0] = "Name";
         }*/
@@ -3683,7 +3452,7 @@ require([
             series[index].data = chartArr[index];
         });
 
-         /// SAMPLE DATA FORMAT
+        /// SAMPLE DATA FORMAT
         /* var series = [{
             name: 'dl1_ST_sc1',
             data: [5, 3, 4, 7, 2, 5, 3, 5, 3, 4, 7, 2, 5, 3, 5, 3, 4, 7, 2, 5, 3, 5, 3, 4, 7, 2, 5, 3]
@@ -3949,7 +3718,7 @@ require([
                             events:{
                                 load:function(){
                                     this.chartBackground.attr({ fill: 'rgba(255, 255, 255, 1.0)' });
-                                  // this.plotBackground.attr({ fill: 'rgba(255, 255, 255, 1.0)'  });
+                                // this.plotBackground.attr({ fill: 'rgba(255, 255, 255, 1.0)'  });
                                     this.renderer.image('https://wim.usgs.gov/visuals/usgs/usgslogo1.jpg', 2, 2, 50, 30).add();
                                 }
                             }
@@ -4060,7 +3829,7 @@ require([
                     },
                     series:{
                         point:{
-                             events:{
+                            events:{
                                 mouseOver: function(){
 
 
@@ -4138,9 +3907,7 @@ require([
                         app.map.graphics.remove(obj);
                     }
                 });
-            });
-
-            
+            });            
         }); //END self-invoking highcharts function
         var height = $('#chartWindowDiv').height() - 65;
         var width = $('#chartWindowDiv').width();
@@ -4148,7 +3915,6 @@ require([
         $('#chartTabContent').removeClass("content-loading");
         //$('#chartWindowDiv').removeClass("content-loading");
         //$('#loadingDiv').removeClass("content-loading");
-
     } //END ShowChart()
 
     //function to filter table based on selection in chart
@@ -4798,6 +4564,7 @@ function loadEventHandlers() {
 
         //reflow the chart if it's open
         if( $("#chartWindowDiv").css("visibility") == "visible" ) {
+            //$("#toast_title").html("Loading...");
             //$("#toast_body").html("Chart updating");  
             //$("#toast-fixed").fadeIn();  
  
@@ -4902,7 +4669,8 @@ function loadEventHandlers() {
         generateRenderer();
 
         if( $("#chartWindowDiv").css("visibility") == "visible" ) {
-            /*$("#toast_body").html("Chart updating");  
+            /*$("#toast_title").html("Loading...");
+            $("#toast_body").html("Chart updating");  
             $("#toast-fixed").fadeIn();*/
             app.createChartQuery();
         }
@@ -4935,7 +4703,8 @@ function loadEventHandlers() {
         generateRenderer();
 
         if( $("#chartWindowDiv").css("visibility") == "visible" ) {
-           /* $("#toast_body").html("Chart updating");  
+           /*$("#toast_title").html("Loading..."); 
+           $("#toast_body").html("Chart updating");  
             $("#toast-fixed").fadeIn();*/
             app.createChartQuery();
         }        
@@ -5535,7 +5304,6 @@ function getTableFields(headerKeysArr, sparrowLayerId){
     return htmlHeaderArr.join('');
 }
 
-
 function getLegendLabels(sparrowLayerId){
     var label = "";
     var configObject = app.getLayerConfigObject(sparrowLayerId);
@@ -5625,6 +5393,8 @@ function generateRenderer(){
         'esri/tasks/AlgorithmicColorRamp',
         'esri/tasks/GenerateRendererParameters',
         'esri/tasks/GenerateRendererTask',
+        'esri/tasks/query',
+        'esri/tasks/QueryTask',
         'dojo/dom',
         'dojo/dom-class',
         'dojo/on',
@@ -5640,6 +5410,8 @@ function generateRenderer(){
         AlgorithmicColorRamp,
         GenerateRendererParameters,
         GenerateRendererTask,
+        Query,
+        QueryTask,
         dom,
         domClass,
         on
@@ -5654,10 +5426,19 @@ function generateRenderer(){
             app.map.getLayer('SparrowRanking').setDefaultLayerDefinitions(); //is this necessary?
             app.layerDef = "1=1";
         }
-        
         //UPDATE important!  url must match serviceBaseURL in config
         app.Url = serviceBaseURL + sparrowId;
         
+        // get polygon count for global storage
+        var query = new Query();
+        var queryTask = new QueryTask(app.Url);
+        query.where = app.layerDef;
+        queryTask.executeForCount(query, function(count){
+            app.polygonResponseCount = count;
+          },function(error){
+            console.log(error);
+          });
+
         var selectedMetric = $('#displayedMetricSelect')[0].value;
         app.outFields = [selectedMetric];
         app.currentAttribute = selectedMetric; 
