@@ -6,6 +6,8 @@ var open = require('open');
 var del = require('del');
 var less = require('gulp-less');
 var wiredep = require('wiredep').stream;
+var uglify = require('gulp-uglify-es').default;
+//var pump = require('pump');
 
 // Load plugins
 var $ = require('gulp-load-plugins')();
@@ -48,10 +50,17 @@ gulp.task('html', ['styles', 'scripts', 'icons'], function () {
     var jsFilter = $.filter('**/*.js');
     var cssFilter = $.filter('**/*.css');
 
+    function createErrorHandler(name) {
+        return function (err) {
+          console.error('Error from ' + name + ' in compress task', err.toString());
+        };
+      }
+
     return gulp.src('src/*.html')
         .pipe($.useref.assets())
         .pipe(jsFilter)
-        .pipe($.uglify())
+        .pipe(uglify())
+        .on('error', createErrorHandler('uglify'))
         .pipe(jsFilter.restore())
         .pipe(cssFilter)
         .pipe($.csso())

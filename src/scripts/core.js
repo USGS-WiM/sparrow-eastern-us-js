@@ -8,8 +8,12 @@ var app = {};
 // Get toast and page loader ready
 $( document ).ready(function() {
   //$("#page-loader").fadeOut();
-  $("#toast-fixed").fadeOut();
+  //$("#toast-fixed").fadeOut();
   $(".nav-title").html(appTitle);
+  $('[data-toggle="tooltip"]').tooltip();
+
+
+  
 });
 
 require([
@@ -194,11 +198,10 @@ require([
 
     // in event-handlers.js
     loadEventHandlers();
-    
-    //TODO fix uglifying error that occurs here.
-    if(esri.layers.Layer.prototype._errorHandler == 'function' )  {  
+
+    if( typeof esri.layers.Layer.prototype._errorHandler == 'function' )  {  
         esri.layers.Layer.prototype._errorHandler = function(error)  {  
-            if ( error && error.message && error.message == "xhr cancelled" )  {
+            if( error && error.message && error.message == "xhr cancelled" )  {
                 return;  
                 this.onError(error);  
             }
@@ -214,7 +217,7 @@ require([
 
     //fire initial query to populate AOIs
     //UPDATE IMPORTANT!  check layer and field names to make sure the fields exist in the service layers
-    setupQueryTask(serviceBaseURL + 5, ['St', 'gp3', 'gp2', 'gp1' ], '1=1');
+    setupQueryTask(serviceBaseURL + 5, ['ST', 'GP3', 'GP2', 'GP1' ], '1=1');
 
     app.setLayerDefObj = function(newObj){
 
@@ -760,7 +763,7 @@ require([
             if (app.clickSelectionActive) {
                 $.each(response, function(i, respObj){
                     var feature = respObj.feature;
-                    var respValue = respObj.displayFieldName == "MRB_ID" ? respObj.value : "'" + respObj.value + "'";
+                    var respValue = respObj.displayFieldName == "COMID" ? respObj.value : "'" + respObj.value + "'";
 
                     if (!app.shiftKey) {
                         //adding
@@ -775,8 +778,8 @@ require([
                         if (app.userSelectedDispFieldName == "") {
                             app.userSelectedDispFieldName = respObj.displayFieldName;
                         }
-                        // make sure 'Show Chart for All' button now says 'Show Chart for selected'
-                        $('#chartButton').html("Show Chart for selected");
+                        // make sure 'Show Chart for All Map Features' button now says 'Show Chart for selected features'
+                        $('#chartButton').html("Show Chart for selected features");
                     } else {
                         //removing
                         var symbolToRemove = app.map.graphics.graphics.filter(function (g) { return g.symbol.id == respObj.value})[0];
@@ -784,7 +787,7 @@ require([
                         //remove this from array of responses
                         app.userSelectedShapes.splice(app.userSelectedShapes.indexOf(respValue), 1);
                         // if all selected have been removed, change Show Chart button back to say All
-                        if (app.userSelectedShapes.length == 0) $('#chartButton').html("Show Chart for All");
+                        if (app.userSelectedShapes.length == 0) $('#chartButton').html("Show Chart for All Map Features");
                     }
                 });
             } else {
@@ -803,7 +806,7 @@ require([
                             //UPDATE important! make sure the field names match what is in the REST layer
                             calibrationTemplate.setContent('<div><b>Station Name:</b> ' + responseObj.feature.attributes.NAME + '</div><br>' +
                                                             '<div><b>Station ID:</b> </b>' + responseObj.feature.attributes.STAID + '</div><br>' +
-                                                            '<div><b>SPARROW Reach ID: </b>' + responseObj.feature.attributes.MRB_ID + '</div><br>'+
+                                                            '<div><b>SPARROW Reach ID: </b>' + responseObj.feature.attributes.COMID + '</div><br>'+
                                                             '<div><b>Fluxmaster Load' + chartUnits +': </b>' + responseObj.feature.attributes.LOAD_A_006 + '</div><br>' +
                                                             '<div><b>SPARROW Estimated Load ' + chartUnits +': </b>' + responseObj.feature.attributes.PLOAD_TOTA + '</div><br>');
 
@@ -824,7 +827,7 @@ require([
                             //UPDATE important! make sure the field names below match what is in the REST layer
                             calibrationTemplateN.setContent('<div><b>Station Name:</b> ' + responseObj.feature.attributes.NAME + '</div><br>' +
                                                             '<div><b>Station ID:</b> </b>' + responseObj.feature.attributes.STAID + '</div><br>' +
-                                                            '<div><b>SPARROW Reach ID: </b>' + responseObj.feature.attributes.MRB_ID + '</div><br>'+
+                                                            '<div><b>SPARROW Reach ID: </b>' + responseObj.feature.attributes.COMID + '</div><br>'+
                                                             '<div><b>Fluxmaster Load' + chartUnits +': </b>' + responseObj.feature.attributes.LOAD_A_006 + '</div><br>' +
                                                             '<div><b>SPARROW Estimated Load ' + chartUnits +': </b>' + responseObj.feature.attributes.PLOAD_TOTA + '</div><br>');
 
@@ -851,7 +854,7 @@ require([
                         var valuePairs = {};
 
                         //need to wrap value in single quotes for ESRI REST Service query.  BUT ONLY IF THE DISPLAY FIELD IS A STRING!
-                        if (response[0].displayFieldName == "MRB_ID"){
+                        if (response[0].displayFieldName == "COMID"){
                             var chartQueryArg = response[0].displayFieldName + " = " + response[0].value;
                         } else{
                             var chartQueryArg = response[0].displayFieldName + " = " + "'" + response[0].value + "'";
@@ -903,15 +906,15 @@ require([
     }//END createTableQuery()
 
     app.createChartQuery = function(optionalWhereClause){   
-        //need to check if optionalWhereClause is undefined because onClick events can trigger chart
-        if (app.polygonResponseCount > 2500 && optionalWhereClause == undefined ) {
+        //need to check if optionalWhereClause is provided -- this is an onclick or multiple click select event and the chart can be shown.
+        if (app.polygonResponseCount > chartFeatureMax && optionalWhereClause == undefined) {
             //don't show chart
             $("#toast_title").html("Warning");
-            $("#toast_body").html("Cannot show chart for "+ app.polygonResponseCount + " features. Please narrow your data and try again.");  
-            $("#toast-fixed").fadeIn();
+            $("#toast_body").html("Cannot show chart for "+ app.polygonResponseCount + " features. Please narrow Area of Interest or Group Results and try again.");  
+            $("#toast-fixed").show();
             setTimeout(function(){ 
-                $("#toast-fixed").fadeOut();
-            }, 5000);
+                $("#toast-fixed").hide();
+            }, 4000);
         } else {
             if( $("#chartWindowDiv").css("visibility") != "visible" ) {
                 $('#chartWindowDiv').css({
@@ -1187,9 +1190,9 @@ require([
         switch (selectedIndex){
             case 0:
                 if( $('#st-select')[0].selectedIndex > 0){
-                    return 'ST_MRB_ID';
+                    return 'ST_COMID';
                 }else{
-                    return 'MRB_ID';
+                    return 'COMID';
                 }
             case 1:
                 if( $('#st-select')[0].selectedIndex > 0){
@@ -1251,7 +1254,7 @@ require([
             $.each(obj, function(i, attribute){
                 //don't try to sum up an strings or ID numbers
                 //UPDATE important! -- if catchments ID field is returned make sure the correctly named field is in the catch below.
-                if(jQuery.type(attribute) !== 'string' && i !== "MRB_ID") { // (dont need this because ST_MRB_ID is a string) || i !== "ST_MRB_ID") ){
+                if(jQuery.type(attribute) !== 'string' && i !== "COMID") { // (dont need this because ST_COMID is a string) || i !== "ST_COMID") ){
                     sum += attribute;
                 }
             });
@@ -1283,7 +1286,7 @@ require([
             var data = [];
             $.each(featureSort, function(innerIndex, feature){
                 if ($('#groupResultsSelect')[0].selectedIndex == 0) { //catchments only
-                    data.push( {y: feature[value], id: feature["MRB_ID"] || feature["ST_MRB_ID"]}); // TMR ADDED
+                    data.push( {y: feature[value], id: feature["COMID"] || feature["ST_COMID"]}); // TMR ADDED
                 } else {
                     data.push( feature[value] );
                 }
@@ -1292,7 +1295,7 @@ require([
         });
         //appears to be stripping the last source value array off instead
         /***if ($('#groupResultsSelect')[0].selectedIndex == 0) {
-            chartArr.pop(); // remove the last array of MRB_IDs  // TMR ADDED
+            chartArr.pop(); // remove the last array of COMIDs  // TMR ADDED
         }***/
         //remove 1st field ('group by') from charting arrays
         categories.shift();
@@ -1416,7 +1419,7 @@ require([
         $('#chartWindowDiv').removeClass( 'chartWindowMinimize' );
         $('#chartWindowDiv').css('visibility', 'visible');
         $("#toast-fixed").fadeOut();        
-        $("#toast-fixed").css('opacity', '0');
+        $("#toast-fixed").css('opacity', '1');
 
         //Important! UPDATE if nutrient Models change names.
         if( $('.radio input[type="radio"]:checked')[0].id == 'radio1'){
@@ -1428,7 +1431,23 @@ require([
         }
 
         if (response.features.length <= 1 || app.customChartClicked){
-            $('#chartWindowPanelTitle').append('<br/><div class=""><button type="button" class="btn-blue" id="popupChartButton"><span class="glyphicon glyphicon-signal"></span> Show Full Chart</button></div>');
+           //not making any difference
+            // $(document.body).tooltip({ selector: "[title]" });
+           
+
+            
+            $('#chartWindowPanelTitle').append('<br/><div class=""><button type="button" class="btn-blue" data-toggle="tooltip" title="Cannot display full chart for more than ' + chartFeatureMax + ' features" id="popupChartButton"><span class="glyphicon glyphicon-signal"></span> Show Full Chart</button></div>');
+            $('#popupChartButton').tooltip({selector:'[data-toggle="tooltip"]'});
+           
+            if (app.polygonResponseCount > chartFeatureMax){
+                $('#popupChartButton').prop('disabled', true);
+                
+            } else{
+                $('#popupChartButton').prop('disabled', false);
+                $('#popupChartButton').attr("title", null);
+                
+            }
+            
             //if coming from custom chart button click
             if (app.customChartClicked) {
                 app.customChartClicked = false;
@@ -1455,7 +1474,7 @@ require([
 
         $('#chartClose').on('click', function(){
             app.map.graphics.clear();
-            $("#chartButton").html("Show Chart for All");
+            $("#chartButton").html("Show Chart for All Map Features");
             app.formattedHighlightString = "";
             $('#chartWindowDiv').css('visibility', 'hidden');
             $('#chartWindowContainer').empty();
@@ -1538,8 +1557,8 @@ require([
                                 var categoryStr = "";
                                 $.each(categoryArr, function(i, category){
 
-                                    // only MRB_ID is a number, ST_MRB_ID is a string
-                                    categoryStr += fieldName == "MRB_ID" ?  + category + ", " : "'" + category + "', ";
+                                    // only COMID is a number, ST_COMID is a string
+                                    categoryStr += fieldName == "COMID" ?  + category + ", " : "'" + category + "', ";
                                 });
                                 var queryStr = categoryStr.slice(0, categoryStr.length - 2);
 
@@ -1611,12 +1630,16 @@ require([
                     },
                     buttons:{
                         contextButton:{
-                            text: "Chart Options",
-                            height: 40,
+                             text: "Chart Download / Chart Options",
+                            theme: {
+                                fill: '#0F8AFF'
+                            },
                             symbol: null,
+                            symbolFill: '#0F8AFF',
+                            height: 80,
                             align: 'right',
                             menuItems:[
-                                /*{
+                                {
                                     text: 'Download PNG',
                                     onclick: function() {
                                         this.exportChart({
@@ -1635,7 +1658,7 @@ require([
                                     onclick: function(){
                                         this.downloadXLS();
                                     }
-                                },*/
+                                },
                                 {
                                     text: 'Change Background Transparency',
                                     onclick: function(){
@@ -1676,16 +1699,17 @@ require([
                     }
                 },
                 legend: {
-                    align: 'left',
+                     align: 'left',
                     x: 10,
                     verticalAlign: 'top',
-                    y: 25,
+                    y: 40,
                     floating: false,
                     padding: 5,
                     backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
                     borderColor: '#CCC',
                     borderWidth: 1,
                     shadow: false,
+                    itemWidth: 300,
                     labelFormatter: function () {
                         var yI = this.name.indexOf(")");
                         var shortName = "";
@@ -1732,10 +1756,10 @@ require([
                                     graphicsQuery.outSpatialReference = app.map.spatialReference;  //important!
                                     graphicsQuery.outFields = [fieldName];
 
-                                    if (fieldName != "MRB_ID"){
+                                    if (fieldName != "COMID"){
                                         graphicsQuery.where = fieldName + "= '" + category + "'";
                                     }else {
-                                        //MRB_ID (but ST_MRB_ID is) field is NOT a string!!!
+                                        //COMID (but ST_COMID is) field is NOT a string!!!
                                         graphicsQuery.where = fieldName + " = " + category;
                                     }
 
@@ -1765,10 +1789,10 @@ require([
                                         thisCategory = this.category;
                                     }
 
-                                    if (queryField != "MRB_ID"){
+                                    if (queryField != "COMID"){
                                         var queryString = queryField + " = " + "'" + thisCategory + "'";
                                     } else {
-                                        //MRB_ID field is NOT a string!!!
+                                        //COMID field is NOT a string!!!
                                         var queryString = queryField + " = " + thisCategory ;
                                     }
 
@@ -1839,9 +1863,12 @@ require([
             headerKeyArr.push("Catchment Area");
             headerKeyArr.push("Upstream Area");
             headerKeyArr.push("Total");
+            //headerKeyArr.splice(1, 0, 'Total'); /* Can be used to add total to a specific point in the headerKeysArr */
+            
         } else {
             headerKeyArr.push("Area");
             headerKeyArr.push("Total");
+            //headerKeyArr.splice(1, 0, 'Total'); /* Can be used to add total to a specific point in the headerKeysArr */
             
         }
 
@@ -1860,14 +1887,24 @@ require([
 
         $('#resultsTable').append('<tbody id="tableBody"></tbody>');
         $.each(response, function(rowIndex, feature) {
-            var rowI = selectedLayerId == 0 ? feature["MRB_ID"] || feature["ST_MRB_ID"] : rowIndex;
+            var rowI = selectedLayerId == 0 ? feature["COMID"] || feature["ST_COMID"] : rowIndex;
 
             htmlArr.push("<tr id='row"+rowI+"'>");
             $.each(feature, function(key, value){
+                
+                htmlArr.push('<td>'+ value +'</td>');
+
                 //comment in if changing back to PNAME
-                //if (key !== "MRB_ID" && key !== "ST_MRB_ID") {
-                    htmlArr.push('<td>'+ value +'</td>');
+                //if (key !== "COMID" && key !== "ST_COMID") {
+                    //htmlArr.push('<td>'+ value +'</td>');
                 //}
+                
+                /*below can be used to splice 'total' into the second position in the array*/
+                /*if (key !== "total") {
+                    htmlArr.push('<td>'+ value +'</td>');
+                } else{
+                    htmlArr.splice(1, 0, '<td>'+ value +'</td>');
+                }*/
             });
 
             htmlArr.push("</tr>");
@@ -1903,7 +1940,7 @@ require([
         graphicsQuery.outSpatialReference = app.map.spatialReference;  //important!
         graphicsQuery.outFields = [fieldName];
 
-        if (fieldName == "MRB_ID"){
+        if (fieldName == "COMID"){
             graphicsQuery.where = fieldName + " = " + category;
         } else{
             graphicsQuery.where = fieldName + "= '" + category + "'";
@@ -1964,215 +2001,217 @@ require([
         chartQuery.where = whereClause;
 
         chartQueryTask.execute(chartQuery, getDDChart);
-    }
-    // results of chartQueryTask for miniChart in data download modal so that user can print csv or png
-    function getDDChart(response){
-        var columnLabels = [];
-        var chartTitle;
-        var categories = [];
-        var chartArr = [];
-        var series = [];
-        var featureSort = [];       
 
-        $.each(response.features, function(index, feature){
-            /***this function removes any fields ending with "AREA" from the response.features Object. (i.e. DEMIAREA, DEMTAREA, GP1_AREA, etc.)
-            The chart was not built to accommodate the extra area fields, but they're necessary for display in the table.***/
-            $.map(Object.keys(feature.attributes), function(val, i){
-                //find ANY INDEX that contains "AREA" in the key
-                if (val.indexOf("AREA") > -1) delete feature.attributes[val];
+        // results of chartQueryTask for miniChart in data download modal so that user can print csv or png
+        function getDDChart(response){
+            var columnLabels = [];
+            var chartTitle;
+            var categories = [];
+            var chartArr = [];
+            var series = [];
+            var featureSort = [];       
+
+            $.each(response.features, function(index, feature){
+                /***this function removes any fields ending with "AREA" from the response.features Object. (i.e. DEMIAREA, DEMTAREA, GP1_AREA, etc.)
+                The chart was not built to accommodate the extra area fields, but they're necessary for display in the table.***/
+                $.map(Object.keys(feature.attributes), function(val, i){
+                    //find ANY INDEX that contains "AREA" in the key
+                    if (val.indexOf("AREA") > -1) delete feature.attributes[val];
+                });
+                //push the feature attributes AFTER removing all the "AREA" atributes.
+                featureSort.push(feature.attributes);
             });
-            //push the feature attributes AFTER removing all the "AREA" atributes.
-            featureSort.push(feature.attributes);
-        });
-        var sum = 0;
-        $.each(featureSort, function(index, obj){
-            $.each(obj, function(i, attribute){
-                //don't try to sum up an strings or ID numbers
-                //UPDATE important! -- if catchments ID field is returned make sure the correctly named field is in the catch below.
-                if(jQuery.type(attribute) !== 'string' && i !== "MRB_ID") sum += attribute;
+            var sum = 0;
+            $.each(featureSort, function(index, obj){
+                $.each(obj, function(i, attribute){
+                    //don't try to sum up an strings or ID numbers
+                    //UPDATE important! -- if catchments ID field is returned make sure the correctly named field is in the catch below.
+                    if(jQuery.type(attribute) !== 'string' && i !== "COMID") sum += attribute;
+                });
+                obj.total = sum;
+                sum = 0;
             });
-            obj.total = sum;
-            sum = 0;
-        });
-        featureSort.sort(function(a, b){
-            return parseFloat(b.total) - parseFloat(a.total);
-        });
-
-        //create array of field names
-        $.each(response.features[0].attributes, function(key, value){
-            categories.push(key);
-        });
-
-        categories.pop();
-
-        //create multidimensional array from query response
-        $.each(categories, function(index, value){
-            var data = [];
-            $.each(featureSort, function(innerIndex, feature){
-                if ($('#groupResultsSelect')[0].selectedIndex == 0) { //catchments only
-                    data.push( {y: feature[value], id: feature["MRB_ID"] || feature["ST_MRB_ID"]}); // TMR ADDED
-                } else {
-                    data.push( feature[value] );
-                }
+            featureSort.sort(function(a, b){
+                return parseFloat(b.total) - parseFloat(a.total);
             });
-            chartArr.push(data);
-        });
-        
-        //remove 1st field ('group by') from charting arrays
-        categories.shift();
-        $.each(chartArr.shift(), function(key, value) {  // TMR ADDED
-            // check to see if catchments, this will be an object otherwise it will be array
-            value.y !== undefined ? columnLabels.push(value.y) : columnLabels.push(value);
-        });  //removes AND returns column labels ( chartArr[0] )
 
-       //get chartOutfields from config --i.e {attribute: "VALUE", label: "value"}
-        var sparrowLayerId = app.map.getLayer('SparrowRanking').visibleLayers[0];
-        var chartLabelsObj = getChartOutfields(sparrowLayerId);
-        var chartLabelsArr = [];
-        $.each(chartLabelsObj, function(index, obj){
-            chartLabelsArr.push( obj.label ); //get labels ONLY as arr
-        });
-
-        //removes 'group by' from labels  (MUST MATCH CATEGORIES)
-        chartLabelsArr.shift();
-
-        //push label array into series
-        $.each(chartLabelsArr, function(index, value){
-            series.push( {name: value, turboThreshold: 3000});
-        });
-
-        //chartArr is a multi-dimensional array.  Each item in chartArr is an array of series data.
-        $.each(chartArr, function(index, value){
-            series[index].data = chartArr[index];
-        });
-
-        //UPDATE IMPORTANT!  Match labels with #groupResultsSelect indicies
-        function labelxSelect(){
-            var dropdown = $('#groupResultsSelect')[0].selectedIndex;
-            switch ( dropdown ){
-                case 0:
-                    return 'Catchment ID';
-                case 1:
-                    return 'HUC8';
-                case 2:
-                    return 'Tributary';
-                case 3:
-                    return 'Main River Basin';
-                case 4:
-                    return 'State';
-            }
-        }
-
-        //UPDATE IMPORTANT! must match layers in service to Groups in sparrow-config.js
-        function labelySelect(){            
-            var label;
-            var configObject = app.getLayerConfigObject(app.map.getLayer('SparrowRanking').visibleLayers[0]);
-            $.each(configObject, function(index, object){
-                if (object.field == $('#displayedMetricSelect').val()) label = object.name;                
+            //create array of field names
+            $.each(response.features[0].attributes, function(key, value){
+                categories.push(key);
             });
-            return label;
-        }
-        var colorArr = ( $('.radio input[type="radio"]:checked')[0].id == 'radio1' ? phosColors  : nitroColors );
-        var miniChart = $('#miniChartContainer').highcharts();
 
-        $(function () {
-            Highcharts.setOptions({
-                lang: {
-                    thousandsSep: ','
-                },
-                colors: colorArr
+            categories.pop();
+
+            //create multidimensional array from query response
+            $.each(categories, function(index, value){
+                var data = [];
+                $.each(featureSort, function(innerIndex, feature){
+                    if ($('#groupResultsSelect')[0].selectedIndex == 0) { //catchments only
+                        data.push( {y: feature[value], id: feature["COMID"] || feature["ST_COMID"]}); // TMR ADDED
+                    } else {
+                        data.push( feature[value] );
+                    }
+                });
+                chartArr.push(data);
             });
-            var buttons = Highcharts.getOptions().exporting.buttons.contextButton.menuItems;
             
-            $('#miniChartContainer').highcharts({
-                chart: {
-                    type: 'column',
-                    backgroundColor:'rgba(255, 255, 255, 0.45)',
-                },
-                title:{
-                    text: $('.radio input[type="radio"]:checked')[0].id == 'radio1' ? 'Total Phosphorus' + labelySelect() : 'Total Nitrogen' + labelySelect()
-                },
-                subtitle:{
-                    text: null
-                },
-                exporting:{
-                    enabled: false,
-                    chartOptions:{
-                        chart:{
-                            events:{
-                                load:function(){
-                                    this.chartBackground.attr({ fill: 'rgba(255, 255, 255, 1.0)' });
-                                    this.renderer.image('https://wim.usgs.gov/visuals/usgs/usgslogo1.jpg', 2, 2, 50, 30).add();
+            //remove 1st field ('group by') from charting arrays
+            categories.shift();
+            $.each(chartArr.shift(), function(key, value) {  // TMR ADDED
+                // check to see if catchments, this will be an object otherwise it will be array
+                value.y !== undefined ? columnLabels.push(value.y) : columnLabels.push(value);
+            });  //removes AND returns column labels ( chartArr[0] )
+
+        //get chartOutfields from config --i.e {attribute: "VALUE", label: "value"}
+            var sparrowLayerId = app.map.getLayer('SparrowRanking').visibleLayers[0];
+            var chartLabelsObj = getChartOutfields(sparrowLayerId);
+            var chartLabelsArr = [];
+            $.each(chartLabelsObj, function(index, obj){
+                chartLabelsArr.push( obj.label ); //get labels ONLY as arr
+            });
+
+            //removes 'group by' from labels  (MUST MATCH CATEGORIES)
+            chartLabelsArr.shift();
+
+            //push label array into series
+            $.each(chartLabelsArr, function(index, value){
+                series.push( {name: value, turboThreshold: 3000});
+            });
+
+            //chartArr is a multi-dimensional array.  Each item in chartArr is an array of series data.
+            $.each(chartArr, function(index, value){
+                series[index].data = chartArr[index];
+            });
+
+            //UPDATE IMPORTANT!  Match labels with #groupResultsSelect indicies
+            function labelxSelect(){
+                var dropdown = $('#groupResultsSelect')[0].selectedIndex;
+                switch ( dropdown ){
+                    case 0:
+                        return 'Catchment ID';
+                    case 1:
+                        return 'HUC12';
+                    case 2:
+                        return 'HUC8';
+                    case 3:
+                        return 'River Basin';
+                    case 4:
+                        return 'State';
+                }
+            }
+
+            //UPDATE IMPORTANT! must match layers in service to Groups in sparrow-config.js
+            function labelySelect(){            
+                var label;
+                var configObject = app.getLayerConfigObject(app.map.getLayer('SparrowRanking').visibleLayers[0]);
+                $.each(configObject, function(index, object){
+                    if (object.field == $('#displayedMetricSelect').val()) label = object.name;                
+                });
+                return label;
+            }
+            var colorArr = ( $('.radio input[type="radio"]:checked')[0].id == 'radio1' ? phosColors  : nitroColors );
+            var miniChart = $('#miniChartContainer').highcharts();
+
+            $(function () {
+                Highcharts.setOptions({
+                    lang: {
+                        thousandsSep: ','
+                    },
+                    colors: colorArr
+                });
+                var buttons = Highcharts.getOptions().exporting.buttons.contextButton.menuItems;
+                
+                $('#miniChartContainer').highcharts({
+                    chart: {
+                        type: 'column',
+                        backgroundColor:'rgba(255, 255, 255, 0.45)',
+                    },
+                    title:{
+                        text: $('.radio input[type="radio"]:checked')[0].id == 'radio1' ? 'Total Phosphorus' + labelySelect() : 'Total Nitrogen' + labelySelect()
+                    },
+                    subtitle:{
+                        text: null
+                    },
+                    exporting:{
+                        enabled: false,
+                        chartOptions:{
+                            chart:{
+                                events:{
+                                    load:function(){
+                                        this.chartBackground.attr({ fill: 'rgba(255, 255, 255, 1.0)' });
+                                        this.renderer.image('https://wim.usgs.gov/visuals/usgs/usgslogo1.jpg', 2, 2, 50, 30).add();
+                                    }
                                 }
                             }
                         }
-                    }
-                },
-                xAxis: {
-                    categories: columnLabels,
-                    title: {
-                        text: 'Ranked by ' + labelxSelect()
-                    }
-                },
-                yAxis: {
-                    min: 0,
-                    title: {
-                        text: labelySelect()
                     },
-                    stackLabels: {
-                        enabled: false,
-                        style: {
-                            fontWeight: 'bold',
-                            color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+                    xAxis: {
+                        categories: columnLabels,
+                        title: {
+                            text: 'Ranked by ' + labelxSelect()
                         }
-                    }
-                },
-                legend: {
-                    align: 'left',
-                    x: 10,
-                    verticalAlign: 'top',
-                    y: 25,
-                    floating: false,
-                    padding: 5,
-                    backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
-                    borderColor: '#CCC',
-                    borderWidth: 1,
-                    shadow: false,
-                    labelFormatter: function () {
-                        var yI = this.name.indexOf(")");
-                        var shortName = "";
-                        if (yI > -1) shortName = this.name.substring(yI+1);
-                        else shortName = this.name;
-                        return shortName;
-                    }
-                },
-                tooltip: {
-                    formatter: function(){
-                        var rank = this.point.index + 1;
-                        var percentOfTotal = (this.point.y / this.point.stackTotal) * 100;
-                        return '<b>' + labelxSelect() + ': ' + '<b>' + this.point.category  + '</b></b><br/>'
-                                + this.series.name + ': ' + '<b>' + this.point.y.toFixed(2) + ' (' + percentOfTotal.toFixed(2) + '%)' + '</b></b><br/>'
-                                + labelySelect() + ' Total: ' + '<b>' + this.point.stackTotal.toFixed(2) + '</b></b><br/>'
-                                + 'Rank: ' + '<b>' + rank + '</b>';
                     },
-                },
-                plotOptions: {
-                    column: {
-                        stacking: 'normal',
-                        dataLabels: {
+                    yAxis: {
+                        min: 0,
+                        title: {
+                            text: labelySelect()
+                        },
+                        stackLabels: {
                             enabled: false,
-                            color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
+                            style: {
+                                fontWeight: 'bold',
+                                color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+                            }
                         }
-                    }
-                },
-                credits: {
-                    enabled: false
-                },
-                series: series
-            });
-                     
-        }); //END self-invoking highcharts function
-    } //END getDDChart()
+                    },
+                    legend: {
+                        align: 'left',
+                        x: 10,
+                        verticalAlign: 'top',
+                        y: 25,
+                        floating: false,
+                        padding: 5,
+                        backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
+                        borderColor: '#CCC',
+                        borderWidth: 1,
+                        shadow: false,
+                        labelFormatter: function () {
+                            var yI = this.name.indexOf(")");
+                            var shortName = "";
+                            if (yI > -1) shortName = this.name.substring(yI+1);
+                            else shortName = this.name;
+                            return shortName;
+                        }
+                    },
+                    tooltip: {
+                        formatter: function(){
+                            var rank = this.point.index + 1;
+                            var percentOfTotal = (this.point.y / this.point.stackTotal) * 100;
+                            return '<b>' + labelxSelect() + ': ' + '<b>' + this.point.category  + '</b></b><br/>'
+                                    + this.series.name + ': ' + '<b>' + this.point.y.toFixed(2) + ' (' + percentOfTotal.toFixed(2) + '%)' + '</b></b><br/>'
+                                    + labelySelect() + ' Total: ' + '<b>' + this.point.stackTotal.toFixed(2) + '</b></b><br/>'
+                                    + 'Rank: ' + '<b>' + rank + '</b>';
+                        },
+                    },
+                    plotOptions: {
+                        column: {
+                            stacking: 'normal',
+                            dataLabels: {
+                                enabled: false,
+                                color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
+                            }
+                        }
+                    },
+                    credits: {
+                        enabled: false
+                    },
+                    series: series
+                });
+                        
+            }); //END self-invoking highcharts function
+        } //END getDDChart()
+    }
+    
 
     app.downloadPNGofChart = function() {
         $('#miniChartContainer').highcharts().exportChart({ type: 'PNG' });
@@ -2195,8 +2234,12 @@ require([
         }
     }
     function showDataDownloadModal () {
-        getMiniHighChart();
+        //only call mini-chart function if less than the specified chart feature max
+        if (app.polygonResponseCount <= chartFeatureMax){
+            getMiniHighChart();
+        }
         $('#downloadDatamodal').modal('show');
+        $('#generalTab').tab('show');
     }
     $('#dataDownloadNav').click(function(){
         showDataDownloadModal();
@@ -2215,6 +2258,15 @@ require([
     }
     $('#userGuideNav').click(function(){
         showUserGuideModal();
+    });
+
+    $('.showAboutDefinitions').click(function(){
+        $('#userGuideModal').modal('hide');
+        $('#downloadDatamodal').modal('hide');
+        $('#geosearchModal').modal('hide');
+        $('#aboutModal').modal('show');
+        console.log("Opening definitions tab");
+        $('#definitionsTab').trigger('click');
     });
 
     $('#html').niceScroll();
@@ -2328,6 +2380,15 @@ require([
                     //add to legend.
                     app.legend.layerInfos.push({layer: layer, title: e.currentTarget.innerText});
                     app.legend.refresh();
+
+                    if (app.map.getLayer(layer.id).id != "modelArea"){
+                        /* Cheap, ugly fix 
+                         -- seems that layers that are on by default will show up in legend when re-toggled.
+                        -- getting around that here by checking for the offending layer id above and skipping the legend layer push
+                        */
+                        app.legend.layerInfos.push({layer: layer, title: e.currentTarget.innerText});
+                        app.legend.refresh();
+                    }
 
                 }
             });

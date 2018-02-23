@@ -40,7 +40,6 @@ require([
                     "visibleLayers": [sparrowOverlay],
                     "options":{
                         "id": "SparrowRanking",
-
                         "opacity": 0.75,
                         "visible": true
                     },
@@ -102,7 +101,7 @@ require([
             "showGroupHeading": true,
             "includeInLayerList": true,
             "layers": {
-                "All Reaches" : {
+                "MARB Streams" : {
                     "url": serviceBaseURL,
                     "visibleLayers": [20],
                     "options": {
@@ -111,37 +110,20 @@ require([
                     },
                     "wimOptions": {
                         "type": "layer",
-                        "layerType": "agisDynamic",
+                        "layerType": "agisFeature",
                         "includeInLayerList": true,
                         "hasOpacitySlider": true,
                         "hasZoomto": false,
                         "includeLegend" : false
                     }
                 },
-                "Major Reaches" : {
-                    "url": serviceBaseURL,
-                    "visibleLayers": [22],
-                    "options": {
-                        "id": "majorStreams",
-                        "visible": false
-                    },
-                    "wimOptions": {
-                        "type": "layer",
-                        "layerType": "agisDynamic",
-                        "includeInLayerList": true,
-                        "hasOpacitySlider": true,
-                        "hasZoomto": false,
-                        "includeLegend" : false
-                    }
-                },
-
-                "SPARROW Model Area" : {
+                "MARB SPARROW Model Area" : {
                     "url": serviceBaseURL,
                     "visibleLayers": [21],
                     "options": {
                         "id": "modelArea",
-                        "visible": true,
-                        "opacity": 0.75
+                        "visible": false,
+                        "opacity": 0.35
                     },
                     "wimOptions": {
                         "type": "layer",
@@ -152,10 +134,10 @@ require([
                         "includeLegend" : false
                     }
                 },
-                "Land Use 2012": {
-                    "url": "https://gis.wim.usgs.gov/arcgis/rest/services/SWTrends/lu2012_100515_test/ImageServer",
+                "Land Use 2002": {
+                    "url": "https://gis.wim.usgs.gov/arcgis/rest/services/SWTrends/lu2002_100515_test/ImageServer",
                     "options": {
-                        "id": "lu2012",
+                        "id": "lu2002",
                         "opacity": 0.5,
                         "visible": false
                     },

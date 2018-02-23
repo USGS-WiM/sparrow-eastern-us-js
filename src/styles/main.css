@@ -460,10 +460,10 @@ table.hover-highlight tbody > tr.even:hover > td {
 
 #chartClose {
     cursor: pointer;
-    display: inline;
-    padding-top: 3px;
-    padding-right: 6px;
-    font-size: 14px;
+    display: block;
+    position: absolute;
+    margin-top: 15px;
+    margin-left: -5px;
     font-weight: bold;
 }
 
@@ -688,7 +688,8 @@ table.hover-highlight tbody > tr.even:hover > td {
   justify-content: center;
 }
 .search-api-container{
-  margin: 0 auto !important;
+  margin: 0 !important;
+  padding: 15px 5px 15px 15px !important;
   border: 0px solid transparent !important;
 }
 .search-api-container span{
@@ -734,12 +735,16 @@ table.hover-highlight tbody > tr.even:hover > td {
 
 /*Toast message*/
 #toast-fixed{
-  position: fixed;
+  position: absolute;
   bottom: 0px;
   right: 15px;
-  z-index: 1000000;
+  z-index: 1000000000;
   max-width: 280px;
   width: auto;
+}
+
+.page-loader{
+    background-image:url('https://wim.usgs.gov/website-assets/branding/usgsanimated.svg') !important;
 }
 
 #page-loader{
@@ -749,6 +754,7 @@ table.hover-highlight tbody > tr.even:hover > td {
   top: 55px !important;
   padding-bottom: 100px !important;
   right: 0 !important;
+  will-change: auto;
 }
 @media (max-width: 1200px) {
   #page-loader{
@@ -913,6 +919,12 @@ ul.nav-tabs li.active a{
   padding: 10px 0;
 }
 
+/*sets max height and overflow on BOTH about modal and userguideModal (which shares id with aboutModalBody*/
+#aboutModalBody{
+    max-height: 400px;
+    overflow-y: auto;
+}
+
 
 
 
@@ -985,7 +997,7 @@ Mitch GH Issues Aug 28
     justify-content: center;
     text-align: center;
     content: 'loading...';
-    background-image: url(../images/usgsanimated.svg);
+    background-image: url('https://wim.usgs.gov/website-assets/branding/usgsanimated.svg');
     height: 100%;
     position: absolute;
     top: 0;
@@ -1030,4 +1042,12 @@ Mitch GH Issues Aug 28
 
 .modal {
     z-index: 10050 !important;
+}
+
+.highcharts-contextbutton text {
+    fill: #fff !important;
+}
+
+search-api-menu{
+    z-index: 1000000 !important;
 }
