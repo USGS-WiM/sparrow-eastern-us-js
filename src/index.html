@@ -21,7 +21,7 @@
     <!-- endbuild -->
 
     <!-- CSS for the mapping components -->
-    <link rel="stylesheet" href="http://js.arcgis.com/3.21/esri/css/esri.css">
+    <link rel="stylesheet" href="https://js.arcgis.com/3.21/esri/css/esri.css">
 
     <!-- build:css styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
@@ -49,7 +49,7 @@
 
     <!-- endbower -->
     <!-- endbuild -->
-    <script type="text/javascript" src="http://js.arcgis.com/3.21/"></script>
+    <script type="text/javascript" src="https://js.arcgis.com/3.21/"></script>
 
     
     <!-- build:js scripts/combined.js -->
@@ -65,7 +65,7 @@
     <script type="text/javascript" src="scripts/select-logic.js"></script>
     <!-- endbuild -->
     <!-- analytics -->
-    <script>
+    <!--<script>
         (function (i, s, o, g, r, a, m) {
         i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
             (i[r].q = i[r].q || []).push(arguments)
@@ -75,7 +75,7 @@
 
         ga('create', 'UA-61219868-21', 'auto');
         ga('send', 'pageview');
-    </script>
+    </script>-->
     <script>
         $(document).ready(function () {
             $('[data-toggle="tooltip"]').tooltip();
@@ -87,8 +87,6 @@
     <script type="text/javascript" src="https://txpub.usgs.gov/DSS/search_api/2.1/api/search_api.min.js"></script>
 
 </head>
-
-<body>
     <!-- NavBar -->
     <nav class="wim-nav">
         <div class="container">
@@ -146,7 +144,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="ion-close"></i></button>
-                    <h3 id='aboutModalHeader' style="margin: 0;">About Eastern U.S. Nutrient Loading v0.9.0</h3>
+                    <h3 id='aboutModalHeader' style="margin: 0;"></h3>
                 </div>
                 <div id="aboutModalBody" class="modal-body">
                     <ul class="nav nav-tabs" id="aboutModalTabs">
@@ -154,6 +152,7 @@
                         <li role="presentation" class="active"><a id="dataLimitationsTab" href="#dataLimitationsTabPane" data-toggle="tab"><i class="fa fa-exclamation-circle"></i>&nbsp;Data Limitations</a></li>
                         <li role="presentation"><a id="contactTab" href="#contactTabPane" data-toggle="tab"><i class="fa fa-envelope-o"></i>&nbsp;Contact Information</a></li>
                         <li role="presentation"><a id="definitionsTab" href="#definitionsTabPane" data-toggle="tab"><i class="fa fa-question-circle"></i>&nbsp;Definitions</a></li>
+                        <li role="presentation"><a id="disclaimerTab" href="#disclaimerTabPane" data-toggle="tab"><i class="fa fa-exclamation-triangle"></i>&nbsp;Disclaimer</a></li>
                     </ul>
                     <div class="tab-content">
                         <div role="tabpanel" class="tab-pane" id="aboutTabPane">
@@ -167,22 +166,52 @@
                             </p>
 
                             <p class="p-meta p-light fullwidth">
-                                <b>Documentation of the SPARROW model for Great Lakes Basin</b>
-                                <br/> Robertson, D.M. and Saad, D.A., 2011. Nutrient inputs to the Laurentian Great Lakes
-                                by source and watershed estimated using SPARROW watershed models: Journal of the American
-                                Water Resources Association. v. 47, p. 1011-1033, DOI: 10.1111/j.1752-1688.2011.00574.x.
-                                <a href="http://onlinelibrary.wiley.com/doi/10.1111/j.1752-1688.2011.00574.x/pdf" target="blank">http://onlinelibrary.wiley.com/doi/10.1111/j.1752-1688.2011.00574.x/pdf</a>
+                                <b>Documentation of the SPARROW model for the Mississippi Atchafalaya River Basin</b>
+                                <br/> Robertson, D.M. and Saad, D.A., 2013, SPARROW models used to understand nutrient sources
+                                in the Mississippi/Atchafalaya River Basin: Journal of Environmental Quality. v. 42, no. 5, p.
+                                1422-1440, DOI: 10.2134/jeq2013.02.0066.
+                                <!--TODO find publication URL-->
+                                <!--<a href="http://onlinelibrary.wiley.com/doi/10.1111/j.1752-1688.2011.00574.x/pdf" target="blank">http://onlinelibrary.wiley.com/doi/10.1111/j.1752-1688.2011.00574.x/pdf</a>-->
+                                <br/>
+                                Robertson, D.M., Saad, D.A., Schwarz, G.E., 2014, Spatial Variability in Nutrient Transport by
+                                HUC8, State, and Subbasin Based on Mississippi/Atchafalaya River Basin SPARROW Models:
+                                Journal of the American Water Resources Association. DOI: 10.1111/jawr.12153.
+                            </p>
+
+                            <p class="p-meta p-light fullwidth">
+                                <b>Documentation of the data used in the Model</b>
+                                <br/> Saad, D.A., G.E. Schwarz, D.M. Robertson, and N.L. Booth, 2011. A Multi-Agency Nutrient Dataset Used
+                                to Estimate Loads, Improve Monitoring Design, and Calibrate Regional Nutrient SPARROW Models.
+                                Journal of the American Water Resources Association 47(5):933-949, doi: 10.1111/j.1752-
+                                1688.2011.00575.x.
+                                <!--TODO find publication URL-->
+                                <!--<a href="http://onlinelibrary.wiley.com/doi/10.1111/j.1752-1688.2011.00574.x/pdf" target="blank">http://onlinelibrary.wiley.com/doi/10.1111/j.1752-1688.2011.00574.x/pdf</a>-->
+                                <br/>
+                                U.S. Department of Agriculture-Natural Resources Conservation Service, U.S. Geological Survey, and
+                                Environmental Protection Agency, 2016, Watershed Boundary
+                                Journal of the American Water Resources Association. DOI: 10.1111/jawr.12153.
+                                <a href="https://datagateway.nrcs.usda.gov" target="blank">Dataset: http://datagateway.nrcs.usda.gov.</a>
                             </p>
 
                             <p class="p-meta p-light fullwidth">
                                 <b>Documentation of the modeling tool SPARROW (SPAtially Referenced Regression On Watershed attributes)</b>
-                                <br/> Schwarz, G.E., A.B. Hoos, R.B. Alexander, and R.A. Smith, 2006. The SPARROW Surface
-                                Water-Quality Model: Theory, Application, and User Documentation. U.S. Geological Survey
-                                Techniques and Methods Report, Book 6, Chapter B3. <a href="https://pubs.usgs.gov/tm/2006/tm6b3/"
+                                <br/> Schwarz, G.E., A.B. Hoos, R.B. Alexander, and R.A. Smith, 2006. The SPARROW Surface Water-Quality Model: Theory, Application, and User Documentation. 
+                                U.S. Geological Survey Techniques and Methods Report, Book 6, Chapter B3. <a href="https://pubs.usgs.gov/tm/2006/tm6b3/"
                                     target="blank">https://pubs.usgs.gov/tm/2006/tm6b3/</a>;
                                 <br/> Preston, S.D., Alexander, R.B., Woodside, M.D., and Hamilton, P.A., 2009, SPARROW MODELING - Enhancing
                                 Understanding of the Nation's Water Quality: U.S. Geological Survey Fact Sheet 2009-3019,
                                 6 p. <a href="https://pubs.usgs.gov/fs/2009/3019/" target="blank">https://pubs.usgs.gov/fs/2009/3019/</a>
+                            </p>
+                            
+                            <p class="p-meta p-light fullwidth">
+                                <b>References:</b>
+                                <br/> Saad, D.A., G.E. Schwarz, D.M. Robertson, and N.L. Booth, 2011. A Multi-Agency Nutrient
+                                Dataset Used to Estimate Loads, Improve Monitoring Design, and Calibrate Regional Nutrient
+                                SPARROW Models. Journal of the American Water Resources Association 47(5):933-949, doi: 10.1111/j.1752-1688.2011.00575.x.
+                                U.S. Department of Agriculture-Natural Resources Conservation Service, U.S. Geological Survey,
+                                and Environmental Protection Agency, 2016, Watershed Boundary Dataset: <a href="http://datagateway.nrcs.usda.gov"
+                                    target="blank">http://datagateway.nrcs.usda.gov [Accessed 2/2/2016].</a>
+                                <br/>
                             </p>
 
                         </div>
@@ -194,23 +223,14 @@
                                 could be used for reporting is the catchment scale at which model computations are made for
                                 the Upper Midwest model these are RF1 catchments, typical watershed size is about 100 square
                                 miles. Results can be aggregated up to larger scales for reporting: tributary outlet, HUC8
-                                (typical watershed size is 1,200 square miles), state, or Great Lake Basin. The SPARROW model
+                                (typical watershed size is 1,200 square miles), state, or selected watersheds within the modeled area. The SPARROW model
                                 is, in theory, is scale independent. However, the uncertainty associated with SPARROW predictions
                                 is expected to increase for drainage basin sizes smaller than those of stream monitoring
                                 sites used to calibrate the model.
                             </p>
                             <br/>
 
-                            <p class="p-meta p-light fullwidth">
-                                <b>References:</b>
-                                <br/> Saad, D.A., G.E. Schwarz, D.M. Robertson, and N.L. Booth, 2011. A Multi-Agency Nutrient
-                                Dataset Used to Estimate Loads, Improve Monitoring Design, and Calibrate Regional Nutrient
-                                SPARROW Models. Journal of the American Water Resources Association 47(5):933-949, doi: 10.1111/j.1752-1688.2011.00575.x.
-                                U.S. Department of Agriculture-Natural Resources Conservation Service, U.S. Geological Survey,
-                                and Environmental Protection Agency, 2016, Watershed Boundary Dataset: <a href="http://datagateway.nrcs.usda.gov"
-                                    target="blank">http://datagateway.nrcs.usda.gov [Accessed 2/2/2016].</a>
-                                <br/>
-                            </p>
+                           
                         </div>
                         <div role="tabpanel" class="tab-pane" id="contactTabPane"><br/>
 
@@ -254,18 +274,17 @@
                             </br>
 
                             <p class="p-meta p-light fullwidth">
-                                <b>Incremental Load</b><br/> The predicted mean annual load of the constituent (kilograms
-                                per year) leaving a stream reach that reflects only those sources contributed from within
-                                the incremental drainage area of that reach. The incremental load value includes the effects
-                                of in-stream attenuation processes associated with one half of the incremental reach length.
-                                Incremental drainage areas are represented here as "catchments".
+                                <b>Incremental Load</b><br/> The predicted mean annual load of the constituent (kilograms per year) leaving a stream reach that 
+                                reflects only those sources contributed from within the incremental drainage area of that reach. The incremental load value includes 
+                                the effects of in-stream attenuation processes associated with one half of the incremental reach length. Incremental drainage areas are represented here as “catchments”.
                             </p>
                             <p class="p-meta p-light fullwidth">
-                                <b>Accumulated Load (often referred to as "Total Load")</b><br/> The predicted mean annual
-                                load of the constituent (kilograms per year) leaving a stream reach that reflects the accumulated
-                                mass of the constituent contributed by all sources in the total drainage area upstream of
-                                the reach outlet. The accumulated load value includes the effects of in-stream attenuation
-                                processes in all upstream reaches.
+                                <b>Accumulated Load (often referred to as "Total Load")</b><br/> The predicted mean annual load of the constituent (kilograms per year) leaving a stream reach that 
+                                reflects the accumulated mass of the constituent contributed by all sources in the total drainage area upstream of the reach outlet. 
+                                The accumulated load value includes the effects of in-stream attenuation processes in all upstream reaches.
+                            </p>
+                            <p class="p-meta p-light fullwidth">
+                                Please note: Accumulated load values for stream reaches that include drainage from Canada do not include load from the Canadian portion of those watersheds. 
                             </p>
                             <p class="p-meta p-light fullwidth">
                                 <b>Aggregated Load</b><br/> For results grouped by 8-digit HUC, tributary outlet, main watershed
@@ -317,8 +336,45 @@
                                 leaving the reach is delivered to the downstream target.
                             </p>
                             <p class="p-meta p-light fullwidth">
-                                Please note: For delivered results shown here, the downstream target represents the immediate downstream Great Lake.
+                                Please note: For delivered results shown here, the downstream target represents the Gulf of Mexico.
                             </p>
+                        </div>
+
+                        <div role="tabpanel" class="tab-pane" id="disclaimerTabPane">
+                            </br>
+
+                            <p class="p-meta p-light fullwidth">
+                                <b>USGS Data Disclaimer:</b><br/>  Unless otherwise stated, all data, metadata and related materials are considered to satisfy the quality standards relative to the purpose for which the 
+                                data were collected. Although these data and associated metadata have been reviewed for accuracy and completeness and approved for release by the 
+                                U.S. Geological Survey (USGS), no warranty expressed or implied is made regarding the display or utility of the data for other purposes, nor on all computer systems, 
+                                nor shall the act of distribution constitute any such warranty.
+                            </p>
+                            <p class="p-meta p-light fullwidth">
+                                <b>USGS Software Disclaimer:</b><br/>  This software has been approved for release by the U.S. Geological Survey (USGS). Although the software has been subjected to rigorous review, the USGS 
+                                reserves the right to update the software as needed pursuant to further analysis and review. No warranty, expressed or implied, is made by the USGS or the U.S. 
+                                Government as to the functionality of the software and related material nor shall the fact of release constitute any such warranty. Furthermore, the software 
+                                is released on condition that neither the USGS nor the U.S. Government shall be held liable for any damages resulting from its authorized or unauthorized use.
+                            </p>
+                            <p class="p-meta p-light fullwidth">
+                                <b>USGS Product Names Disclaimer:</b><br/>Any use of trade, firm, or product names is for descriptive purposes only and does not imply endorsement by the U.S. Government.
+                            </p>
+                            <p class="p-meta p-light fullwidth">
+                                This web application functions best in Chrome, Firefox, or Safari. Internet Explorer works but with slower performance.                            
+                            </p>
+                            <p class="p-meta p-light fullwidth">
+                                This web application has been made possible by the following open-source projects: <br/>  
+                                Lobipanel <a href="https://github.com/arboshiki/lobipanel" target="_blank"> https://github.com/arboshiki/lobipanel</a><br/>
+                                Boostrap Select <a href="https://silviomoreto.github.io/bootstrap-select" target="_blank"> https://silviomoreto.github.io/bootstrap-select</a><br/>
+                                
+                                
+
+                                
+                            </p>
+                            <p class="p-meta p-light fullwidth">
+                                <b>Link to SPARROW REST Services:</b><br/> 
+                                <a href="https://sparrowtest.wim.usgs.gov/arcgis/rest/services/SparrowEast/SparrowEast/MapServer/" target="_blank">SPARROW Eastern U.S. TEST REST Services</a>
+                            </p>
+                    
                         </div>
 
                     </div>
@@ -326,8 +382,8 @@
 
                 <div class="modal-footer">
                     <p class="p-meta fullwidth" style="color:black; text-align:center">
-                        For more information about the SPARROW Great Lakes Web Interface please contact <a href="http://wim.usgs.gov/"
-                            target="_blank"><img src="images/wim_abbr.png" id="wim_logo"></a>
+                        For more information about the SPARROW MARB Web Interface please contact <a href="http://wim.usgs.gov/"
+                            target="_blank"><img src="images/wim_abbr_black.png" id="wim_logo"></a>
                     </p>
                     <button type="button" data-dismiss="modal" aria-hidden="true" class="btn-black">Close</button>
                 </div>
@@ -346,7 +402,7 @@
                     <h3 style="margin: 0;">Map Interface User Guide</h3>
                 </div>
                 <div id="aboutModalBody" class="modal-body">
-                    <ul class="nav nav-tabs" id="aboutModalTabs">
+                    <ul class="nav nav-tabs" id="userGuideModalTabs">
                         <li role="presentation" class="active"><a id="searchTab" href="#searchTabPane" data-toggle="tab"><i class="fa fa-search"></i>&nbsp;Search, Zoom</a></li>
                         <li role="presentation"><a id="iconTab" href="#iconTabPane" data-toggle="tab"><i class="fa fa-list"></i>&nbsp;Explanation</a></li>
                         <li role="presentation"><a id="layersTab" href="#layersTabPane" data-toggle="tab"><i class="fa fa-map"></i>&nbsp;Map selection options</a></li>
@@ -416,9 +472,10 @@
                             </div>
                             <div class="user-guide-item">
                                 <div class="user-guide-item-image"><img src="images/userguide/metricgrouping.png" /></div>
-                                <p><b>Selecting a Displayed Metric and Group Results By</b>Yields and loads can be viewed by
+                                <p style="display:inline"><b>Selecting a Displayed Metric and Group Results By</b>Yields and loads can be viewed by
                                     making changes to the Displayed Metric dropdown. The area of aggregation is controlled
-                                    by the Group Results dropdown.</p>
+                                    by the Group Results dropdown. To read more about metric definitions visit the About section or click 
+                                    <a style="cursor:pointer" class="showAboutDefinitions">here</a></p>
                             </div>
                         </div>
                         <div role="tabpanel" class="tab-pane" id="chartInfoTabPane">
@@ -487,81 +544,47 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="ion-close"></i></button>
-                    <h3 style="margin: 0;">Download Data</h3>
+                    <h3 style="margin: 0;">Download Geospatial Data</h3>
                 </div>
                 <div id="ddModalBody" class="modal-body">
-                    <ul class="nav nav-tabs" id="ddModalTabs">
-                        <li role="presentation" class="active"><a id="generalTab" href="#generalTabPane" data-toggle="tab"><i class="fa fa-search"></i>&nbsp;General</a></li>
-                        <li role="presentation"><a id="fromMapTab" href="#fromMapTabPane" data-toggle="tab"><i class="fa fa-map"></i>&nbsp;From Chart/Table</a></li>
-                    </ul>
-                    <div class="tab-content data-download">
-                        <div role="tabpanel" class="tab-pane active" id="generalTabPane">
-                            </br>
-                            <span class="user-guide-header">Geospatial data download</span>
-                            <div class="user-guide-item">
-                                <p>
-                                    <b>All Model Results</b>
-                                    <div>
-                                        <button type="button" class="btn-blue" id="phosphorusDownload">
-                                            <span class="glyphicon glyphicon-download"></span> Download Phosphorus Model Results
-                                        </button>
-                                        <button type="button" class="btn-blue" id="nitrogenDownload">
-                                            <span class="glyphicon glyphicon-download"></span> Download Nitrogen Model Results
-                                        </button>
-                                    </div>
-                                </p>
+                    <div style="padding: 35px 0;">
+                        <p style="max-width: none; width: 100%; text-align:center;">
+                            <b style="text-align:center; margin: 0 auto; ">All Model Results</b>
+                            <div  style="text-align:center;">
+                                <button type="button" class="btn-blue" id="phosphorusDownload">
+                                    <span class="glyphicon glyphicon-download"></span> Download Phosphorus Model Results
+                                </button>
+                                <button type="button" class="btn-blue" id="nitrogenDownload">
+                                    <span class="glyphicon glyphicon-download"></span> Download Nitrogen Model Results
+                                </button>
                             </div>
-                            <div class="user-guide-item">
-                                <p>
-                                    <b>Calibration Site Information</b>
-                                    <div>
-                                        <button type="button" class="btn-blue" id="phosphorusCalibrationDownload">
-                                            <span class="glyphicon glyphicon-download"></span> Download Phosphorus Calibration Sites
-                                        </button>
-                                        <button type="button" class="btn-blue" id="nitrogenCalibrationDownload">
-                                            <span class="glyphicon glyphicon-download"></span> Download Nitrogen Calibration Sites
-                                        </button>
-                                    </div>
-                                </p>
-                            </div>
-                            <!--<div class="user-guide-item">
-                                <p>
-                                    <b>Filtered Results from Map</b>
-                                    <div>
-                                        <button type="button" class="btn-blue" id="mapLayerDownload">
-                                            <span class="glyphicon glyphicon-download"></span> Download Filtered Results from the map (Coming soon)
-                                        </button>
-                                    </div>
-                                </p>
-                            </div>-->
-                        </div>
-                        <div role="tabpanel" class="tab-pane" id="fromMapTabPane">
-                            <span class="user-guide-header">From Chart <br/><a style="font-size:xx-small" href="#" id="showMiniChart">(Show Chart Example)</a> </span>
-                            <div hidden="hidden" class="user-guide-item-image" id="miniChartContainer"></div>
-                            <div class="user-guide-item">
-                                <p>
-                                    <b>PNG image of chart</b>
-                                    <div>
-                                        <button type="button" class="btn-blue" id="PNGChartDownload">
-                                            <span class="glyphicon glyphicon-download"></span> PNG Chart Download
-                                        </button>
-                                    </div>
-                                </p>
-                            </div>
-                            <div class="user-guide-item">
-                                <p>
-                                    <b>CSV of chart data</b>
-                                    <div>
-                                        <button type="button" class="btn-blue" id="CSVChartDownload">
-                                            <span class="glyphicon glyphicon-download"></span> CSV Chart Data Download
-                                        </button>
-                                    </div>
-                                </p>
-                            </div>
-                        </div>
+                        </p>
                     </div>
+                    <div class="user-guide-item">
+                        <p style="text-align:center; margin:0 autol">
+                            <b>Calibration Site Information</b>
+                            <div style="text-align:center;">
+                                <button type="button" class="btn-blue" id="phosphorusCalibrationDownload">
+                                    <span class="glyphicon glyphicon-download"></span> Download Phosphorus Calibration Sites
+                                </button>
+                                <button type="button" class="btn-blue" id="nitrogenCalibrationDownload">
+                                    <span class="glyphicon glyphicon-download"></span> Download Nitrogen Calibration Sites
+                                </button>
+                            </div>
+                        </p>
+                    </div>
+                    <!--<div class="user-guide-item">
+                        <p>
+                            <b>Filtered Results from Map</b>
+                            <div>
+                                <button type="button" class="btn-blue" id="mapLayerDownload">
+                                    <span class="glyphicon glyphicon-download"></span> Download Filtered Results from the map (Coming soon)
+                                </button>
+                            </div>
+                        </p>
+                    </div>-->
                 </div>
-                <form id="disclaimerButtons" id="disclaimer-form" class="form-inline" style="text-align:center;">
+                <form id="disclaimerButtons" id="disclaimer-form" class="form-inline" style="text-align:center; padding: 15px 0 5px 0;">
                     <button id="enterMapper" type="button" class="btn-blue" data-dismiss="modal">Close</button>
                 </form>
 
@@ -681,7 +704,7 @@
                             </button>
 
                             <hr/>
-                            
+
                             <h6 class="alignc">Group Results By</h6>
                             <select id="groupResultsSelect" class="selectpicker nonAOISelect">
                                 <option>Catchment</option>
@@ -721,7 +744,7 @@
                             <br />
 
                             <button type="button" class="btn-blue" id="chartButton">
-                                  <span class="glyphicon glyphicon-signal"></span> Show Chart for all
+                                  <span class="glyphicon glyphicon-signal"></span> Show Chart for All Map Features
                               </button>
                         </div>
                     </div>
@@ -729,7 +752,7 @@
                 <!--END layers Panel-->
                 <!-- # closing div tag for accordion style panels -->
                 <!--</div>-->
-                <a href="http://wim.usgs.gov" target="_blank" class="identification">POWERED BY WiM</a>
+                <a href="http://wim.usgs.gov" target="_blank" class="identification">POWERED BY WIM</a>
 
                 <div class="sidebar-footer">
                     <a href="https://usgs.gov/" target="_blank">USGS Home</a>
@@ -785,6 +808,7 @@
                                     </div>
                                     <div role="tabpanel" class="tab-pane" id="tableTabPane">
                                         <table class="table tablesorter" id="resultsTable"></table>
+                                        <p>Tabular data available for download in chart tab</p>
                                     </div>
                                 </div>
                             </div>
@@ -818,12 +842,14 @@
     </div>
 
     <!-- Toaster -->
-    <div class="banner info intense" id="toast-fixed">
+    <div class="banner info intense" style="display: none;" id="toast-fixed">
         <div class="banner-body">
             <h5 id="toast_title">Loading...</h5>
             <p id="toast_body">We are loading the xxxxx...</p>
         </div>
     </div>
+
+    
 
 
 </body>

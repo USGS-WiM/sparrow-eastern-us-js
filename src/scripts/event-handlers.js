@@ -12,13 +12,13 @@ function loadEventHandlers() {
         generateRenderer();
 
         //reflow the chart if it's open
-        if( $("#chartWindowDiv").css("visibility") == "visible" ) {
+       /*  if( $("#chartWindowDiv").css("visibility") == "visible" ) {
             //$("#toast_title").html("Loading...");
             //$("#toast_body").html("Chart updating");  
             //$("#toast-fixed").fadeIn();  
  
             app.createChartQuery();
-        }
+        } */
 
     });
     /*END RADIO EVENTS*/
@@ -62,10 +62,7 @@ function loadEventHandlers() {
     $("#chartDownload").on('click', function() {
         app.downloadChartPNG();
     })
-    //moved this out of exectureIdentifyTask()
-    $("#popupChartButton").on('click', function(){
-        app.createChartQuery();
-    });
+  
     /* AOI EVENTS */
     $('.aoiSelect').on('change', AOIChange);
 
@@ -104,10 +101,10 @@ function loadEventHandlers() {
         setAggregateGroup( e.currentTarget.selectedIndex, $(".radio input[type='radio']:checked")[0].id );
         generateRenderer();
 
-        if( $("#chartWindowDiv").css("visibility") == "visible" ) {
+       /*  if( $("#chartWindowDiv").css("visibility") == "visible" ) {
             app.map.graphics.clear();
             app.createChartQuery();
-        }
+        } */
 
     });
     /*END GROUP RESULTS (AGGREGATE LAYER) EVENTS */
@@ -117,18 +114,18 @@ function loadEventHandlers() {
         $("#page-loader").fadeIn();
         generateRenderer();
 
-        if( $("#chartWindowDiv").css("visibility") == "visible" ) {
-            /*$("#toast_title").html("Loading...");
+         /* if( $("#chartWindowDiv").css("visibility") == "visible" ) {
+            $("#toast_title").html("Loading...");
             $("#toast_body").html("Chart updating");  
-            $("#toast-fixed").fadeIn();*/
+            $("#toast-fixed").fadeIn();
             app.createChartQuery();
-        }
+        } */
     });
     /*END METRIC EVENTS*/
 
     /* CLEAR AOI BUTTON EVENT */
     $("#clearAOIButton").on('click', function(){
-        $("#page-loader").fadeIn();
+        $("#page-loader").show();
         var sparrowId = app.map.getLayer('SparrowRanking').visibleLayers[0];
 
         //revert to default layer from split layer
@@ -151,12 +148,7 @@ function loadEventHandlers() {
         app.clearLayerDefObj();
         generateRenderer();
 
-        if( $("#chartWindowDiv").css("visibility") == "visible" ) {
-           /*$("#toast_title").html("Loading..."); 
-           $("#toast_body").html("Chart updating");  
-            $("#toast-fixed").fadeIn();*/
-            app.createChartQuery();
-        }        
+              /**CODE FOR CHART VISIBILITY Was here */
         // remove all warnings if any
         $(".grp1-warning").remove();
         $(".grp2-warning").remove();
@@ -184,13 +176,13 @@ function loadEventHandlers() {
     $('.nonAOISelect').on('change', function(){
         $("#page-loader").fadeIn();
         //first clear all disabled's and warnings
-        $("#grp1-select").removeClass('disabled'); //Main River Basin
+        $("#grp1-select").removeClass('disabled'); //River Basin
         $("#grp1-select").removeAttr('disabled');
         $(".grp1-warning").remove();
-        $("#grp2-select").removeClass('disabled'); //Tributary
+        $("#grp2-select").removeClass('disabled'); //huc8
         $("#grp2-select").removeAttr('disabled');
         $(".grp2-warning").remove();
-        $("#grp3-select").removeClass('disabled'); //huc8
+        $("#grp3-select").removeClass('disabled'); //huc12
         $("#grp3-select").removeAttr('disabled');
         $(".grp3-warning").remove();
 
@@ -201,11 +193,11 @@ function loadEventHandlers() {
                 $('#grp2-select').selectpicker('refresh');
                 $('#grp3-select').selectpicker('refresh');
                 break;
-            case 1: //HUC8
+            case 1: //huc12
                  /***AOI Logic (Disable Tributary(GP2) & clear value if any) ***/
                  //Tributary
                 if (app.getLayerDefObj().AOI2) {
-                    clearAOIandAppendWarning('grp2-warning', 'Tributary', 'HUC8', '#grp2-select', 'AOI2');
+                    clearAOIandAppendWarning('grp2-warning', 'HUC8', 'HUC12', '#grp2-select', 'AOI2');
                 }
                 $("#grp2-select").attr('disabled', 'disabled'); //trib
                 $("#grp2-select").addClass('disabled');
@@ -215,11 +207,11 @@ function loadEventHandlers() {
                 $('#grp1-select').selectpicker('refresh');
                 $('#grp3-select').selectpicker('refresh');
                 break;
-            case 2: //Tributary
+            case 2: //huc8
                 /***AOI logic (disable HUC8(GP3) & clear value if any) ***/
                 //huc8
                 if (app.getLayerDefObj().AOI3) {
-                    clearAOIandAppendWarning('grp3-warning', 'HUC8', 'Tributary', '#grp3-select', 'AOI3');
+                    clearAOIandAppendWarning('grp3-warning', 'HUC12', 'HUC8', '#grp3-select', 'AOI3');
                 }
                 //disable the HUC8 dropdown
                 $("#grp3-select").attr('disabled', 'disabled');//huc8
@@ -230,11 +222,11 @@ function loadEventHandlers() {
                 $('#grp2-select').selectpicker('refresh');
                 $('#grp1-select').selectpicker('refresh');
                 break;
-            case 3: //Main River Basin
+            case 3: //River Basin
                 /*** AOI logic (disable Tributary(GP2)  AND HUC8(GP3) & clear values if any) ***/
                 //Tributary
                 if (app.getLayerDefObj().AOI2) {
-                    clearAOIandAppendWarning('grp2-warning', 'Tributary', 'Main River Basin', '#grp2-select', 'AOI2');
+                    clearAOIandAppendWarning('grp2-warning', 'HUC8', 'River Basin', '#grp2-select', 'AOI2');
                 }
                 $("#grp2-select").attr('disabled', 'disabled'); //Tributary
                 $("#grp2-select").addClass('disabled');
@@ -244,7 +236,7 @@ function loadEventHandlers() {
                 $('#grp1-select').selectpicker('refresh');
                 //huc8
                 if (app.getLayerDefObj().AOI3) {
-                    clearAOIandAppendWarning('grp3-warning', 'HUC8', 'Main River Basin', '#grp3-select', 'AOI3');
+                    clearAOIandAppendWarning('grp3-warning', 'HUC12', 'River Basin', '#grp3-select', 'AOI3');
                 }
                 $("#grp3-select").attr('disabled', 'disabled'); //huc8
                 $("#grp3-select").addClass('disabled');
@@ -254,7 +246,7 @@ function loadEventHandlers() {
                 /***AOI logic (disable GP1(Main Riv. Basin) AND GP2(Trib.) AND GP3(HUC8) & clear values if any) ***/
                 //Main Riv Basin
                 if (app.getLayerDefObj().AOI1) {
-                    clearAOIandAppendWarning('grp1-warning', 'Main River Basin', 'State', '#grp1-select', 'AOI1');
+                    clearAOIandAppendWarning('grp1-warning', 'River Basin', 'State', '#grp1-select', 'AOI1');
                 }
                 $("#grp1-select").attr('disabled', 'disabled'); //independent watersheds
                 $("#grp1-select").addClass('disabled');
@@ -262,14 +254,14 @@ function loadEventHandlers() {
 
                 //Tributary
                 if (app.getLayerDefObj().AOI2) {
-                    clearAOIandAppendWarning('grp2-warning', 'Tributary', 'State', '#grp2-select', 'AOI2');
+                    clearAOIandAppendWarning('grp2-warning', 'HUC8', 'State', '#grp2-select', 'AOI2');
                 }
                 $("#grp2-select").attr('disabled', 'disabled'); //huc8
                 $("#grp2-select").addClass('disabled');
                 $('#grp2-select').selectpicker('refresh');
 
                 if (app.getLayerDefObj().AOI3) {
-                    clearAOIandAppendWarning('grp3-warning', 'HUC8', 'State', '#grp3-select', 'AOI3');
+                    clearAOIandAppendWarning('grp3-warning', 'HUC12', 'State', '#grp3-select', 'AOI3');
                 }
                 $("#grp3-select").attr('disabled', 'disabled'); //huc8
                 $("#grp3-select").addClass('disabled');
