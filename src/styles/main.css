@@ -1048,6 +1048,14 @@ Mitch GH Issues Aug 28
     fill: #fff !important;
 }
 
-search-api-menu{
+.search-api-menu{
     z-index: 1000000 !important;
+}
+
+.nicescroll-rails-vr {
+    display: block !important;
+}
+    
+.nicescroll-rails-hr{
+    display: block !important;
 }
