@@ -1017,6 +1017,7 @@ require([
         query.returnGeometry = false;
         query.outFields = outFieldsArr;
         query.where = whereClause;
+        query.returnDistinctValues = true;
         //used to add custom field descriptions to HUC8 select
         /*if(url == serviceBaseURL + "1"){
             queryTask.execute(query, populateGrp2Arr);
