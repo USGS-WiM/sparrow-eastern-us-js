@@ -563,13 +563,13 @@ function generateRenderer(){
         classDef.breakCount = 5;
 
         //symbol WITHOUT borders
-        //classDef.baseSymbol = new SimpleFillSymbol("solid", null, null);
+        classDef.baseSymbol = new SimpleFillSymbol("solid", null, null);
         
         //symbol WITH borders
-        classDef.baseSymbol = new SimpleFillSymbol(SimpleFillSymbol.STYLE_SOLID,
+        /* classDef.baseSymbol = new SimpleFillSymbol(SimpleFillSymbol.STYLE_SOLID,
                 new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID,
                 new Color([168,168,168]), 0.1)
-                );
+                ); */
         
           
         var colorRamp = new AlgorithmicColorRamp();

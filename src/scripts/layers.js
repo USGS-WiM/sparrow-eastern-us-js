@@ -12,12 +12,14 @@ require([
     "esri/layers/WMSLayerInfo",
     "esri/layers/FeatureLayer",
     "esri/layers/ImageParameters",
+    "esri/layers/LayerDrawingOptions",
     'dojo/domReady!'
 ], function(
     Extent,
     WMSLayerInfo,
     FeatureLayer,
-    ImageParameters
+    ImageParameters,
+    LayerDrawingOptions
 ) {
 
     var sparrowOverlay;
@@ -26,6 +28,9 @@ require([
     } else{
         sparrowOverlay = 1;
     }
+
+    var layerOptions = new LayerDrawingOptions();
+    layerOptions.scaleSymbols = true;
 
 
 
@@ -41,7 +46,8 @@ require([
                     "options":{
                         "id": "SparrowRanking",
                         "opacity": 0.75,
-                        "visible": true
+                        "visible": true,
+                        "layerDrawingOptions": layerOptions
                     },
                     "wimOptions":{
                         "type": "layer",

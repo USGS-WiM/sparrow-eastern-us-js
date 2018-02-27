@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>SPARROW MARB</title>
+    <title>SPARROW Eastern U.S.</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
@@ -23,7 +23,7 @@
     
     <script src="scripts/combined.js"></script>
     <!-- analytics -->
-    <script>
+    <!--<script>
         (function (i, s, o, g, r, a, m) {
         i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
             (i[r].q = i[r].q || []).push(arguments)
@@ -33,7 +33,7 @@
 
         ga('create', 'UA-61219868-21', 'auto');
         ga('send', 'pageview');
-    </script>
+    </script>-->
     <script>
         $(document).ready(function () {
             $('[data-toggle="tooltip"]').tooltip();
@@ -330,7 +330,7 @@
                             </p>
                             <p class="p-meta p-light fullwidth">
                                 <b>Link to SPARROW REST Services:</b><br/> 
-                                <a href="https://gis.wim.usgs.gov/arcgis/rest/services/SparrowMARBV2/MapServer/" target="_blank">SPARROW MARB REST Services</a>
+                                <a href="https://sparrowtest.wim.usgs.gov/arcgis/rest/services/SparrowEast/SparrowEast/MapServer/" target="_blank">SPARROW Eastern U.S. TEST REST Services</a>
                             </p>
                     
                         </div>
@@ -652,11 +652,11 @@
                             <h6 class="alignc">Area of Interest</h6>
                             <select id="st-select" class="selectpicker 0 aoiSelect" title="State" data-size="10"></select>
 
-                            <select id="grp1-select" class="selectpicker 1 aoiSelect" title="Main River Basin" data-size="10"></select>
+                            <select id="grp1-select" class="selectpicker 1 aoiSelect" title="River Basin" data-size="10"></select>
 
-                            <select id="grp2-select" class="selectpicker 2 aoiSelect" title="Tributary" data-size="10"></select>
+                            <select id="grp2-select" class="selectpicker 2 aoiSelect" title="HUC8" data-size="10"></select>
 
-                            <select id="grp3-select" class="selectpicker 3 aoiSelect" title="HUC8" data-size="10"></select>
+                            <select id="grp3-select" class="selectpicker 3 aoiSelect" title="HUC12" data-size="10"></select>
 
                             <button type="button" class="btn-blue" id="clearAOIButton" <span class="glyphicon glyphicon-remove"></span> Clear Area of Interest
                             </button>
@@ -666,9 +666,9 @@
                             <h6 class="alignc">Group Results By</h6>
                             <select id="groupResultsSelect" class="selectpicker nonAOISelect">
                                 <option>Catchment</option>
+                                <option>HUC12</option>
                                 <option>HUC8</option>
-                                <option>Tributary</option>
-                                <option>Main River Basin</option>
+                                <option>River Basin</option>
                                 <option>State</option>
                             </select>
 
@@ -710,7 +710,7 @@
                 <!--END layers Panel-->
                 <!-- # closing div tag for accordion style panels -->
                 <!--</div>-->
-                <a href="http://wim.usgs.gov" target="_blank" class="identification">POWERED BY WiM</a>
+                <a href="http://wim.usgs.gov" target="_blank" class="identification">POWERED BY WIM</a>
 
                 <div class="sidebar-footer">
                     <a href="https://usgs.gov/" target="_blank">USGS Home</a>
