@@ -125,6 +125,12 @@ function loadEventHandlers() {
 
     /* CLEAR AOI BUTTON EVENT */
     $("#clearAOIButton").on('click', function(){
+         //if resetting to Catchment layer, disable HUC12 Dropdown
+         if($('#groupResultsSelect')[0].value == "Catchment"){
+            $("#grp3-select").attr('disabled', 'disabled'); 
+            $("#grp3-select").addClass('disabled');
+            $("#grp3-select").selectpicker.refresh();
+        }
         $("#page-loader").show();
         var sparrowId = app.map.getLayer('SparrowRanking').visibleLayers[0];
 
@@ -141,6 +147,9 @@ function loadEventHandlers() {
 
         //reset the selects
         $('.aoiSelect').selectpicker('val', '');  // 'hack' because selectpicker('deselectAll') method only works when bootstrap-select is open.
+
+        
+
         populateMetricOptions($("#groupResultsSelect")[0].selectedIndex);
         //redraw the symbols
 
@@ -383,3 +392,11 @@ function loadEventHandlers() {
         app.map.removeLayer(nationalMapBasemap);
     });
 }
+//TODO
+/* app.map.on('zoom-start', function(){
+    var startZoom = app.map.getZoom();
+});
+
+app.map.on('zoom-end', function(){
+    var endZoom = app.map.getZoom();
+}); */

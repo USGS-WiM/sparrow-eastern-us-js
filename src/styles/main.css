@@ -1051,11 +1051,18 @@ Mitch GH Issues Aug 28
 .search-api-menu{
     z-index: 1000000 !important;
 }
-
 .nicescroll-rails-vr {
     display: block !important;
 }
     
 .nicescroll-rails-hr{
     display: block !important;
+
 }
+.esriMapContainer{
+    width: 100% !important;
+	  height: 100% !important;
+} 
+
+}
+

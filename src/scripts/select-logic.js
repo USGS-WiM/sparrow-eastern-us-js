@@ -228,6 +228,11 @@ function AOIChange(e){
     var selectValue = e.currentTarget.value;
     var groupResultsIndex = $("#groupResultsSelect")[0].selectedIndex;
 
+      //ENABLE huc12 dropdown
+      $("#grp3-select").removeClass('disabled'); //huc12
+      $("#grp3-select").removeAttr('disabled');
+  
+
     var newObj = {
         selectedId: selectId,
         selectedValue: selectValue
@@ -423,8 +428,8 @@ function getExtraOutfields(outfieldsArr, sparrowLayerId){
         case 0: case 9: 
             //CATCHMENTS
             //finalChartArr.push("PNAME");
-            finalChartArr.push("DEMIAREA");
-            finalChartArr.push("DEMTAREA");
+            finalChartArr.push("AREASQKM");
+            finalChartArr.push("DIVDASQKM");
             finalChartArr.push("COMID");             
             break;
         case 1: case 10:
@@ -445,8 +450,8 @@ function getExtraOutfields(outfieldsArr, sparrowLayerId){
             break;
         case 5: case 14:
             //Catchments w/ state divisions
-            finalChartArr.push("STDEMIAREA");
-            finalChartArr.push("STDEMTAREA");
+            finalChartArr.push("AREASQKM");
+            finalChartArr.push("AREASQKM");
             finalChartArr.push("ST_COMID");
             break;
         case 6: case 15:
@@ -562,15 +567,28 @@ function generateRenderer(){
         classDef.classificationMethod = "quantile";
         classDef.breakCount = 5;
 
-        //symbol WITHOUT borders
-        classDef.baseSymbol = new SimpleFillSymbol("solid", null, null);
-        
-        //symbol WITH borders
-        /* classDef.baseSymbol = new SimpleFillSymbol(SimpleFillSymbol.STYLE_SOLID,
+        var scale = app.map.getScale();
+        var zoom = app.map.getZoom();
+       
+
+        if($('#groupResultsSelect')[0].value != "State" || $('#groupResultsSelect')[0].value != "River Basin"){
+            if(app.map.getZoom() > 10){
+                classDef.baseSymbol = new SimpleFillSymbol(SimpleFillSymbol.STYLE_SOLID,
+                    new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID,
+                    new Color([168,168,168]), 0.1)
+                    );
+            } else{
+                //symbol WITHOUT borders
+                classDef.baseSymbol = new SimpleFillSymbol("solid", null, null);
+            }
+
+        } else{
+            //symbol WITH borders
+            classDef.baseSymbol = new SimpleFillSymbol(SimpleFillSymbol.STYLE_SOLID,
                 new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID,
                 new Color([168,168,168]), 0.1)
-                ); */
-        
+                );
+        } 
           
         var colorRamp = new AlgorithmicColorRamp();
         //different ramps for phos/nitro
