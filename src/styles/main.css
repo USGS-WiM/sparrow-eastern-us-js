@@ -1048,7 +1048,7 @@ Mitch GH Issues Aug 28
     fill: #fff !important;
 }
 
-search-api-menu{
+.search-api-menu{
     z-index: 1000000 !important;
 }
 .nicescroll-rails-vr {
@@ -1057,8 +1057,12 @@ search-api-menu{
     
 .nicescroll-rails-hr{
     display: block !important;
+
 }
 .esriMapContainer{
-	width: 100% !important;
-	height: 100% !important;
+    width: 100% !important;
+	  height: 100% !important;
 } 
+
+}
+
