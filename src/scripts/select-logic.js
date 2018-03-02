@@ -569,10 +569,19 @@ function generateRenderer(){
 
         var scale = app.map.getScale();
         var zoom = app.map.getZoom();
+       
 
-        if($('#groupResultsSelect')[0].value == "Catchment"){
-            //symbol WITHOUT borders
-            classDef.baseSymbol = new SimpleFillSymbol("solid", null, null);
+        if($('#groupResultsSelect')[0].value != "State" || $('#groupResultsSelect')[0].value != "River Basin"){
+            if(app.map.getZoom() > 10){
+                classDef.baseSymbol = new SimpleFillSymbol(SimpleFillSymbol.STYLE_SOLID,
+                    new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID,
+                    new Color([168,168,168]), 0.1)
+                    );
+            } else{
+                //symbol WITHOUT borders
+                classDef.baseSymbol = new SimpleFillSymbol("solid", null, null);
+            }
+
         } else{
             //symbol WITH borders
             classDef.baseSymbol = new SimpleFillSymbol(SimpleFillSymbol.STYLE_SOLID,
