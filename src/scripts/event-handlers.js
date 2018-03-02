@@ -141,6 +141,9 @@ function loadEventHandlers() {
 
         //reset the selects
         $('.aoiSelect').selectpicker('val', '');  // 'hack' because selectpicker('deselectAll') method only works when bootstrap-select is open.
+
+        
+
         populateMetricOptions($("#groupResultsSelect")[0].selectedIndex);
         //redraw the symbols
 
@@ -158,6 +161,13 @@ function loadEventHandlers() {
             (this).disabled = false;
         });
         $('#groupResultsSelect').selectpicker('render');
+        
+        //if resetting to Catchment layer, disable HUC12 Dropdown
+        if($('#groupResultsSelect')[0].value == "Catchment"){
+            $("#grp3-select").attr('disabled', 'disabled'); 
+            $("#grp3-select").addClass('disabled');
+            $("#grp3-select").selectpicker.refresh();
+        }
     });
     /*END CLEAR AOI BUTTON EVENT */
 

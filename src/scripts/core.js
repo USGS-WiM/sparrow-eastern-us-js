@@ -1058,11 +1058,11 @@ require([
         var grp1Options = getUniqueArray(AllAOIOptions, 'GP1');
         var STOptions = getUniqueArray(AllAOIOptions, 'ST');
 
-        $.each(grp3Options, function(index, option){
+       /*  $.each(grp3Options, function(index, option){
             if (option != " "){
                 $('#grp3-select').append(new Option(option));
             }
-        });
+        }); */
         $.each(grp2Options, function(index, option){
             if (option != " "){
                 $('#grp2-select').append(new Option(option));
@@ -1077,7 +1077,11 @@ require([
             $('#st-select').append(new Option(option));
         });
 
-        $('#grp3-select').selectpicker('refresh');
+        //disable HUC12 on app init
+        $("#grp3-select").attr('disabled', 'disabled'); 
+        $("#grp3-select").addClass('disabled');
+
+        //$('#grp3-select').selectpicker('refresh');
         $('#grp2-select').selectpicker('refresh');
         $('#grp1-select').selectpicker('refresh');
         $('#st-select').selectpicker('refresh');
@@ -1230,11 +1234,11 @@ require([
         $.each(response.features, function(index, feature){
             // first push these into a separate array for table to use
             tableFeatures.push($.extend(true, {}, feature.attributes));
-            /***this function removes any fields ending with "AREA" from the response.features Object. (i.e. DEMIAREA, DEMTAREA, GP1_AREA, etc.)
+            /***this function removes any fields ending with "AREA" or "SQKM" from the response.features Object. (i.e. AREASQKM, DIVDASQKM DEMIAREA, DEMTAREA, GP1_AREA, etc.)
             The chart was not built to accommodate the extra area fields, but they're necessary for display in the table.***/
             $.map(Object.keys(feature.attributes), function(val, i){
                 //find ANY INDEX that contains "AREA" in the key
-                if (val.indexOf("AREA") > -1){
+                if (val.indexOf("AREA") > -1 || val.indexOf("SQKM") > -1 ){
                     delete feature.attributes[val];
                 }
             });
