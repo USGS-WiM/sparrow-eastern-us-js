@@ -314,16 +314,11 @@ function loadEventHandlers() {
         app.initMapScale();
         app.map.infoWindow.set('highlight', false);
         app.map.infoWindow.set('titleInBody', false);
-
         app.setupDraggableInfoWindow();
         app.map.disableClickRecenter();
     });
 
-   /*  app.map.on('update-start', function(){
-        currentZoomLevel = app.map.getZoom();
-    }); */
-
-     app.map.on('update-end', function(){
+    app.map.on('update-end', function(){
        $("#page-loader").fadeOut(); 
     });
 
@@ -332,7 +327,6 @@ function loadEventHandlers() {
         var scale = app.map.getScale().toFixed(0);
         $('#scale')[0].innerHTML = addCommas(scale);
         var zoomEnd = app.map.getZoom();
-        
         //for the dynamic borders
         if (app.currentZoomLevel <= borderThreshold && zoomEnd > borderThreshold){
             generateRenderer();
