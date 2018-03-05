@@ -21,6 +21,8 @@ var mapCenter = [-96.64, 40.744];
 //app.defaultMapCenter = [-87, 42];
 defaultZoomLevel = 5;
 
+borderThreshold = 10; //renders borders for borderless layers when zoomed beyond this value
+
 //download locations
 //var phosphorusShapefileURL = 'https://test.wim.usgs.gov/SparrowMARBV2/downloads/marb_shapefiles_phosphorus.zip';
 //var nitrogenShapefileURL = 'https://test.wim.usgs.gov/SparrowMARBV2/downloads/marb_shapefiles_nitrogen.zip';

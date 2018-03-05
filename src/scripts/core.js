@@ -109,6 +109,7 @@ require([
     /* values come from config file */
     app.defaultMapCenter = mapCenter;
     app.defaultZoom = defaultZoomLevel;
+    app.currentZoomLevel = app.defaultZoom;
 
     //setup map
     app.map = Map('mapDiv', {
