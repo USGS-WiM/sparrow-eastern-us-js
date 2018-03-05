@@ -314,20 +314,26 @@ function loadEventHandlers() {
         app.initMapScale();
         app.map.infoWindow.set('highlight', false);
         app.map.infoWindow.set('titleInBody', false);
-
         app.setupDraggableInfoWindow();
         app.map.disableClickRecenter();
     });
 
-     app.map.on('update-end', function(){
+    app.map.on('update-end', function(){
        $("#page-loader").fadeOut(); 
     });
 
-   
     //displays map scale on scale change (i.e. zoom level)
     app.map.on('zoom-end', function (){
         var scale = app.map.getScale().toFixed(0);
         $('#scale')[0].innerHTML = addCommas(scale);
+        var zoomEnd = app.map.getZoom();
+        //for the dynamic borders
+        if (app.currentZoomLevel <= borderThreshold && zoomEnd > borderThreshold){
+            generateRenderer();
+        } else if (app.currentZoomLevel > borderThreshold && zoomEnd <= borderThreshold){
+            generateRenderer();
+        }
+        app.currentZoomLevel = zoomEnd;
     });
 
     //updates lat/lng indicator on mouse move. does not apply on devices w/out mouse. removes "map center" label
@@ -392,11 +398,3 @@ function loadEventHandlers() {
         app.map.removeLayer(nationalMapBasemap);
     });
 }
-//TODO
-/* app.map.on('zoom-start', function(){
-    var startZoom = app.map.getZoom();
-});
-
-app.map.on('zoom-end', function(){
-    var endZoom = app.map.getZoom();
-}); */
