@@ -21,7 +21,7 @@ var mapCenter = [-96.64, 40.744];
 //app.defaultMapCenter = [-87, 42];
 defaultZoomLevel = 5;
 
-borderThreshold = 10; //renders borders for borderless layers when zoomed beyond this value
+borderThreshold = 10; //dynamic polygon border threshold.  When zoomed beyond this number borders appear
 
 //download locations
 //var phosphorusShapefileURL = 'https://test.wim.usgs.gov/SparrowMARBV2/downloads/marb_shapefiles_phosphorus.zip';
@@ -131,7 +131,7 @@ var nitrogenSourceDefinitions = {
     2. there the number of hex colors matches the number of nutrient sources
 **/
 var phosColors = ['#BF0000', '#FFCCFF', '#663100', '#FFEC99', '#97DA7C', '#0070C0', '#bf8040' ];     
-var nitroColors = ['#BF0000', '#FFCCFF', '#0070C0', '#663100', '#FFEC99', '#97DA7C' ];  
+var nitroColors = ['#BF0000', '#FFCCFF', '#663100', '#FFEC99', '#00a900', '#006800', '#0070C0' ];  
 
 
 /***-----BEGIN PHOSPHORUS LAYER GROUPS --------***/

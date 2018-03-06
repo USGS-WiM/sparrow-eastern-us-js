@@ -107,7 +107,39 @@ require([
             "showGroupHeading": true,
             "includeInLayerList": true,
             "layers": {
-                "MARB Streams" : {
+                "All Streams" : {
+                    "url": serviceBaseURL,
+                    "visibleLayers": [21],
+                    "options": {
+                        "id": "allStreams",
+                        "visible": false
+                    },
+                    "wimOptions": {
+                        "type": "layer",
+                        "layerType": "agisFeature",
+                        "includeInLayerList": true,
+                        "hasOpacitySlider": true,
+                        "hasZoomto": false,
+                        "includeLegend" : false
+                    }
+                },
+                "Eastern U.S. Streams > 100cfs" : {
+                    "url": serviceBaseURL,
+                    "visibleLayers": [22],
+                    "options": {
+                        "id": "intStreams",
+                        "visible": false
+                    },
+                    "wimOptions": {
+                        "type": "layer",
+                        "layerType": "agisFeature",
+                        "includeInLayerList": true,
+                        "hasOpacitySlider": true,
+                        "hasZoomto": false,
+                        "includeLegend" : false
+                    }
+                },
+                "Eastern U.S. Major Rivers" : {
                     "url": serviceBaseURL,
                     "visibleLayers": [20],
                     "options": {

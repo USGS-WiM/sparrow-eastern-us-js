@@ -129,7 +129,7 @@ function loadEventHandlers() {
          if($('#groupResultsSelect')[0].value == "Catchment"){
             $("#grp3-select").attr('disabled', 'disabled'); 
             $("#grp3-select").addClass('disabled');
-            $("#grp3-select").selectpicker.refresh();
+            $("#grp3-select").selectpicker('refresh');
         }
         $("#page-loader").show();
         var sparrowId = app.map.getLayer('SparrowRanking').visibleLayers[0];
