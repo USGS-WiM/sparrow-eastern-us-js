@@ -139,7 +139,6 @@ function returnDefaultLayer(sparrowId){
     }
 }
 
-
 //uses the #groupResultsSelect selected value and Selected radio to define the SparrowRanking display layer.
 function setAggregateGroup(groupBySelectedIndex, selectedRadio){
 
@@ -422,7 +421,7 @@ function getChartOutfields(sparrowLayerId){
 
 function getExtraOutfields(outfieldsArr, sparrowLayerId){
     var finalChartArr = outfieldsArr;
-
+    //UPDATE IMPORTANT! check additional area field names
     switch(sparrowLayerId){
         /////BEGIN PHOSPHORUS LAYERS___________________________________________________________
         case 0: case 9: 

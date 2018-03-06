@@ -1078,7 +1078,7 @@ require([
             $('#st-select').append(new Option(option));
         });
 
-        //disable HUC12 on app init
+        //disable HUC12 AOI on app init
         $("#grp3-select").attr('disabled', 'disabled'); 
         $("#grp3-select").addClass('disabled');
 
