@@ -570,8 +570,8 @@ function generateRenderer(){
         var zoom = app.map.getZoom();
        
 
-        if($('#groupResultsSelect')[0].value != "State" || $('#groupResultsSelect')[0].value != "River Basin"){
-            if(app.map.getZoom() > 10){
+        if(dynamicBorderLayers.includes( $('#groupResultsSelect')[0].value )){
+            if(app.map.getZoom() > borderThreshold){
                 classDef.baseSymbol = new SimpleFillSymbol(SimpleFillSymbol.STYLE_SOLID,
                     new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID,
                     new Color([168,168,168]), 0.1)

@@ -157,7 +157,7 @@ require([
                 },
                 "MARB SPARROW Model Area" : {
                     "url": serviceBaseURL,
-                    "visibleLayers": [21],
+                    "visibleLayers": [23],
                     "options": {
                         "id": "modelArea",
                         "visible": false,
