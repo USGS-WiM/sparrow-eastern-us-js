@@ -227,9 +227,12 @@ function AOIChange(e){
     var selectValue = e.currentTarget.value;
     var groupResultsIndex = $("#groupResultsSelect")[0].selectedIndex;
 
-      //ENABLE huc12 dropdown
-      $("#grp3-select").removeClass('disabled'); //huc12
-      $("#grp3-select").removeAttr('disabled');
+    if( $('#groupResultsSelect')[0].value == "HUC12" || $('#groupResultsSelect')[0].value == "Catchment"){
+        //ENABLE huc12 dropdown
+        $("#grp3-select").removeClass('disabled'); //huc12
+        $("#grp3-select").removeAttr('disabled');
+    }
+      
   
 
     var newObj = {
@@ -569,9 +572,9 @@ function generateRenderer(){
         var scale = app.map.getScale();
         var zoom = app.map.getZoom();
        
-
-        if($('#groupResultsSelect')[0].value != "State" || $('#groupResultsSelect')[0].value != "River Basin"){
-            if(app.map.getZoom() > 10){
+        //check for dynamic border criteria and set symbols
+        if(dynamicBorderLayers.includes( $('#groupResultsSelect')[0].value )){
+            if(app.map.getZoom() > borderThreshold){
                 classDef.baseSymbol = new SimpleFillSymbol(SimpleFillSymbol.STYLE_SOLID,
                     new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID,
                     new Color([168,168,168]), 0.1)

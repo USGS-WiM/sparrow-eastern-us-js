@@ -148,14 +148,14 @@ function loadEventHandlers() {
         //reset the selects
         $('.aoiSelect').selectpicker('val', '');  // 'hack' because selectpicker('deselectAll') method only works when bootstrap-select is open.
 
-        
+        generateRenderer();
 
         populateMetricOptions($("#groupResultsSelect")[0].selectedIndex);
         //redraw the symbols
 
         //return to Default AOI options for ALL AOI selects
         app.clearLayerDefObj();
-        generateRenderer();
+        
 
               /**CODE FOR CHART VISIBILITY Was here */
         // remove all warnings if any
@@ -197,10 +197,14 @@ function loadEventHandlers() {
 
         switch($('#groupResultsSelect')[0].selectedIndex) {
             case 0: //Catchment
-                // all AOIs enabled
+                //DISABLE HUC12 @ full extent because it has too many options
+                $("#grp3-select").attr('disabled', 'disabled'); 
+                $("#grp3-select").addClass('disabled');
+                $('#grp3-select').selectpicker('refresh');
+
+                //AOI HUC8(GP3) AND Main River basin(GP1) enabled
                 $('#grp1-select').selectpicker('refresh');
                 $('#grp2-select').selectpicker('refresh');
-                $('#grp3-select').selectpicker('refresh');
                 break;
             case 1: //huc12
                  /***AOI Logic (Disable Tributary(GP2) & clear value if any) ***/
@@ -208,13 +212,14 @@ function loadEventHandlers() {
                 if (app.getLayerDefObj().AOI2) {
                     clearAOIandAppendWarning('grp2-warning', 'HUC8', 'HUC12', '#grp2-select', 'AOI2');
                 }
-                $("#grp2-select").attr('disabled', 'disabled'); //trib
-                $("#grp2-select").addClass('disabled');
-                $('#grp2-select').selectpicker('refresh');
+                //DISABLE HUC12 @ full extent because it has too many options
+                $("#grp3-select").attr('disabled', 'disabled'); 
+                $("#grp3-select").addClass('disabled');
+                $('#grp3-select').selectpicker('refresh');
 
                 //AOI HUC8(GP3) AND Main River basin(GP1) enabled
                 $('#grp1-select').selectpicker('refresh');
-                $('#grp3-select').selectpicker('refresh');
+                $('#grp2-select').selectpicker('refresh');
                 break;
             case 2: //huc8
                 /***AOI logic (disable HUC8(GP3) & clear value if any) ***/
