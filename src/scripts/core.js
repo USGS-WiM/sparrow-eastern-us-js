@@ -1054,7 +1054,7 @@ require([
         //IF options already exist, be sure to REMOVE OLD OPTIONS before calling this function
 
         // get UNIQUE options from AllAOIOptions global Object
-        var grp3Options = getUniqueArray(AllAOIOptions, 'GP3');
+        //var grp3Options = getUniqueArray(AllAOIOptions, 'GP3');
         var grp2Options = getUniqueArray(AllAOIOptions, 'GP2');
         var grp1Options = getUniqueArray(AllAOIOptions, 'GP1');
         var STOptions = getUniqueArray(AllAOIOptions, 'ST');
@@ -1866,14 +1866,14 @@ require([
         var selectedLayerId = $('#groupResultsSelect')[0].selectedIndex;
         if (selectedLayerId == 0) {
             //add Basin Area, Upstream Area, and Total
+            headerKeyArr.push("Total");
             headerKeyArr.push("Catchment Area");
             headerKeyArr.push("Upstream Area");
-            headerKeyArr.push("Total");
             //headerKeyArr.splice(1, 0, 'Total'); /* Can be used to add total to a specific point in the headerKeysArr */
             
         } else {
-            headerKeyArr.push("Area");
             headerKeyArr.push("Total");
+            headerKeyArr.push("Area");
             //headerKeyArr.splice(1, 0, 'Total'); /* Can be used to add total to a specific point in the headerKeysArr */
             
         }
@@ -1898,7 +1898,11 @@ require([
             htmlArr.push("<tr id='row"+rowI+"'>");
             $.each(feature, function(key, value){
                 
-                htmlArr.push('<td>'+ value +'</td>');
+                if (key == 'total'){
+                    htmlArr.splice(-2, 0, '<td>'+ value +'</td>');
+                } else{
+                    htmlArr.push('<td>'+ value +'</td>');
+                }
 
                 //comment in if changing back to PNAME
                 //if (key !== "COMID" && key !== "ST_COMID") {

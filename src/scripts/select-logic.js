@@ -569,7 +569,7 @@ function generateRenderer(){
         var scale = app.map.getScale();
         var zoom = app.map.getZoom();
        
-
+        //check for dynamic border criteria and set symbols
         if(dynamicBorderLayers.includes( $('#groupResultsSelect')[0].value )){
             if(app.map.getZoom() > borderThreshold){
                 classDef.baseSymbol = new SimpleFillSymbol(SimpleFillSymbol.STYLE_SOLID,
