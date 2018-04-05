@@ -1264,8 +1264,8 @@ require([
                     sum += attribute;
                 }
             });
-            obj.total = sum;
-            tableFeatures[index].total = sum;
+            obj.total = sum.toFixed(4);
+            tableFeatures[index].total = sum.toFixed(4);
             sum = 0;
         });
         featureSort.sort(function(a, b){

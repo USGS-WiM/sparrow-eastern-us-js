@@ -17,7 +17,7 @@ var groupResultsInitIndex = 1; //sets the default layer for the application.  In
 
 var splitLayers = [5,6,7,13,14,15]; //important! UPDATE layer Ids of all state split layers
 
-var mapCenter = [-96.64, 40.744];
+var mapCenter = [-77.64, 37.744];
 //app.defaultMapCenter = [-87, 42];
 defaultZoomLevel = 5;
 
