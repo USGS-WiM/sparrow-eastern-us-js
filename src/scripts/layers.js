@@ -155,7 +155,7 @@ require([
                         "includeLegend" : false
                     }
                 },
-                "MARB SPARROW Model Area" : {
+                "SPARROW Model Area" : {
                     "url": serviceBaseURL,
                     "visibleLayers": [23],
                     "options": {

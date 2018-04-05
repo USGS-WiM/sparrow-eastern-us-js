@@ -150,9 +150,7 @@ var Catchments = [
             { attribute: "ACCL_S3", label: catchmentDefinitions.accl + ' ' + phosphorusSourceDefinitions.s3},
             { attribute: "ACCL_S4", label: catchmentDefinitions.accl + ' ' + phosphorusSourceDefinitions.s4},
             { attribute: "ACCL_S5", label: catchmentDefinitions.accl + ' ' + phosphorusSourceDefinitions.s5},
-            { attribute: "ACCL_S6", label: catchmentDefinitions.accl + ' ' + phosphorusSourceDefinitions.s6},
-            { attribute: "ACCL_S7", label: catchmentDefinitions.accl + ' ' + phosphorusSourceDefinitions.s7},
-            { attribute: "ACCL_S8", label: catchmentDefinitions.accl + ' ' + phosphorusSourceDefinitions.s8}
+            { attribute: "ACCL_S6", label: catchmentDefinitions.accl + ' ' + phosphorusSourceDefinitions.s6}
         ]
     },
     {
