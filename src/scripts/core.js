@@ -764,7 +764,7 @@ require([
             if (app.clickSelectionActive) {
                 $.each(response, function(i, respObj){
                     var feature = respObj.feature;
-                    var respValue = respObj.displayFieldName == "COMID" ? respObj.value : "'" + respObj.value + "'";
+                    var respValue = typeof respObj.value != "string" ? respObj.value : "'" + respObj.value + "'";
 
                     if (!app.shiftKey) {
                         //adding
@@ -854,8 +854,8 @@ require([
                         var attributes = response[0].feature.attributes;
                         var valuePairs = {};
 
-                        //need to wrap value in single quotes for ESRI REST Service query.  BUT ONLY IF THE DISPLAY FIELD IS A STRING!
-                        if (response[0].displayFieldName == "COMID"){
+                        //need to wrap value in single quotes for ESRI REST Service query.  Catchment COMID's are not strings
+                        if (response[0].layerId == 0 || response[0].layerId == 9){
                             var chartQueryArg = response[0].displayFieldName + " = " + response[0].value;
                         } else{
                             var chartQueryArg = response[0].displayFieldName + " = " + "'" + response[0].value + "'";
@@ -1565,6 +1565,7 @@ require([
 
                                     // only COMID is a number, ST_COMID is a string
                                     categoryStr += fieldName == "COMID" ?  + category + ", " : "'" + category + "', ";
+                                    
                                 });
                                 var queryStr = categoryStr.slice(0, categoryStr.length - 2);
 
