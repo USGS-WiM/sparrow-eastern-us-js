@@ -107,7 +107,7 @@ require([
             "showGroupHeading": true,
             "includeInLayerList": true,
             "layers": {
-                "All Streams" : {
+                "Eastern U.S. Streams" : {
                     "url": serviceBaseURL,
                     "visibleLayers": [21],
                     "options": {

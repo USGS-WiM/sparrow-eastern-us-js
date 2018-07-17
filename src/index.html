@@ -99,6 +99,8 @@
                 <!--title set from config-->
                 <small>Based on 2002 MRB1 and MRB2 1:100,000 Scale Sparrow Models</small>
             </span>
+            
+            
             <div class="nav-links">
                 <a id="geosearchNav"><span><i class="ion-search"></i> Geosearch</span></a>
                 <a id="userGuideNav"><span><i class="ion-ios-book"></i> User Guide</span></a>
@@ -189,22 +191,17 @@
                             </br>
                             <p class="p-meta p-light fullwidth">
                                 <b>The relationship between the scale of reporting of model results and uncertainty:</b>
-                                <br/> Model results can be displayed at several watershed scales. The smallest scale that could be used for reporting is the catchment 
-                                scale at which model computations are made for the Eastern United States model, these are NHDPlus catchments (1:100,000-Scale Hydrography, 
-                                typical watershed size is about 2 square kilometers or 0.8 square miles). Results can be aggregated up to larger scales for reporting: HUC12 
-                                (typical watershed size is 90 square kilometers or 35 square miles) or HUC8 (typical watershed size is 3,100 square kilometers or 1,200 square miles), 
-                                state, or River Basin. The SPARROW model is, in theory, scale independent. However, the uncertainty associated with SPARROW predictions is expected to increase 
-                                for drainage basin sizes smaller than those of stream monitoring sites used to calibrate the model.
+                                <br/> Model results can be displayed at several watershed scales. The smallest scale that could be used for reporting is the catchment scale at which model computations are made for the Eastern United States model, these are NHDPlus catchments (1:100,000-Scale Hydrography, typical watershed size is about 2 square kilometers or 0.8 square miles). Results can be aggregated up to larger scales for reporting: HUC12 (typical watershed size is 90 square kilometers or 35 square miles) or HUC8 (typical watershed size is 3,100 square kilometers or 1,200 square miles), state, or River Basin. The SPARROW model is, in theory, scale independent. However, the uncertainty associated with SPARROW predictions is expected to increase for drainage basin sizes smaller than those of stream monitoring sites used to calibrate the model.
+                                <br/>In the Oklawaha, Crystal, Lower Sante Fe, Lower Suwanee, St. Marks, and Chipola River basins in central and northern Florida flow exchange with the underlying regional aquifer may contribute substantial nitrogen and phosphorus influx to and outflux from the surface-water basins (Rumenik, 1988; Miller, 1990). Model predictions for these river basins are presented but may be less reliable due to this unmodeled component of flux.
                             </p>
                             <br/>
 
                             <p class="p-meta p-light fullwidth">
                                 <b>References:</b>
-                                <br/> U.S. Environmental Protection Agency and U.S. Geological Survey, 2010b, NHDPlus catchment shapefiles Version 1: Accessed July 14, 2017, at: 
-                                <a href="http://www.horizon-systems.com/NHDPlus/NHDPlusV1_home.php" target="_blank">http://www.horizon-systems.com/NHDPlus/NHDPlusV1_home.php</a>.
-                                <br/>U.S. Department of Agriculture-Natural Resources Conservation Service, U.S. Geological Survey, and Environmental Protection Agency, 2016, Watershed Boundary Dataset: 
-                                <a href="http://datagateway.nrcs.usda.gov" target="_blank">http://datagateway.nrcs.usda.gov</a> [Accessed 2/2/2016].
-
+                                <br/> Miller, JA. 1990. Ground water atlas of the United States; Alabama, Florida, Georgia, and South Carolina. U.S. Geological Survey Hydrologic Atlas 730-G.
+                                <br/>Rumenik, RP. 1988. Runoff to streams in Florida: Florida Geological Survey Map Series 122, Tallahassee, Florida, Florida Geological Survey, 1 sheet.
+                                <br/>U.S. Environmental Protection Agency and U.S. Geological Survey, 2010b, NHDPlus catchment shapefiles Version 1: Accessed July 14, 2017, at <a href="http://www.horizon-systems.com/NHDPlus/NHDPlusV1_home.php" target="_blank">http://www.horizon-systems.com/NHDPlus/NHDPlusV1_home.php</a>
+                                <br/>U.S. Department of Agriculture-Natural Resources Conservation Service, U.S. Geological Survey, and Environmental Protection Agency, 2016, Watershed Boundary Dataset: <a href="http://datagateway.nrcs.usda.gov" target="_blank">http://datagateway.nrcs.usda.gov</a> [Accessed 2/2/2016].
                             </p>
 
                            
@@ -311,10 +308,7 @@
                             <p class="p-meta p-light fullwidth">
                                 <b>Delivery Fraction (definition)</b><br/> The fraction of the load leaving a reach that is not attenuated or removed by natural processes during downstream transport to a specified downstream target reach. A delivery fraction of 1 indicates that 100 percent of the load leaving the reach is delivered to the downstream target.
                             </p>
-                            <p class="p-meta p-light fullwidth">
-                                Please note:  For delivered results shown here, the downstream target represents the immediate downstream Great Lake.
-
-                            </p>
+                            
                         </div>
 
                         <div role="tabpanel" class="tab-pane" id="disclaimerTabPane">
@@ -719,10 +713,12 @@
                                   <span class="glyphicon glyphicon-plus"></span> Click
                               </button>
                             <br />
-
-                            <button type="button" class="btn-blue" id="chartButton">
-                                  <span class="glyphicon glyphicon-signal"></span> Show Chart for All Map Features
+                            <div id="chartButtonWrapper">
+                                <button type="button" class="btn-blue" id="chartButton">
+                                    <span class="glyphicon glyphicon-signal"></span> Show Chart <span style="visibility: hidden"></span>
                               </button>
+                            </div>
+                            
                         </div>
                     </div>
                 </div>

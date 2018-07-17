@@ -527,12 +527,16 @@ function generateRenderer(){
         queryTask.executeForCount(query, function(count){
             app.polygonResponseCount = count;
             if (app.polygonResponseCount > 2500 && $("#chartButton").prop('disabled', false)){
-                $('#chartButton').prop('disabled', true);
+                $("#chartButton").prop("disabled", true).css("pointer-events", "none");
+                $("#chartButtonWrapper").css("cursor", "not-allowed");
+                $("#chartbuttonWrapper").attr("data-title", "DISABLED FOR TEST");
+                $("#chartButtonWrapper").tooltip();
                 //note: popup chart button done @ end of chart function since it's not built yet
                 $('#fromMapTab').prop('disabled', true);
  
             } else{
-                $('#chartButton').prop('disabled', false);
+                $('#chartButton').prop('disabled', false).css("pointer-events", "auto");
+                $("#chartButtonWrapper").css("cursor", "pointer");
                 //note: popup chart button done @ end of chart function since it's not built yet
                 $('#fromMapTab').prop('disabled', false);
 
@@ -548,7 +552,7 @@ function generateRenderer(){
                         $("#toast-fixed").fadeOut();
                     }, 5000);
                     app.map.graphics.clear();
-                    $("#chartButton").html("Show Chart for All Map Features");
+                    $("#chartButton").html("Show Chart");
                     app.formattedHighlightString = "";
                     $('#chartWindowDiv').css('visibility', 'hidden');
                     $('#chartWindowContainer').empty();

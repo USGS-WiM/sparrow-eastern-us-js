@@ -82,13 +82,16 @@ function loadEventHandlers() {
             selectPolygons.html('<span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;Select');
             app.map.setMapCursor("auto");
             app.clickSelectionActive = false;
-            $("#chartButton").prop("disabled",false);
+            $("#chartButton").prop("disabled",false).css("pointer-events", "auto");
+            //$(".chartDisabledGlyph").css("visibility", "hidden");
         } else if (!app.clickSelectionActive) {
             $('#customSelect').append('<div id="shiftNote" style="padding-left: 1em;color: orangered;">Shift+Click to Deselect</div>');
             selectPolygons.addClass("active");
             selectPolygons.html('<i class="glyphicon glyphicon-stop"></i>&nbsp;&nbsp;Stop selecting');
             app.map.setMapCursor("crosshair");
             $("#chartButton").prop("disabled",true);
+            
+            //$(".chartDisabledGlyph").css("visibility", "visible");
             app.clickSelectionActive = true;
         }
     });
@@ -300,6 +303,10 @@ function loadEventHandlers() {
         }
     });
 
+    $(".chartDisabledGlyph").on("click", function(){
+        alert("you can't do that");
+    });
+
     //following block forces map size to override problems with default behavior
     $(window).resize(function () {
         if ($("#legendCollapse").hasClass('in')) {
@@ -331,6 +338,7 @@ function loadEventHandlers() {
     app.map.on('zoom-end', function (){
         var scale = app.map.getScale().toFixed(0);
         $('#scale')[0].innerHTML = addCommas(scale);
+        console.log()
         var zoomEnd = app.map.getZoom();
         //for the dynamic borders
         if (app.currentZoomLevel <= borderThreshold && zoomEnd > borderThreshold){

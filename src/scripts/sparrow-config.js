@@ -131,8 +131,8 @@ var nitrogenSourceDefinitions = {
     1. each color corresponds with the order of SourceDefinitions objects above  
     2. there the number of hex colors matches the number of nutrient sources
 **/
-var phosColors = ['#BF0000', '#FFCCFF', '#663100', '#FFEC99', '#97DA7C', '#0070C0', '#bf8040' ];     
-var nitroColors = ['#BF0000', '#FFCCFF', '#663100', '#FFEC99', '#00a900', '#006800', '#0070C0' ];  
+var phosColors = ['#BF0000', '#FFCCFF', '#663100', '#FFEC99', '#A2EB85', '#0070C0' ];     
+var nitroColors = ['#BF0000', '#FFCCFF', '#663100', '#FFEC99', '#A2EB85', '#00a900', '#006800', '#0070C0' ];  
 
 
 /***-----BEGIN PHOSPHORUS LAYER GROUPS --------***/
