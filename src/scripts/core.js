@@ -1458,7 +1458,7 @@ require([
                 app.customChartClicked = false;
             }
         }
-        
+
         //only create close / minimize if they don't already exist
         if ($('#chartClose').length == 0){
             $('#chartWindowDiv .dropdown').prepend('<div id="chartClose" title="close"><b>X</b></div>');
@@ -1478,7 +1478,13 @@ require([
 
         $('#chartClose').on('click', function(){
             app.map.graphics.clear();
-            $("#chartButton").html("Show Chart");
+            if (app.polygonResponseCount > 2500 && $("#chartButton").prop('disabled', false)){
+                $("#chartButton")
+                    .prop("disabled", true)
+                    .css("pointer-events", "none")
+                    .html("Show Chart");
+                $("#chartButtonWrapper").css("cursor", "not-allowed");
+            }
             app.formattedHighlightString = "";
             $('#chartWindowDiv').css('visibility', 'hidden');
             $('#chartWindowContainer').empty();
