@@ -1353,7 +1353,7 @@ require([
             var respValue =
               typeof respObj.value != "string"
                 ? respObj.value
-                : "'" + respObj.value + "'";
+                : '"' + respObj.value + '"';
 
             if (!app.shiftKey) {
               //adding
@@ -1388,8 +1388,12 @@ require([
                 1
               );
               // if all selected have been removed, change Show Chart button back to say All
-              if (app.userSelectedShapes.length == 0)
+              if (
+                app.userSelectedShapes.length == 0 &&
+                app.userSelectedShapes.length < chartFeatureMax
+              ) {
                 $("#chartButton").html("Show Chart");
+              }
             }
           });
         } else {
@@ -2273,7 +2277,7 @@ require([
                   categoryStr +=
                     fieldName == "COMID"
                       ? +category + ", "
-                      : "'" + category + "', ";
+                      : '"' + category + '", ';
                 });
                 var queryStr = categoryStr.slice(0, categoryStr.length - 2);
 

@@ -39,27 +39,6 @@ function loadEventHandlers() {
     // hope the server sets Content-Disposition: attachment!
     window.location = nitroCalibrationURL;
   });
-  $("#PNGChartDownload").click(function() {
-    app.downloadPNGofChart();
-  });
-  $("#CSVChartDownload").click(function() {
-    app.downloadCSVofChart();
-  });
-  $("#showMiniChart").click(function() {
-    if ($("#miniChartContainer")[0].hidden == true) {
-      $("#miniChartContainer")[0].hidden = false;
-      $("#showMiniChart").text("(Hide Chart)");
-    } else {
-      $("#miniChartContainer")[0].hidden = true;
-      $("#showMiniChart").text("(Show Chart Example)");
-    }
-  });
-  $("#showMiniChart").click(function() {
-    $("#miniChartContainer").attr("hidden");
-  });
-  $("#chartDownload").on("click", function() {
-    app.downloadChartPNG();
-  });
 
   /* AOI EVENTS */
   $(".aoiSelect").on("change", AOIChange);
@@ -82,10 +61,19 @@ function loadEventHandlers() {
       );
       app.map.setMapCursor("auto");
       app.clickSelectionActive = false;
-      $("#chartButton")
-        .prop("disabled", false)
-        .css("pointer-events", "auto");
-      $("#chartButton").css("cursor", "pointer");
+      if (
+        app.userSelectedShapes.length == 0 &&
+        app.polygonResponseCount > chartFeatureMax
+      ) {
+        $("#chartButton")
+          .prop("disabled", true)
+          .css("cursor", "not-allowed");
+      } else {
+        $("#chartButton")
+          .prop("disabled", false)
+          .css("pointer-events", "auto")
+          .css("cursor", "pointer");
+      }
     } else if (!app.clickSelectionActive) {
       $("#customSelect").append(
         '<div id="shiftNote" style="padding-left: 1em;color: orangered;">Shift+Click to Deselect</div>'
