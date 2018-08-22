@@ -1350,10 +1350,7 @@ require([
         if (app.clickSelectionActive) {
           $.each(response, function(i, respObj) {
             var feature = respObj.feature;
-            var respValue =
-              typeof respObj.value != "string"
-                ? respObj.value
-                : '"' + respObj.value + '"';
+            var respValue = typeof respObj.value != "string" ? respObj.value : "'" + respObj.value + "'";
 
             if (!app.shiftKey) {
               //adding
@@ -1416,20 +1413,20 @@ require([
                     responseObj.feature.attributes.NAME +
                     "</div><br>" +
                     "<div><b>Station ID:</b> </b>" +
-                    responseObj.feature.attributes.STAID +
+                    responseObj.feature.attributes.STATION_ID +
                     "</div><br>" +
                     "<div><b>SPARROW Reach ID: </b>" +
                     responseObj.feature.attributes.COMID +
                     "</div><br>" +
-                    "<div><b>Fluxmaster Load" +
+                    "<div><b>Fluxmaster Load " +
                     chartUnits +
                     ": </b>" +
-                    responseObj.feature.attributes.LOAD_A_006 +
+                    responseObj.feature.attributes.FLUXMASTER +
                     "</div><br>" +
                     "<div><b>SPARROW Estimated Load " +
                     chartUnits +
                     ": </b>" +
-                    responseObj.feature.attributes.PLOAD_TOTA +
+                    responseObj.feature.attributes.SPARROW_ES +
                     "</div><br>"
                 );
 
@@ -1455,20 +1452,20 @@ require([
                     responseObj.feature.attributes.NAME +
                     "</div><br>" +
                     "<div><b>Station ID:</b> </b>" +
-                    responseObj.feature.attributes.STAID +
+                    responseObj.feature.attributes.STATION_ID +
                     "</div><br>" +
                     "<div><b>SPARROW Reach ID: </b>" +
                     responseObj.feature.attributes.COMID +
                     "</div><br>" +
-                    "<div><b>Fluxmaster Load" +
+                    "<div><b>Fluxmaster Load " +
                     chartUnits +
                     ": </b>" +
-                    responseObj.feature.attributes.LOAD_A_006 +
+                    responseObj.feature.attributes.FLUXMASTER +
                     "</div><br>" +
                     "<div><b>SPARROW Estimated Load " +
                     chartUnits +
                     ": </b>" +
-                    responseObj.feature.attributes.PLOAD_TOTA +
+                    responseObj.feature.attributes.SPARROW_ES +
                     "</div><br>"
                 );
 
@@ -2068,15 +2065,15 @@ require([
       var dropdown = $("#groupResultsSelect")[0].selectedIndex;
       switch (dropdown) {
         case 0:
-          return "Catchment ID";
+          return groupResultsLabels.a ;
         case 1:
-          return "HUC12";
+          return groupResultsLabels.b;
         case 2:
-          return "HUC8";
+          return groupResultsLabels.c;
         case 3:
-          return "River Basin";
+          return groupResultsLabels.d;
         case 4:
-          return "State";
+          return groupResultsLabels.e;
       }
     }
 
@@ -2274,10 +2271,7 @@ require([
                 var categoryStr = "";
                 $.each(categoryArr, function(i, category) {
                   // only COMID is a number, ST_COMID is a string
-                  categoryStr +=
-                    fieldName == "COMID"
-                      ? +category + ", "
-                      : '"' + category + '", ';
+                  categoryStr += '"' + category + '", ';
                 });
                 var queryStr = categoryStr.slice(0, categoryStr.length - 2);
 
@@ -2506,15 +2500,11 @@ require([
                 mouseOver: function() {
                   //get everything needed for the query
                   var category =
-                    $("#groupResultsSelect")[0].selectedIndex == 0
-                      ? this.id
-                      : this.category; //refers to the selected chart area
-                  var visibleLayers = app.map.getLayer("SparrowRanking")
-                    .visibleLayers[0];
-                  var URL = app.map.getLayer("SparrowRanking").url;
-                  var fieldName = switchWhereField(
-                    $("#groupResultsSelect")[0].selectedIndex
-                  );
+                    $("#groupResultsSelect")[0].selectedIndex == 0  ? this.id : this.category; //refers to the selected chart area
+                        var visibleLayers = app.map.getLayer("SparrowRanking").visibleLayers[0];
+                        var URL = app.map.getLayer("SparrowRanking").url;
+                        var fieldName = switchWhereField($("#groupResultsSelect")[0].selectedIndex
+                    );
 
                   var queryTask;
                   queryTask = new esri.tasks.QueryTask(
@@ -2526,12 +2516,12 @@ require([
                   graphicsQuery.outSpatialReference = app.map.spatialReference; //important!
                   graphicsQuery.outFields = [fieldName];
 
-                  if (fieldName != "COMID") {
+                  //if (fieldName != "COMID") {
                     graphicsQuery.where = fieldName + "= '" + category + "'";
-                  } else {
+                  //} else {
                     //COMID (but ST_COMID is) field is NOT a string!!!
-                    graphicsQuery.where = fieldName + " = " + category;
-                  }
+                    //graphicsQuery.where = fieldName + " = " + category;
+                  //}
 
                   queryTask.execute(graphicsQuery, responseHandler);
 
@@ -2569,14 +2559,9 @@ require([
                     thisCategory = this.category;
                   }
 
-                  if (queryField != "COMID") {
-                    var queryString =
-                      queryField + " = " + "'" + thisCategory + "'";
-                  } else {
-                    //COMID field is NOT a string!!!
-                    var queryString = queryField + " = " + thisCategory;
-                  }
-
+                  
+                var queryString = queryField + " = " + "'" + thisCategory + "'";
+                  
                   app.map.graphics.clear();
                   app.createChartQuery(queryString);
                 }
@@ -2672,10 +2657,7 @@ require([
 
     $("#resultsTable").append('<tbody id="tableBody"></tbody>');
     $.each(response, function(rowIndex, feature) {
-      var rowI =
-        selectedLayerId == 0
-          ? feature["COMID"] || feature["ST_COMID"]
-          : rowIndex;
+      var rowI = rowIndex;
 
       htmlArr.push("<tr id='row" + rowI + "'>");
       $.each(feature, function(key, value) {
@@ -2684,19 +2666,7 @@ require([
         } else {
           htmlArr.push("<td>" + value + "</td>");
         }
-
-        //comment in if changing back to PNAME
-        //if (key !== "COMID" && key !== "ST_COMID") {
-        //htmlArr.push('<td>'+ value +'</td>');
-        //}
-
-        /*below can be used to splice 'total' into the second position in the array*/
-        /*if (key !== "total") {
-                    htmlArr.push('<td>'+ value +'</td>');
-                } else{
-                    htmlArr.splice(1, 0, '<td>'+ value +'</td>');
-                }*/
-      });
+    });
 
       htmlArr.push("</tr>");
     });

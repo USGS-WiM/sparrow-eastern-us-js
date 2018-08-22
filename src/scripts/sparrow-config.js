@@ -26,6 +26,23 @@ var dynamicBorderLayers = ["Catchment", "HUC12", "HUC8"]; //Aggregate layer choi
 
 var initQueryParams = ['ST', 'GP3', 'GP2', 'GP1' ]; //used to query for the AOI dropdown values on app init.
 
+var groupResultsLabels = {
+    a : "Catchment ID",
+    b : "HUC12",
+    c : "HUC8",
+    d : "River Basin",
+    e : "State"
+}
+
+//populate group results Labels right away
+/* //TODO figure out race condition
+$.each(groupResultsLabels, function (i, item) {
+    $("#groupResultsSelect").append('<option value=' + item +'>' + item + '</option>');
+
+  }); */
+
+
+
 //download locations
 var phosphorusShapefileURL = 'https://sparrow.wim.usgs.gov/east-us/downloads/east_us_shapefiles_phosphorus.zip';
 var nitrogenShapefileURL = 'https://sparrow.wim.usgs.gov/east-us/downloads/east_us_shapefiles_nitrogen.zip';
