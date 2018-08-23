@@ -2,80 +2,81 @@
 _________________Created by emyers 10/2016_____________
 */
 
-
-$('.selectpicker').selectpicker();
+$(".selectpicker").selectpicker({
+    liveSearchPlaceholder: "Search"
+});
 
 //Change Displayed Metric select options
-function populateMetricOptions(selectedIndex){
+function populateMetricOptions(selectedIndex) {
     var metricOptions;
     //var keepMetricIndex = selectedIndex;
-    if ( $("#displayedMetricSelect")[0].selectedOptions.length > 0 ){
+    if ($("#displayedMetricSelect")[0].selectedOptions.length > 0) {
         var previousFieldLabel = $("#displayedMetricSelect")[0].selectedOptions[0].label;
         var test = $("#displayedMetricSelect option:selected");
-    }    
-    
-    if($(".radio input[type='radio']:checked")[0].id == 'radio1'){
-        switch (selectedIndex){
+    }
+
+    if ($(".radio input[type='radio']:checked")[0].id == "radio1") {
+        switch (selectedIndex) {
             case 0:
-                if( $("#st-select")[0].selectedIndex > 0){
+                if ($("#st-select")[0].selectedIndex > 0) {
                     metricOptions = Catchments_st; //UPDATE TODO if catchments are split, update to the appropriate object.
-                }else{
+                } else {
                     metricOptions = Catchments;
                 }
                 break;
             case 1:
-                if( $("#st-select")[0].selectedIndex > 0){
+                if ($("#st-select")[0].selectedIndex > 0) {
                     metricOptions = Group3_st;
-                }else{
+                } else {
                     metricOptions = Group3;
                 }
                 break;
             case 2:
-                if( $("#st-select")[0].selectedIndex > 0){
+                if ($("#st-select")[0].selectedIndex > 0) {
                     metricOptions = Group2_st;
-                }else{
+                } else {
                     metricOptions = Group2;
                 }
                 break;
-            case 3: 
-                if( $("#st-select")[0].selectedIndex > 0){
+            case 3:
+                if ($("#st-select")[0].selectedIndex > 0) {
                     metricOptions = Group1_st;
-                }else{
+                } else {
                     metricOptions = Group1;
                 }
                 break;
-                
+
             case 4:
                 metricOptions = ST;
                 break;
         }
-    } else if($(".radio input[type='radio']:checked")[0].id == 'radio2'){
-        switch (selectedIndex){
+    } else if ($(".radio input[type='radio']:checked")[0].id == "radio2") {
+        switch (selectedIndex) {
             case 0:
-                if( $("#st-select")[0].selectedIndex > 0){
-                    metricOptions = Catchments_st_tn;  //UPDATE TODO if catchments are split, update to the appropriate object.
-                }else{
+                if ($("#st-select")[0].selectedIndex > 0) {
+                    metricOptions = Catchments_st_tn; //UPDATE TODO if catchments are split, update to the appropriate object.
+                } else {
                     metricOptions = Catchments_tn;
                 }
                 break;
             case 1:
-                if( $("#st-select")[0].selectedIndex > 0){
+                if ($("#st-select")[0].selectedIndex > 0) {
                     metricOptions = Group3_st_tn;
-                }else{
+                } else {
                     metricOptions = Group3_tn;
                 }
                 break;
             case 2:
-                if( $("#st-select")[0].selectedIndex > 0){
+                if ($("#st-select")[0].selectedIndex > 0) {
                     metricOptions = Group2_st_tn;
-                }else{
+                } else {
                     metricOptions = Group2_tn;
                 }
                 break;
-            case 3: 
-                if( $("#st-select")[0].selectedIndex > 0){
+            case 3:
+                if ($("#st-select")[0].selectedIndex > 0) {
                     metricOptions = Group1_st_tn;
-                }else{
+                } else {
                     metricOptions = Group1_tn;
                 }
                 break;
@@ -85,46 +86,46 @@ function populateMetricOptions(selectedIndex){
         }
     }
     //remove old and set new metric options, refresh select picker
-    $("#displayedMetricSelect").find('option').remove();
-    $.each(metricOptions, function(index, value){
+    $("#displayedMetricSelect")
+        .find("option")
+        .remove();
+    $.each(metricOptions, function(index, value) {
         $("#displayedMetricSelect").append(new Option(value.name, value.field));
-        $('#displayedMetricSelect').selectpicker('refresh');
+        $("#displayedMetricSelect").selectpicker("refresh");
     });
 
     //find previously Selected metric value
-    var selectedMetric = function(previousFieldLabel, metricOptions){
-        for (var i = 0, len = metricOptions.length; i< len; i++){
-            if (previousFieldLabel === metricOptions[i].name){
+    var selectedMetric = function(previousFieldLabel, metricOptions) {
+        for (var i = 0, len = metricOptions.length; i < len; i++) {
+            if (previousFieldLabel === metricOptions[i].name) {
                 return metricOptions[i];
             }
         }
         return null;
-    }
-    
-    //set the selected metric dropdown here
-    if(previousFieldLabel){
-        if ( selectedMetric(previousFieldLabel, metricOptions) != null ){
-            //set dropdown to previously selected value
-            $("#displayedMetricSelect").selectpicker('val', selectedMetric(previousFieldLabel, metricOptions).field); //use field value, not name
-        } else{
-            //set default to the first new metric option because the previously selected value isn't in the new list.
-            $("#displayedMetricSelect").selectpicker('val', metricOptions[0].field); 
-        }
-    } else{
-        $("#displayedMetricSelect").selectpicker('val', metricOptions[0].field);
-    } 
+    };
 
+    //set the selected metric dropdown here
+    if (previousFieldLabel) {
+        if (selectedMetric(previousFieldLabel, metricOptions) != null) {
+            //set dropdown to previously selected value
+            $("#displayedMetricSelect").selectpicker("val", selectedMetric(previousFieldLabel, metricOptions).field); //use field value, not name
+        } else {
+            //set default to the first new metric option because the previously selected value isn't in the new list.
+            $("#displayedMetricSelect").selectpicker("val", metricOptions[0].field);
+        }
+    } else {
+        $("#displayedMetricSelect").selectpicker("val", metricOptions[0].field);
+    }
 } // END populateMetricOptions
 
-
 //used when clearing the AOI
-function returnDefaultLayer(sparrowId){
-    switch (sparrowId){
+function returnDefaultLayer(sparrowId) {
+    switch (sparrowId) {
         case 5:
-            return 0;        
+            return 0;
         case 6:
             return 1;
-        case 7:     
+        case 7:
             return 2;
         case 8:
             return 3;
@@ -132,46 +133,44 @@ function returnDefaultLayer(sparrowId){
             return 9;
         case 15:
             return 10;
-        case 16:     
+        case 16:
             return 11;
-        case 17:     
+        case 17:
             return 12;
     }
 }
 
 //uses the #groupResultsSelect selected value and Selected radio to define the SparrowRanking display layer.
-function setAggregateGroup(groupBySelectedIndex, selectedRadio){
-
-    if (selectedRadio == 'radio1'){
+function setAggregateGroup(groupBySelectedIndex, selectedRadio) {
+    if (selectedRadio == "radio1") {
         var layerArrayValue;
-        switch (groupBySelectedIndex){
+        switch (groupBySelectedIndex) {
             case 0:
-                if( $("#st-select")[0].selectedIndex > 0){
+                if ($("#st-select")[0].selectedIndex > 0) {
                     layerArrayValue = 5; //TODO UPDATE AddCatchments with splits if they become available?
-                } else{
+                } else {
                     layerArrayValue = 0;
                 }
                 break;
             case 1:
-            
-                if( $("#st-select")[0].selectedIndex > 0){
+                if ($("#st-select")[0].selectedIndex > 0) {
                     layerArrayValue = 6; //grp3 w/ state splits
-                } else{
+                } else {
                     layerArrayValue = 1;
                 }
-                
+
                 break;
-            case 2: 
-                 if( $("#st-select")[0].selectedIndex > 0){
-                    layerArrayValue = 7;    //grp2 w/state splits
-                } else{
+            case 2:
+                if ($("#st-select")[0].selectedIndex > 0) {
+                    layerArrayValue = 7; //grp2 w/state splits
+                } else {
                     layerArrayValue = 2;
                 }
                 break;
             case 3:
-                if( $("#st-select")[0].selectedIndex > 0){
-                    layerArrayValue = 8;    //grp1 w/state splits
-                } else{
+                if ($("#st-select")[0].selectedIndex > 0) {
+                    layerArrayValue = 8; //grp1 w/state splits
+                } else {
                     layerArrayValue = 3;
                 }
                 break;
@@ -179,35 +178,35 @@ function setAggregateGroup(groupBySelectedIndex, selectedRadio){
                 layerArrayValue = 4;
                 break;
         }
-    } else if (selectedRadio == 'radio2'){
+    } else if (selectedRadio == "radio2") {
         //UPDATE TODO impoartant! verify layerIDs here when Nitrogen Layers become available!!!!!
         var layerArrayValue;
-        switch (groupBySelectedIndex){
+        switch (groupBySelectedIndex) {
             case 0:
-                if( $("#st-select")[0].selectedIndex > 0){
+                if ($("#st-select")[0].selectedIndex > 0) {
                     layerArrayValue = 14; //TODO UPDATE AddCatchments with splits if they become available?
-                } else{
+                } else {
                     layerArrayValue = 9;
                 }
                 break;
             case 1:
-                if( $("#st-select")[0].selectedIndex > 0){
+                if ($("#st-select")[0].selectedIndex > 0) {
                     layerArrayValue = 15; //grp3 w/ state splits
-                } else{
+                } else {
                     layerArrayValue = 10;
                 }
                 break;
-            case 2: 
-                if( $("#st-select")[0].selectedIndex > 0){
+            case 2:
+                if ($("#st-select")[0].selectedIndex > 0) {
                     layerArrayValue = 16; //grp2 w/ state splits
-                } else{
+                } else {
                     layerArrayValue = 11;
                 }
                 break;
-            case 3: 
-                if( $("#st-select")[0].selectedIndex > 0){
+            case 3:
+                if ($("#st-select")[0].selectedIndex > 0) {
                     layerArrayValue = 17; //grp1 w/ state splits
-                } else{
+                } else {
                     layerArrayValue = 12;
                 }
                 break;
@@ -217,254 +216,263 @@ function setAggregateGroup(groupBySelectedIndex, selectedRadio){
         }
     }
     var visibleLayerIds = [layerArrayValue];
-    var sparrowRanking = app.map.getLayer('SparrowRanking');
-    sparrowRanking.setVisibleLayers(visibleLayerIds);    
+    var sparrowRanking = app.map.getLayer("SparrowRanking");
+    sparrowRanking.setVisibleLayers(visibleLayerIds);
 } //END setAggregateGroup()
 
-function AOIChange(e){
+function AOIChange(e) {
     $("#page-loader").fadeIn();
     var selectId = e.currentTarget.id;
     var selectValue = e.currentTarget.value;
     var groupResultsIndex = $("#groupResultsSelect")[0].selectedIndex;
 
-    if( $('#groupResultsSelect')[0].value == "HUC12" || $('#groupResultsSelect')[0].value == "Catchment"){
+    if ($("#groupResultsSelect")[0].value == "HUC12" || $("#groupResultsSelect")[0].value == "Catchment") {
         //ENABLE huc12 dropdown
-        $("#grp3-select").removeClass('disabled'); //huc12
-        $("#grp3-select").removeAttr('disabled');
+        $("#grp3-select").removeClass("disabled"); //huc12
+        $("#grp3-select").removeAttr("disabled");
     }
-      
-  
 
     var newObj = {
         selectedId: selectId,
         selectedValue: selectValue
-    }
-    
+    };
+
     if (selectId == "st-select" && groupResultsIndex != 4) {
         //if not already on a state split layer, set one now.
-        //TODO: figure out how you can access the current layers to see if you're on a split layer.  
+        //TODO: figure out how you can access the current layers to see if you're on a split layer.
         //if(app.map.getLayer('SparrowRanking').visibleLayers[0]){
         populateMetricOptions($("#groupResultsSelect")[0].selectedIndex);
-        setAggregateGroup( groupResultsIndex, $(".radio input[type='radio']:checked")[0].id );
+        setAggregateGroup(groupResultsIndex, $(".radio input[type='radio']:checked")[0].id);
     }
 
     //only update if there's a value to update to (clearing selected values depending on Group Results by selections)
-    if (newObj.selectedValue != ""){
+    if (newObj.selectedValue != "") {
         app.setLayerDefObj(newObj);
     }
 
-    setLayerDefs();    
+    setLayerDefs();
 
     generateRenderer();
 
-    if( $("#chartWindowDiv").css("visibility") == "visible" ) {
+    if ($("#chartWindowDiv").css("visibility") == "visible") {
         $("#toast_title").html("Loading...");
-        $("#toast_body").html("Chart updating");  
+        $("#toast_body").html("Chart updating");
         $("#toast-fixed").fadeIn();
-        
+
         app.map.graphics.clear();
         app.createChartQuery();
-    }   
+    }
 } //END AOIChange()
 
+function setLayerDefs() {
+    var definitionString = "";
+    var layerDefObj = app.getLayerDefObj();
 
-function setLayerDefs(){
-        var definitionString = "";
-        var layerDefObj = app.getLayerDefObj();
-        
-        if (layerDefObj.AOIST){
-            if(definitionString != "") {
-                definitionString += " AND ST = "+ "'" + layerDefObj.AOIST + "'";
-            } else {
-               definitionString += "ST = "+ "'" + layerDefObj.AOIST + "'"; 
-            }
+    if (layerDefObj.AOIST) {
+        if (definitionString != "") {
+            definitionString += " AND ST = " + "'" + layerDefObj.AOIST + "'";
+        } else {
+            definitionString += "ST = " + "'" + layerDefObj.AOIST + "'";
         }
-        if (layerDefObj.AOI1){
-            if(definitionString != "") {
-                definitionString += " AND GP1 = "+ "'" + layerDefObj.AOI1 + "'";
-            } else {
-                definitionString += "GP1 = "+ "'" + layerDefObj.AOI1 + "'";
-            }
-            
+    }
+    if (layerDefObj.AOI1) {
+        if (definitionString != "") {
+            definitionString += " AND GP1 = " + "'" + layerDefObj.AOI1 + "'";
+        } else {
+            definitionString += "GP1 = " + "'" + layerDefObj.AOI1 + "'";
         }
-        if (layerDefObj.AOI2){
-            if(definitionString != "") {
-               definitionString += " AND GP2 = "+ "'" + layerDefObj.AOI2 + "'";
-            } else {
-                definitionString += "GP2 = "+ "'" + layerDefObj.AOI2 + "'";
-            }
+    }
+    if (layerDefObj.AOI2) {
+        if (definitionString != "") {
+            definitionString += " AND GP2 = " + "'" + layerDefObj.AOI2 + "'";
+        } else {
+            definitionString += "GP2 = " + "'" + layerDefObj.AOI2 + "'";
         }
-        /***TODO UPDATE IMPORTANT -- ADDED BUT NOT ***/
-        if (layerDefObj.AOI3){
-            if(definitionString != "") {
-               definitionString += " AND GP3 = "+ "'" + layerDefObj.AOI3 + "'";
-            } else {
-                definitionString += "GP3 = "+ "'" + layerDefObj.AOI3 + "'";
-            }
+    }
+    /***TODO UPDATE IMPORTANT -- ADDED BUT NOT ***/
+    if (layerDefObj.AOI3) {
+        if (definitionString != "") {
+            definitionString += " AND GP3 = " + "'" + layerDefObj.AOI3 + "'";
+        } else {
+            definitionString += "GP3 = " + "'" + layerDefObj.AOI3 + "'";
         }
-        
-        var layerDefs = [];
+    }
 
-        //LayerDefs on ALL Layers
-        /***TODO UPDATE IMPORTANT -- note that not all of these layer combinations are going to work with the attributes we have currently.  Some layer defs will not set because the fields don't exist***/
-        layerDefs[0] = definitionString; 
-        layerDefs[1] = definitionString; 
-        layerDefs[2] = definitionString; 
-        layerDefs[3] = definitionString; 
-        layerDefs[4] = definitionString; 
-        layerDefs[5] = definitionString; 
-        layerDefs[6] = definitionString; 
-        layerDefs[7] = definitionString; 
-        layerDefs[8] = definitionString;
-        
-        layerDefs[9] = definitionString;
-        layerDefs[10] = definitionString;
-        layerDefs[11] = definitionString;
-        layerDefs[12] = definitionString;
-        layerDefs[13] = definitionString;
-        layerDefs[14] = definitionString;
-        layerDefs[15] = definitionString;
-        layerDefs[16] = definitionString;
-        layerDefs[17] = definitionString;
+    var layerDefs = [];
 
+    //LayerDefs on ALL Layers
+    /***TODO UPDATE IMPORTANT -- note that not all of these layer combinations are going to work with the attributes we have currently.  Some layer defs will not set because the fields don't exist***/
+    layerDefs[0] = definitionString;
+    layerDefs[1] = definitionString;
+    layerDefs[2] = definitionString;
+    layerDefs[3] = definitionString;
+    layerDefs[4] = definitionString;
+    layerDefs[5] = definitionString;
+    layerDefs[6] = definitionString;
+    layerDefs[7] = definitionString;
+    layerDefs[8] = definitionString;
 
-        app.map.getLayer("SparrowRanking").setLayerDefinitions(layerDefs);
+    layerDefs[9] = definitionString;
+    layerDefs[10] = definitionString;
+    layerDefs[11] = definitionString;
+    layerDefs[12] = definitionString;
+    layerDefs[13] = definitionString;
+    layerDefs[14] = definitionString;
+    layerDefs[15] = definitionString;
+    layerDefs[16] = definitionString;
+    layerDefs[17] = definitionString;
+
+    app.map.getLayer("SparrowRanking").setLayerDefinitions(layerDefs);
 } // END setLayerDefs()
 
-function getTableFields(headerKeysArr, sparrowLayerId){
+function getTableFields(headerKeysArr, sparrowLayerId) {
     var label = "";
     var flatArr = [];
     var htmlHeaderArr = [];
     var configArr = [];
     var removeField = "";
-    switch(sparrowLayerId){
+    switch (sparrowLayerId) {
         case 0:
             configArr = Group3;
             removeField = "GP3";
-            $.each(tableOutFields, function(i,object){
+            $.each(tableOutFields, function(i, object) {
                 flatArr.push(object);
             });
             break;
         case 4:
             configArr = Group3_st;
             removeField = "SG3";
-            $.each(stateTableOutFields, function(i,object){
+            $.each(stateTableOutFields, function(i, object) {
                 flatArr.push(object);
             });
             break;
         case 7:
             configArr = Group3_tn;
-             removeField = "GP3"
-             $.each(tableOutFields, function(i,object){
+            removeField = "GP3";
+            $.each(tableOutFields, function(i, object) {
                 flatArr.push(object);
             });
             break;
         case 11:
             configArr = Group3_st_tn;
             removeField = "SG3";
-            $.each(stateTableOutFields, function(i,object){
+            $.each(stateTableOutFields, function(i, object) {
                 flatArr.push(object);
             });
             break;
     }
 
-    
-    $.each(configArr, function(index, item){
-        flatArr.push({field: item.field, name: item.name});
-        $.each(item.chartOutfields, function(i, fields){
-            if (fields.attribute == removeField && (flatArr.map(function (f) { return f.field }).indexOf(removeField) < 0)) {
-                flatArr.push({field: fields.attribute, name: fields.label});
+    $.each(configArr, function(index, item) {
+        flatArr.push({ field: item.field, name: item.name });
+        $.each(item.chartOutfields, function(i, fields) {
+            if (
+                fields.attribute == removeField &&
+                flatArr
+                    .map(function(f) {
+                        return f.field;
+                    })
+                    .indexOf(removeField) < 0
+            ) {
+                flatArr.push({ field: fields.attribute, name: fields.label });
             } else if (fields.attribute != removeField) {
-                flatArr.push({field:fields.attribute, name:fields.label});
+                flatArr.push({ field: fields.attribute, name: fields.label });
             }
-        });  
+        });
     });
 
     htmlHeaderArr.push("<tr>");
-    $.each(headerKeysArr, function(index, key){
+    $.each(headerKeysArr, function(index, key) {
         //console.log(key);
-        $.each(flatArr, function(index, obj){
-            if(key == obj.field){
-               //console.log(obj.field);
-                htmlHeaderArr.push('<th>' + obj.name + '</th>');
+        $.each(flatArr, function(index, obj) {
+            if (key == obj.field) {
+                //console.log(obj.field);
+                htmlHeaderArr.push("<th>" + obj.name + "</th>");
                 return false; //escape the each loop?
             }
         });
     });
     htmlHeaderArr.push("</tr>");
-    return htmlHeaderArr.join('');
+    return htmlHeaderArr.join("");
 }
 
-function getLegendLabels(sparrowLayerId){
+function getLegendLabels(sparrowLayerId) {
     var label = "";
     var configObject = app.getLayerConfigObject(sparrowLayerId);
-    var nutrientModel = sparrowLayerId < 8 ? 'Total Phosphorus' : 'Total Nitrogen';  //if layer id is less than 8 prefix with Phosphorus, else Nitrogen
-    $.each(configObject, function(index, item){
-        if( $("#displayedMetricSelect").val() == item.field ) {
+    var nutrientModel = sparrowLayerId < 8 ? "Total Phosphorus" : "Total Nitrogen"; //if layer id is less than 8 prefix with Phosphorus, else Nitrogen
+    $.each(configObject, function(index, item) {
+        if ($("#displayedMetricSelect").val() == item.field) {
             label = item.name;
         }
     });
-    return nutrientModel + ', ' + label;
-
+    return nutrientModel + ", " + label;
 } //END getLegendLabels()
 
-function getChartOutfields(sparrowLayerId){
+function getChartOutfields(sparrowLayerId) {
     var chartFieldsArr = [];
     //console.log("in GetChartOutfields()")
     var configObject = app.getLayerConfigObject(sparrowLayerId);
-    $.each(configObject, function(index, item){
-        if( $("#displayedMetricSelect").val() == item.field ) {
+    $.each(configObject, function(index, item) {
+        if ($("#displayedMetricSelect").val() == item.field) {
             $.each(item.chartOutfields, function(i, fields) {
-                chartFieldsArr.push( fields );
+                chartFieldsArr.push(fields);
             });
         }
     });
     return chartFieldsArr;
 } //END getLegendLabels()
 
-function getExtraOutfields(outfieldsArr, sparrowLayerId){
+function getExtraOutfields(outfieldsArr, sparrowLayerId) {
     var finalChartArr = outfieldsArr;
     //UPDATE IMPORTANT! check additional area field names
-    switch(sparrowLayerId){
+    switch (sparrowLayerId) {
         /////BEGIN PHOSPHORUS LAYERS___________________________________________________________
-        case 0: case 9: 
+        case 0:
+        case 9:
             //CATCHMENTS
             //finalChartArr.push("PNAME");
             finalChartArr.push("AREASQKM");
             finalChartArr.push("DIVDASQKM");
-            finalChartArr.push("COMID");             
+            finalChartArr.push("COMID");
             break;
-        case 1: case 10:
-            //HUC8 
-            finalChartArr.push("GP3_AREA");            
+        case 1:
+        case 10:
+            //HUC8
+            finalChartArr.push("GP3_AREA");
             break;
-        case 2: case 11:
+        case 2:
+        case 11:
             //Tributarys
-            finalChartArr.push("GP2_AREA");            
+            finalChartArr.push("GP2_AREA");
             break;
-        case 3: case 12:
+        case 3:
+        case 12:
             //Independent Watershed
-             finalChartArr.push("GP1_AREA");
+            finalChartArr.push("GP1_AREA");
             break;
-        case 4: case 13:
+        case 4:
+        case 13:
             //State
             finalChartArr.push("ST_AREA");
             break;
-        case 5: case 14:
+        case 5:
+        case 14:
             //Catchments w/ state divisions
             finalChartArr.push("AREASQKM");
             finalChartArr.push("AREASQKM");
             finalChartArr.push("ST_COMID");
             break;
-        case 6: case 15:
+        case 6:
+        case 15:
             //grp3 w/ state divisions
             finalChartArr.push("SG3_AREA");
             break;
-        case 7: case 16:
+        case 7:
+        case 16:
             //grp 2 w/ state divisions
             finalChartArr.push("SG2_AREA");
             break;
-        case 8: case 17:
+        case 8:
+        case 17:
             //grp1 w/ state divisions
             finalChartArr.push("SG1_AREA");
             break;
@@ -472,31 +480,31 @@ function getExtraOutfields(outfieldsArr, sparrowLayerId){
     return finalChartArr;
 }
 
-function generateRenderer(){
-        require([
-        'esri/map',
-        'esri/Color',
+function generateRenderer() {
+    require([
+        "esri/map",
+        "esri/Color",
         "esri/dijit/Legend",
         "esri/layers/LayerDrawingOptions",
-        'esri/symbols/SimpleLineSymbol',
-        'esri/symbols/SimpleFillSymbol',
-        'esri/tasks/ClassBreaksDefinition',
-        'esri/tasks/AlgorithmicColorRamp',
-        'esri/tasks/GenerateRendererParameters',
-        'esri/tasks/GenerateRendererTask',
-        'esri/tasks/query',
-        'esri/tasks/QueryTask',
-        'dojo/dom',
-        'dojo/dom-class',
-        'dojo/on',
-        'dojo/domReady!'
-    ], function (
+        "esri/symbols/SimpleLineSymbol",
+        "esri/symbols/SimpleFillSymbol",
+        "esri/tasks/ClassBreaksDefinition",
+        "esri/tasks/AlgorithmicColorRamp",
+        "esri/tasks/GenerateRendererParameters",
+        "esri/tasks/GenerateRendererTask",
+        "esri/tasks/query",
+        "esri/tasks/QueryTask",
+        "dojo/dom",
+        "dojo/dom-class",
+        "dojo/on",
+        "dojo/domReady!"
+    ], function(
         Map,
         Color,
         Legend,
         LayerDrawingOptions,
         SimpleLineSymbol,
-        SimpleFillSymbol,        
+        SimpleFillSymbol,
         ClassBreaksDefinition,
         AlgorithmicColorRamp,
         GenerateRendererParameters,
@@ -507,63 +515,73 @@ function generateRenderer(){
         domClass,
         on
     ) {
-        var sparrowId = app.map.getLayer('SparrowRanking').visibleLayers[0];
+        var sparrowId = app.map.getLayer("SparrowRanking").visibleLayers[0];
         //apply layer defs to renderer if they exist
-        if(app.map.getLayer('SparrowRanking').layerDefinitions){
-            var dynamicLayerDefs = app.map.getLayer('SparrowRanking').layerDefinitions[sparrowId];
+        if (app.map.getLayer("SparrowRanking").layerDefinitions) {
+            var dynamicLayerDefs = app.map.getLayer("SparrowRanking").layerDefinitions[sparrowId];
             app.layerDef = dynamicLayerDefs;
-        }
-        else{
-            app.map.getLayer('SparrowRanking').setDefaultLayerDefinitions(); //is this necessary?
+        } else {
+            app.map.getLayer("SparrowRanking").setDefaultLayerDefinitions(); //is this necessary?
             app.layerDef = "1=1";
         }
         //UPDATE important!  url must match serviceBaseURL in config
         app.Url = serviceBaseURL + sparrowId;
-        
+
         // get polygon count for global storage
         var query = new Query();
         var queryTask = new QueryTask(app.Url);
         query.where = app.layerDef;
-        queryTask.executeForCount(query, function(count){
-            app.polygonResponseCount = count;
-            if (app.polygonResponseCount > 2500 && $("#chartButton").prop('disabled', false)){
-                $('#chartButton').prop('disabled', true);
-                //note: popup chart button done @ end of chart function since it's not built yet
-                $('#fromMapTab').prop('disabled', true);
- 
-            } else{
-                $('#chartButton').prop('disabled', false);
-                //note: popup chart button done @ end of chart function since it's not built yet
-                $('#fromMapTab').prop('disabled', false);
-
-            }
-            
-
-            if( $("#chartWindowDiv").css("visibility") == "visible" ) {
-                if (app.polygonResponseCount > 2500){
-                    $("#toast_title").html("Warning");
-                    $("#toast_body").html("Cannot show chart for "+ app.polygonResponseCount + " features. Please narrow Area of Interest or Group Results and try again.");  
-                    $("#toast-fixed").fadeIn();
-                    setTimeout(function(){ 
-                        $("#toast-fixed").fadeOut();
-                    }, 5000);
-                    app.map.graphics.clear();
-                    $("#chartButton").html("Show Chart for All Map Features");
-                    app.formattedHighlightString = "";
-                    $('#chartWindowDiv').css('visibility', 'hidden');
-                    $('#chartWindowContainer').empty();
-                    $('#chartWindowPanelTitle').empty();
-                } else{
-                    app.createChartQuery();
+        queryTask.executeForCount(
+            query,
+            function(count) {
+                app.polygonResponseCount = count;
+                if (app.polygonResponseCount > 2500 && $("#chartButton").prop("disabled", false)) {
+                    $("#chartButton")
+                        .prop("disabled", true)
+                        .css("pointer-events", "none");
+                    $("#chartButtonWrapper").css("cursor", "not-allowed");
+                    //note: popup chart button done @ end of chart function since it's not built yet
+                    $("#fromMapTab").prop("disabled", true);
+                } else {
+                    $("#chartButton")
+                        .prop("disabled", false)
+                        .css("pointer-events", "auto");
+                    $("#chartButtonWrapper").css("cursor", "pointer");
+                    //note: popup chart button done @ end of chart function since it's not built yet
+                    $("#fromMapTab").prop("disabled", false);
                 }
-            }  
-        },function(error){
-            console.log(error);
-        });
-        
-        var selectedMetric = $('#displayedMetricSelect')[0].value;
+
+                if ($("#chartWindowDiv").css("visibility") == "visible") {
+                    if (app.polygonResponseCount > 2500) {
+                        $("#toast_title").html("Warning");
+                        $("#toast_body").html(
+                            "Cannot show chart for " +
+                                app.polygonResponseCount +
+                                " features. <br/>Please narrow Area of Interest or Group Results to less than " + chartFeatureMax + " features and try again."
+                        );
+                        $("#toast-fixed").fadeIn();
+                        setTimeout(function() {
+                            $("#toast-fixed").fadeOut();
+                        }, 9000);
+                        app.map.graphics.clear();
+                        $("#chartButton").html("Show Chart");
+                        app.formattedHighlightString = "";
+                        $("#chartWindowDiv").css("visibility", "hidden");
+                        $("#chartWindowContainer").empty();
+                        $("#chartWindowPanelTitle").empty();
+                    } else {
+                        app.createChartQuery();
+                    }
+                }
+            },
+            function(error) {
+                console.log(error);
+            }
+        );
+
+        var selectedMetric = $("#displayedMetricSelect")[0].value;
         app.outFields = [selectedMetric];
-        app.currentAttribute = selectedMetric; 
+        app.currentAttribute = selectedMetric;
         var classDef = new ClassBreaksDefinition();
         classDef.classificationField = app.currentAttribute;
         classDef.classificationMethod = "quantile";
@@ -571,39 +589,38 @@ function generateRenderer(){
 
         var scale = app.map.getScale();
         var zoom = app.map.getZoom();
-       
+
         //check for dynamic border criteria and set symbols
-        if(dynamicBorderLayers.includes( $('#groupResultsSelect')[0].value )){
-            if(app.map.getZoom() > borderThreshold){
-                classDef.baseSymbol = new SimpleFillSymbol(SimpleFillSymbol.STYLE_SOLID,
-                    new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID,
-                    new Color([168,168,168]), 0.1)
-                    );
-            } else{
+        if (dynamicBorderLayers.includes($("#groupResultsSelect")[0].value)) {
+            if (app.map.getZoom() > borderThreshold) {
+                classDef.baseSymbol = new SimpleFillSymbol(
+                    SimpleFillSymbol.STYLE_SOLID,
+                    new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID, new Color([168, 168, 168]), 0.1)
+                );
+            } else {
                 //symbol WITHOUT borders
                 classDef.baseSymbol = new SimpleFillSymbol("solid", null, null);
             }
-
-        } else{
+        } else {
             //symbol WITH borders
-            classDef.baseSymbol = new SimpleFillSymbol(SimpleFillSymbol.STYLE_SOLID,
-                new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID,
-                new Color([168,168,168]), 0.1)
-                );
-        } 
-          
+            classDef.baseSymbol = new SimpleFillSymbol(
+                SimpleFillSymbol.STYLE_SOLID,
+                new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID, new Color([168, 168, 168]), 0.1)
+            );
+        }
+
         var colorRamp = new AlgorithmicColorRamp();
         //different ramps for phos/nitro
-        if( $(".radio input[type='radio']:checked")[0].id == "radio1" ){
+        if ($(".radio input[type='radio']:checked")[0].id == "radio1") {
             //phos brown schema
             colorRamp.fromColor = new Color.fromHex("#FFF1DC");
             colorRamp.toColor = new Color.fromHex("#632E0E");
-        } else{
+        } else {
             //nitro green schema
             colorRamp.fromColor = new Color.fromHex("#F5EBB8");
             colorRamp.toColor = new Color.fromHex("#004120");
         }
-          
+
         colorRamp.algorithm = "hsv"; // options are:  "cie-lab", "hsv", "lab-lch"
         classDef.colorRamp = colorRamp;
 
@@ -611,32 +628,31 @@ function generateRenderer(){
         params.classificationDefinition = classDef;
         // limit the renderer to data being shown by the current layer
         params.formatLabel = false; //formatLabel = false otherwise expect some bad behavior from the renderer!
-        params.where = app.layerDef; 
+        params.where = app.layerDef;
         var generateRenderer = new GenerateRendererTask(app.Url);
         generateRenderer.execute(params, processValues, errorHandler);
 
-        function processValues(renderer){
-
+        function processValues(renderer) {
             //calculate legend values to 3 significant figures
-            function sigFigures(n){
-                if (n > 0 ){
-                    var mult = Math.pow(10, 3 - Math.floor(Math.log(n) / Math.LN10) -1);
+            function sigFigures(n) {
+                if (n > 0) {
+                    var mult = Math.pow(10, 3 - Math.floor(Math.log(n) / Math.LN10) - 1);
                     return Math.round(n * mult) / mult;
-                } else{
+                } else {
                     return n;
                 }
             }
 
-            $.each(renderer.infos, function(index, info){
+            $.each(renderer.infos, function(index, info) {
                 //calculate sig figures
                 var minVal = sigFigures(info.minValue);
                 var maxVal = sigFigures(info.maxValue);
 
                 //set new label
-                if (index == 4){
+                if (index == 4) {
                     //less than sign on the last label maxValue
                     var newLabel = minVal.toString() + " <";
-                } else{
+                } else {
                     var newLabel = minVal.toString() + " - " + maxVal.toString();
                 }
                 renderer.infos[index].label = newLabel;
@@ -645,13 +661,11 @@ function generateRenderer(){
             applyRenderer(renderer);
         }
 
-        function applyRenderer(renderer){
-            var sparrowId = app.map.getLayer('SparrowRanking').visibleLayers[0];
-            var layer = app.map.getLayer('SparrowRanking');
+        function applyRenderer(renderer) {
+            var sparrowId = app.map.getLayer("SparrowRanking").visibleLayers[0];
+            var layer = app.map.getLayer("SparrowRanking");
 
-            
-
-            // dynamic layer stuff            
+            // dynamic layer stuff
             var optionsArray = [];
             var drawingOptions = new LayerDrawingOptions();
             drawingOptions.renderer = renderer;
@@ -661,35 +675,41 @@ function generateRenderer(){
 
             layer.setLayerDrawingOptions(optionsArray);
 
-            if (! app.hasOwnProperty("legend")){
+            if (!app.hasOwnProperty("legend")) {
                 createLegend();
             } else {
-                app.legend.refresh([{
-                    layer: app.map.getLayer("SparrowRanking"),
-                    title : getLegendLabels( app.map.getLayer('SparrowRanking').visibleLayers[0] )
-                }]);
+                app.legend.refresh([
+                    {
+                        layer: app.map.getLayer("SparrowRanking"),
+                        title: getLegendLabels(app.map.getLayer("SparrowRanking").visibleLayers[0])
+                    }
+                ]);
             }
-            if(layer.visible == false){
-                layer.show();                
+            if (layer.visible == false) {
+                layer.show();
             }
-            
         }
 
-        function errorHandler(err){
-            console.log('generateRenderer Err ', err);
-            $("#page-loader").fadeOut(); 
+        function errorHandler(err) {
+            console.log("generateRenderer Err ", err);
+            $("#page-loader").fadeOut();
         }
 
-        function createLegend(){
-            app.legend = new Legend({
-                map : app.map, 
-                layerInfos : [{
-                    layer: app.map.getLayer("SparrowRanking"),
-                    title: getLegendLabels( app.map.getLayer('SparrowRanking').visibleLayers[0] )
-                }]
-            }, dom.byId("legendDiv"));
-            app.legend.startup();                        
+        function createLegend() {
+            app.legend = new Legend(
+                {
+                    map: app.map,
+                    layerInfos: [
+                        {
+                            layer: app.map.getLayer("SparrowRanking"),
+                            title: getLegendLabels(app.map.getLayer("SparrowRanking").visibleLayers[0])
+                        }
+                    ]
+                },
+                dom.byId("legendDiv")
+            );
+            app.legend.startup();
         }
-        //$("#page-loader").fadeOut(); 
+        //$("#page-loader").fadeOut();
     }); // END Dojo
 } //END generateRenderer()

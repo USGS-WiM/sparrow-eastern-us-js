@@ -17,7 +17,7 @@ var groupResultsInitIndex = 1; //sets the default layer for the application.  In
 
 var splitLayers = [5,6,7,13,14,15]; //important! UPDATE layer Ids of all state split layers
 
-var mapCenter = [-96.64, 40.744];
+var mapCenter = [-77.64, 37.744];
 //app.defaultMapCenter = [-87, 42];
 defaultZoomLevel = 5;
 
@@ -26,11 +26,28 @@ var dynamicBorderLayers = ["Catchment", "HUC12", "HUC8"]; //Aggregate layer choi
 
 var initQueryParams = ['ST', 'GP3', 'GP2', 'GP1' ]; //used to query for the AOI dropdown values on app init.
 
+var groupResultsLabels = {
+    a : "Catchment ID",
+    b : "HUC12",
+    c : "HUC8",
+    d : "River Basin",
+    e : "State"
+}
+
+//populate group results Labels right away
+/* //TODO figure out race condition
+$.each(groupResultsLabels, function (i, item) {
+    $("#groupResultsSelect").append('<option value=' + item +'>' + item + '</option>');
+
+  }); */
+
+
+
 //download locations
-//var phosphorusShapefileURL = 'https://test.wim.usgs.gov/SparrowMARBV2/downloads/marb_shapefiles_phosphorus.zip';
-//var nitrogenShapefileURL = 'https://test.wim.usgs.gov/SparrowMARBV2/downloads/marb_shapefiles_nitrogen.zip';
-//var phosCalibrationURL = 'https://test.wim.usgs.gov/SparrowMARBV2/downloads/marb_phosphorus_calibration_sites.zip';
-//var nitroCalibrationURL = 'https://test.wim.usgs.gov/SparrowMARBV2/downloads/marb_nitrogen_calibration_sites.zip';
+var phosphorusShapefileURL = 'https://sparrow.wim.usgs.gov/east-us/downloads/east_us_shapefiles_phosphorus.zip';
+var nitrogenShapefileURL = 'https://sparrow.wim.usgs.gov/east-us/downloads/east_us_shapefiles_nitrogen.zip';
+var phosCalibrationURL = 'https://sparrow.wim.usgs.gov/east-us/downloads/east_us_phosphorus_calibration_sites.zip';
+var nitroCalibrationURL = 'https://sparrow.wim.usgs.gov/east-us/downloads/east_us_nitrogen_calibration_sites.zip';
 
 var tableOutFields = [
     { field: "FID", name: "Unique Feature Id"},
@@ -131,8 +148,8 @@ var nitrogenSourceDefinitions = {
     1. each color corresponds with the order of SourceDefinitions objects above  
     2. there the number of hex colors matches the number of nutrient sources
 **/
-var phosColors = ['#BF0000', '#FFCCFF', '#663100', '#FFEC99', '#97DA7C', '#0070C0', '#bf8040' ];     
-var nitroColors = ['#BF0000', '#FFCCFF', '#663100', '#FFEC99', '#00a900', '#006800', '#0070C0' ];  
+var phosColors = ['#BF0000', '#FFCCFF', '#663100', '#FFEC99', '#A2EB85', '#0070C0' ];     
+var nitroColors = ['#BF0000', '#FFCCFF', '#663100', '#FFEC99', '#A2EB85', '#00a900', '#006800', '#0070C0' ];  
 
 
 /***-----BEGIN PHOSPHORUS LAYER GROUPS --------***/

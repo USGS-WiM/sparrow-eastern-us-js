@@ -20,21 +20,21 @@
     <script src="scripts/vendor.js"></script>
     <script type="text/javascript" src="https://js.arcgis.com/3.21/"></script>
 
-    
+
     <script src="scripts/combined.js"></script>
     <!-- analytics -->
     <!--ANALYTICS GOES TO https://sparrow.wim.usgs.gov/eastern-us/-->
-    <!--<script>
+    <script>
         (function (i, s, o, g, r, a, m) {
-        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
-            (i[r].q = i[r].q || []).push(arguments)
-        }, i[r].l = 1 * new Date(); a = s.createElement(o),
-            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
         })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 
         ga('create', 'UA-61219868-35', 'auto');
         ga('send', 'pageview');
-    </script>-->
+    </script>
     <script>
         $(document).ready(function () {
             $('[data-toggle="tooltip"]').tooltip();
@@ -46,22 +46,38 @@
     <script type="text/javascript" src="https://txpub.usgs.gov/DSS/search_api/2.1/api/search_api.min.js"></script>
 
 </head>
+
+<body>
     <!-- NavBar -->
     <nav class="wim-nav">
         <div class="container">
             <button class="mobile-nav-toggle" data-toggle="sidebar" data-target=".sidebar-left"></button>
             <a href="http://usgs.gov" class="nav-branding">
-                <img src="https://wim.usgs.gov/website-assets/usgs-logo.png"/>
+                <img src="https://wim.usgs.gov/website-assets/usgs-logo.png" />
             </a>
             <span class="nav-title">
                 <!--title set from config-->
                 <small>Based on 2002 MRB1 and MRB2 1:100,000 Scale Sparrow Models</small>
             </span>
+
+
             <div class="nav-links">
-                <a id="geosearchNav"><span><i class="ion-search"></i> Geosearch</span></a>
-                <a id="userGuideNav"><span><i class="ion-ios-book"></i> User Guide</span></a>
-                <a id="aboutNav"><span><i class="ion-help"></i> About</span></a>
-                <a id="dataDownloadNav"><span><i class="ion-arrow-down-c"></i> Data Download</span></a>
+                <a id="geosearchNav">
+                    <span>
+                        <i class="ion-search"></i> Geosearch</span>
+                </a>
+                <a id="userGuideNav">
+                    <span>
+                        <i class="ion-ios-book"></i> User Guide</span>
+                </a>
+                <a id="aboutNav">
+                    <span>
+                        <i class="ion-help"></i> About</span>
+                </a>
+                <a id="dataDownloadNav">
+                    <span>
+                        <i class="ion-arrow-down-c"></i> Data Download</span>
+                </a>
             </div>
         </div>
     </nav>
@@ -70,7 +86,9 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="ion-close"></i></button>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        <i class="ion-close"></i>
+                    </button>
                     <h3 style="margin: 0;">Geosearch</h4>
                 </div>
                 <div class="modal-body">
@@ -86,7 +104,9 @@
                             <br/> States
                             <br/> Lat/Long (ie. '43.9, -72.1')
                             <br/> Street Address
-                            <br/><br/> Search provided by <a href="https://txpub.usgs.gov/dss/search_api/2.0/" target="_blank">USGS Search JavaScript API</a>
+                            <br/>
+                            <br/> Search provided by
+                            <a href="https://txpub.usgs.gov/dss/search_api/2.0/" target="_blank">USGS Search JavaScript API</a>
                         </div>
                     </div>
 
@@ -102,16 +122,33 @@
         <div class="modal-dialog  modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="ion-close"></i></button>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        <i class="ion-close"></i>
+                    </button>
                     <h3 id='aboutModalHeader' style="margin: 0;"></h3>
                 </div>
                 <div id="aboutModalBody" class="modal-body">
                     <ul class="nav nav-tabs" id="aboutModalTabs">
-                        <li role="presentation"><a id="aboutTab" href="#aboutTabPane" data-toggle="tab"><i class="fa fa-info-circle"></i>&nbsp;Model Documentation</a></li>
-                        <li role="presentation" class="active"><a id="dataLimitationsTab" href="#dataLimitationsTabPane" data-toggle="tab"><i class="fa fa-exclamation-circle"></i>&nbsp;Data Limitations</a></li>
-                        <li role="presentation"><a id="contactTab" href="#contactTabPane" data-toggle="tab"><i class="fa fa-envelope-o"></i>&nbsp;Contact Information</a></li>
-                        <li role="presentation"><a id="definitionsTab" href="#definitionsTabPane" data-toggle="tab"><i class="fa fa-question-circle"></i>&nbsp;Definitions</a></li>
-                        <li role="presentation"><a id="disclaimerTab" href="#disclaimerTabPane" data-toggle="tab"><i class="fa fa-exclamation-triangle"></i>&nbsp;Disclaimer</a></li>
+                        <li role="presentation">
+                            <a id="aboutTab" href="#aboutTabPane" data-toggle="tab">
+                                <i class="fa fa-info-circle"></i>&nbsp;Model Documentation</a>
+                        </li>
+                        <li role="presentation" class="active">
+                            <a id="dataLimitationsTab" href="#dataLimitationsTabPane" data-toggle="tab">
+                                <i class="fa fa-exclamation-circle"></i>&nbsp;Data Limitations</a>
+                        </li>
+                        <li role="presentation">
+                            <a id="contactTab" href="#contactTabPane" data-toggle="tab">
+                                <i class="fa fa-envelope-o"></i>&nbsp;Contact Information</a>
+                        </li>
+                        <li role="presentation">
+                            <a id="definitionsTab" href="#definitionsTabPane" data-toggle="tab">
+                                <i class="fa fa-question-circle"></i>&nbsp;Definitions</a>
+                        </li>
+                        <li role="presentation">
+                            <a id="disclaimerTab" href="#disclaimerTabPane" data-toggle="tab">
+                                <i class="fa fa-exclamation-triangle"></i>&nbsp;Disclaimer</a>
+                        </li>
                     </ul>
                     <div class="tab-content">
                         <div role="tabpanel" class="tab-pane" id="aboutTabPane">
@@ -119,27 +156,34 @@
 
                             <p class="p-meta p-light fullwidth">
                                 <b>SPARROW Surface Water-Quality Modeling Web Pages</b>
-                                <br/> Regional Website: <a href="https://www.usgs.gov/centers/wisconsin-water-science-center/science/sparrow-watershed-modeling-estimation-nutrient-and?"
+                                <br/> Regional Website:
+                                <a href="https://www.usgs.gov/centers/wisconsin-water-science-center/science/sparrow-watershed-modeling-estimation-nutrient-and?"
                                     target="blank">https://www.usgs.gov/centers/wisconsin-water-science-center/science/sparrow-watershed-modeling-estimation-nutrient-and?</a>
-                                <br/> National Website: <a href="https://water.usgs.gov/nawqa/sparrow/" target="blank">https://water.usgs.gov/nawqa/sparrow/</a>
+                                <br/> National Website:
+                                <a href="https://water.usgs.gov/nawqa/sparrow/" target="blank">https://water.usgs.gov/nawqa/sparrow/</a>
                             </p>
 
                             <p class="p-meta p-light fullwidth">
                                 <b>Documentation of the SPARROW model for the Eastern U.S.</b>
-                                <br/> Hoos, A.B., Moore, R.B., Garcia, A.M., Noe, G.B., Terziotti, S.E., Johnston, C.M., and Dennis, R.L., 2013, 
-                                Simulating stream transport of nutrients in the eastern United States, 2002, using a spatially-referenced regression model and 1:100,000-scale hydrography: 
-                                U.S. Geological Survey Scientific Investigations Report 2013-5102, 33 p.,
+                                <br/> Hoos, A.B., Moore, R.B., Garcia, A.M., Noe, G.B., Terziotti, S.E., Johnston, C.M., and Dennis,
+                                R.L., 2013, Simulating stream transport of nutrients in the eastern United States, 2002,
+                                using a spatially-referenced regression model and 1:100,000-scale hydrography: U.S. Geological
+                                Survey Scientific Investigations Report 2013-5102, 33 p.,
                                 <a href="http://pubs.usgs.gov/sir/2013/5102/" target="_blank">http://pubs.usgs.gov/sir/2013/5102/</a>.
                                 <br/>
                             </p>
 
                             <p class="p-meta p-light fullwidth">
-                                <b>Documentation of the modeling tool SPARROW (SPAtially Referenced Regression On Watershed attributes)</b>
-                                <br/> Schwarz, G.E., A.B. Hoos, R.B. Alexander, and R.A. Smith, 2006. The SPARROW Surface Water-Quality Model: Theory, Application, and User Documentation. 
-                                U.S. Geological Survey Techniques and Methods Report, Book 6, Chapter B3. <a href="https://pubs.usgs.gov/tm/2006/tm6b3/" target="blank">https://pubs.usgs.gov/tm/2006/tm6b3/</a>;
-                                <br/> Preston, S.D., Alexander, R.B., Woodside, M.D., and Hamilton, P.A., 2009, SPARROW MODELING - Enhancing
-                                Understanding of the Nation's Water Quality: U.S. Geological Survey Fact Sheet 2009-3019,
-                                6 p. <a href="https://pubs.usgs.gov/fs/2009/3019/" target="blank">https://pubs.usgs.gov/fs/2009/3019/</a>
+                                <b>Documentation of the modeling tool SPARROW (SPAtially Referenced Regression On Watershed
+                                    attributes)</b>
+                                <br/> Schwarz, G.E., A.B. Hoos, R.B. Alexander, and R.A. Smith, 2006. The SPARROW Surface Water-Quality
+                                Model: Theory, Application, and User Documentation. U.S. Geological Survey Techniques and
+                                Methods Report, Book 6, Chapter B3.
+                                <a href="https://pubs.usgs.gov/tm/2006/tm6b3/" target="blank">https://pubs.usgs.gov/tm/2006/tm6b3/</a>;
+                                <br/> Preston, S.D., Alexander, R.B., Woodside, M.D., and Hamilton, P.A., 2009, SPARROW MODELING
+                                - Enhancing Understanding of the Nation's Water Quality: U.S. Geological Survey Fact Sheet
+                                2009-3019, 6 p.
+                                <a href="https://pubs.usgs.gov/fs/2009/3019/" target="blank">https://pubs.usgs.gov/fs/2009/3019/</a>
                             </p>
 
                         </div>
@@ -147,27 +191,41 @@
                             </br>
                             <p class="p-meta p-light fullwidth">
                                 <b>The relationship between the scale of reporting of model results and uncertainty:</b>
-                                <br/> Model results can be displayed at several watershed scales. The smallest scale that could be used for reporting is the catchment 
-                                scale at which model computations are made for the Eastern United States model, these are NHDPlus catchments (1:100,000-Scale Hydrography, 
-                                typical watershed size is about 2 square kilometers or 0.8 square miles). Results can be aggregated up to larger scales for reporting: HUC12 
-                                (typical watershed size is 90 square kilometers or 35 square miles) or HUC8 (typical watershed size is 3,100 square kilometers or 1,200 square miles), 
-                                state, or River Basin. The SPARROW model is, in theory, scale independent. However, the uncertainty associated with SPARROW predictions is expected to increase 
-                                for drainage basin sizes smaller than those of stream monitoring sites used to calibrate the model.
+                                <br/> Model results can be displayed at several watershed scales. The smallest scale that could
+                                be used for reporting is the catchment scale at which model computations are made for the
+                                Eastern United States model, these are NHDPlus catchments (1:100,000-Scale Hydrography, typical
+                                watershed size is about 2 square kilometers or 0.8 square miles). Results can be aggregated
+                                up to larger scales for reporting: HUC12 (typical watershed size is 90 square kilometers
+                                or 35 square miles) or HUC8 (typical watershed size is 3,100 square kilometers or 1,200 square
+                                miles), state, or River Basin. The SPARROW model is, in theory, scale independent. However,
+                                the uncertainty associated with SPARROW predictions is expected to increase for drainage
+                                basin sizes smaller than those of stream monitoring sites used to calibrate the model.
+                                <br/>In the Oklawaha, Crystal, Lower Sante Fe, Lower Suwanee, St. Marks, and Chipola River basins
+                                in central and northern Florida flow exchange with the underlying regional aquifer may contribute
+                                substantial nitrogen and phosphorus influx to and outflux from the surface-water basins (Rumenik,
+                                1988; Miller, 1990). Model predictions for these river basins are presented but may be less
+                                reliable due to this unmodeled component of flux.
                             </p>
                             <br/>
 
                             <p class="p-meta p-light fullwidth">
                                 <b>References:</b>
-                                <br/> U.S. Environmental Protection Agency and U.S. Geological Survey, 2010b, NHDPlus catchment shapefiles Version 1: Accessed July 14, 2017, at: 
-                                <a href="http://www.horizon-systems.com/NHDPlus/NHDPlusV1_home.php" target="_blank">http://www.horizon-systems.com/NHDPlus/NHDPlusV1_home.php</a>.
-                                <br/>U.S. Department of Agriculture-Natural Resources Conservation Service, U.S. Geological Survey, and Environmental Protection Agency, 2016, Watershed Boundary Dataset: 
+                                <br/> Miller, JA. 1990. Ground water atlas of the United States; Alabama, Florida, Georgia, and
+                                South Carolina. U.S. Geological Survey Hydrologic Atlas 730-G.
+                                <br/>Rumenik, RP. 1988. Runoff to streams in Florida: Florida Geological Survey Map Series 122,
+                                Tallahassee, Florida, Florida Geological Survey, 1 sheet.
+                                <br/>U.S. Environmental Protection Agency and U.S. Geological Survey, 2010b, NHDPlus catchment
+                                shapefiles Version 1: Accessed July 14, 2017, at
+                                <a href="http://www.horizon-systems.com/NHDPlus/NHDPlusV1_home.php" target="_blank">http://www.horizon-systems.com/NHDPlus/NHDPlusV1_home.php</a>
+                                <br/>U.S. Department of Agriculture-Natural Resources Conservation Service, U.S. Geological Survey,
+                                and Environmental Protection Agency, 2016, Watershed Boundary Dataset:
                                 <a href="http://datagateway.nrcs.usda.gov" target="_blank">http://datagateway.nrcs.usda.gov</a> [Accessed 2/2/2016].
-
                             </p>
 
-                           
+
                         </div>
-                        <div role="tabpanel" class="tab-pane" id="contactTabPane"><br/>
+                        <div role="tabpanel" class="tab-pane" id="contactTabPane">
+                            <br/>
 
                             <h4 style="margin: 0; padding: 0;">Anne B. Hoos</h4>
                             <p class="p-light fullwidth">
@@ -200,7 +258,7 @@
                                 <br/>
                                 <a href="mailto:rmoore@usgs.gov">rmoore@usgs.gov</a>
                                 <br/>
-                                
+
                             </p>
 
                             <hr/>
@@ -208,10 +266,9 @@
                             <h4 style="margin: 0; padding: 0;">USGS Lower Mississippi Gulf Water Science Center</h4>
                             <p class="p-light fullwidth">
                                 <b>
-                                640 Grassmere Park, Suite 100
-                                <br/>
-                                Nashville, TN 37211
-                              </b>
+                                    640 Grassmere Park, Suite 100
+                                    <br/> Nashville, TN 37211
+                                </b>
                                 <br/>
                                 <a href="https://www.usgs.gov/locations/lower-mississippi-gulf-water-science-center-nashville-tn-office" target="blank">https://www.usgs.gov/locations/lower-mississippi-gulf-water-science-center-nashville-tn-office</a>
                             </p>
@@ -221,95 +278,136 @@
                             </br>
 
                             <p class="p-meta p-light fullwidth">
-                                <b>Incremental Load</b><br/> The predicted mean annual load of the constituent (kilograms per year) leaving a stream reach that reflects only those 
-                                sources contributed from within the incremental drainage area of that reach. The incremental load value includes the effects of in-stream attenuation 
-                                processes associated with one half of the incremental reach length. Incremental drainage areas are represented here as “catchments”.
+                                <b>Incremental Load</b>
+                                <br/> The predicted mean annual load of the constituent (kilograms per year) leaving a stream
+                                reach that reflects only those sources contributed from within the incremental drainage area
+                                of that reach. The incremental load value includes the effects of in-stream attenuation processes
+                                associated with one half of the incremental reach length. Incremental drainage areas are
+                                represented here as “catchments”.
                             </p>
                             <p class="p-meta p-light fullwidth">
-                                <b>Accumulated Load (often referred to as "Total Load")</b><br/> The predicted mean annual load of the constituent (kilograms per year) leaving a 
-                                stream reach that reflects the accumulated mass of the constituent contributed by all sources in the total drainage area upstream of the reach outlet. 
-                                The accumulated load value includes the effects of in-stream attenuation processes in all upstream reaches.
+                                <b>Accumulated Load (often referred to as "Total Load")</b>
+                                <br/> The predicted mean annual load of the constituent (kilograms per year) leaving a stream
+                                reach that reflects the accumulated mass of the constituent contributed by all sources in
+                                the total drainage area upstream of the reach outlet. The accumulated load value includes
+                                the effects of in-stream attenuation processes in all upstream reaches.
                             </p>
                             <p class="p-meta p-light fullwidth">
-                                <b>Aggregated Load</b><br/> For results grouped by 8-digit HUC, tributary outlet, main watershed or state, aggregated load represents the sum of 
-                                incremental loads for those selected areas. Results aggregated by State include input from catchments that cross state borders. For these catchments, 
-                                the loads were assumed to be uniformly distributed throughout the catchment. Therefore, inputs from a given State were based on the percentage of the 
-                                catchment in each state.
+                                <b>Aggregated Load</b>
+                                <br/> For results grouped by 8-digit HUC, tributary outlet, main watershed or state, aggregated
+                                load represents the sum of incremental loads for those selected areas. Results aggregated
+                                by State include input from catchments that cross state borders. For these catchments, the
+                                loads were assumed to be uniformly distributed throughout the catchment. Therefore, inputs
+                                from a given State were based on the percentage of the catchment in each state.
                             </p>
                             <p class="p-meta p-light fullwidth">
-                                <b>Incremental Yield</b><br/> The Incremental Load divided by the incremental drainage area of the reach. Units are kilograms per square kilometer per year.
+                                <b>Incremental Yield</b>
+                                <br/> The Incremental Load divided by the incremental drainage area of the reach. Units are kilograms
+                                per square kilometer per year.
                             </p>
                             <p class="p-meta p-light fullwidth">
-                                <b>Accumulated Yield</b><br/> The Accumulated Load divided by the total drainage area upstream of the reach outlet. Units are kilograms per square kilometer per year.
+                                <b>Accumulated Yield</b>
+                                <br/> The Accumulated Load divided by the total drainage area upstream of the reach outlet. Units
+                                are kilograms per square kilometer per year.
 
                             </p>
                             <p class="p-meta p-light fullwidth">
-                                <b>Aggregated Yield</b><br/> The Aggregated Load divided by the sum of the “grouped by” incremental drainage areas. Units are kilograms per square kilometer per year.
+                                <b>Aggregated Yield</b>
+                                <br/> The Aggregated Load divided by the sum of the “grouped by” incremental drainage areas. Units
+                                are kilograms per square kilometer per year.
 
                             </p>
                             <p class="p-meta p-light fullwidth">
-                                <b>Delivered Incremental Load</b><br/> Incremental load multiplied by the delivery fraction. Delivery fraction is defined below.
+                                <b>Delivered Incremental Load</b>
+                                <br/> Incremental load multiplied by the delivery fraction. Delivery fraction is defined below.
                             </p>
                             <p class="p-meta p-light fullwidth">
-                                <b>Delivered Accumulated Load</b><br/> Accumulated load multiplied by the delivery fraction. Delivery fraction is defined below.
+                                <b>Delivered Accumulated Load</b>
+                                <br/> Accumulated load multiplied by the delivery fraction. Delivery fraction is defined below.
                             </p>
                             <p class="p-meta p-light fullwidth">
-                                <b>Delivered Aggregated Load</b><br/> For results grouped by 8-digit HUC, tributary outlet, main watershed or state, delivered aggregated load represents the sum of delivered incremental loads for those selected areas. Delivery fraction is defined below. Results aggregated by State include input from catchments that cross state borders. For these catchments, the loads were assumed to be uniformly distributed throughout the catchment. Therefore, inputs from a given State were based on the percentage of the catchment in each state.
+                                <b>Delivered Aggregated Load</b>
+                                <br/> For results grouped by 8-digit HUC, tributary outlet, main watershed or state, delivered
+                                aggregated load represents the sum of delivered incremental loads for those selected areas.
+                                Delivery fraction is defined below. Results aggregated by State include input from catchments
+                                that cross state borders. For these catchments, the loads were assumed to be uniformly distributed
+                                throughout the catchment. Therefore, inputs from a given State were based on the percentage
+                                of the catchment in each state.
                             </p>
                             <p class="p-meta p-light fullwidth">
-                                <b>Delivered Incremental Yield</b><br/> The Delivered Incremental Load divided by the incremental drainage area of the reach. Units are kilograms per square kilometer per year.
+                                <b>Delivered Incremental Yield</b>
+                                <br/> The Delivered Incremental Load divided by the incremental drainage area of the reach. Units
+                                are kilograms per square kilometer per year.
                             </p>
                             <p class="p-meta p-light fullwidth">
-                                <b>Delivered Accumulated Yield</b><br/> The Delivered Accumulated Load divided by the total drainage area upstream of the reach outlet or total of the “grouped by” area. Units are kilograms per square kilometer per year.
+                                <b>Delivered Accumulated Yield</b>
+                                <br/> The Delivered Accumulated Load divided by the total drainage area upstream of the reach
+                                outlet or total of the “grouped by” area. Units are kilograms per square kilometer per year.
 
                             </p>
                             <p class="p-meta p-light fullwidth">
-                                <b>Delivered Aggregated Yield</b><br/> The Delivered Aggregated Load divided by the sum of the “grouped by” incremental drainage areas. Units are kilograms per square kilometer per year.
+                                <b>Delivered Aggregated Yield</b>
+                                <br/> The Delivered Aggregated Load divided by the sum of the “grouped by” incremental drainage
+                                areas. Units are kilograms per square kilometer per year.
                             </p>
                             <p class="p-meta p-light fullwidth">
-                                <b>Delivery Fraction (definition)</b><br/> The fraction of the load leaving a reach that is not attenuated or removed by natural processes during downstream transport to a specified downstream target reach. A delivery fraction of 1 indicates that 100 percent of the load leaving the reach is delivered to the downstream target.
+                                <b>Delivery Fraction (definition)</b>
+                                <br/> The fraction of the load leaving a reach that is not attenuated or removed by natural processes
+                                during downstream transport to a specified downstream target reach. A delivery fraction of
+                                1 indicates that 100 percent of the load leaving the reach is delivered to the downstream
+                                target.
                             </p>
-                            <p class="p-meta p-light fullwidth">
-                                Please note:  For delivered results shown here, the downstream target represents the immediate downstream Great Lake.
 
-                            </p>
                         </div>
 
                         <div role="tabpanel" class="tab-pane" id="disclaimerTabPane">
                             </br>
 
                             <p class="p-meta p-light fullwidth">
-                                <b>USGS Data Disclaimer:</b><br/>  Unless otherwise stated, all data, metadata and related materials are considered to satisfy the quality standards relative to the purpose for which the 
-                                data were collected. Although these data and associated metadata have been reviewed for accuracy and completeness and approved for release by the 
-                                U.S. Geological Survey (USGS), no warranty expressed or implied is made regarding the display or utility of the data for other purposes, nor on all computer systems, 
+                                <b>USGS Data Disclaimer:</b>
+                                <br/> Unless otherwise stated, all data, metadata and related materials are considered to satisfy
+                                the quality standards relative to the purpose for which the data were collected. Although
+                                these data and associated metadata have been reviewed for accuracy and completeness and approved
+                                for release by the U.S. Geological Survey (USGS), no warranty expressed or implied is made
+                                regarding the display or utility of the data for other purposes, nor on all computer systems,
                                 nor shall the act of distribution constitute any such warranty.
                             </p>
                             <p class="p-meta p-light fullwidth">
-                                <b>USGS Software Disclaimer:</b><br/>  This software has been approved for release by the U.S. Geological Survey (USGS). Although the software has been subjected to rigorous review, the USGS 
-                                reserves the right to update the software as needed pursuant to further analysis and review. No warranty, expressed or implied, is made by the USGS or the U.S. 
-                                Government as to the functionality of the software and related material nor shall the fact of release constitute any such warranty. Furthermore, the software 
-                                is released on condition that neither the USGS nor the U.S. Government shall be held liable for any damages resulting from its authorized or unauthorized use.
+                                <b>USGS Software Disclaimer:</b>
+                                <br/> This software has been approved for release by the U.S. Geological Survey (USGS). Although
+                                the software has been subjected to rigorous review, the USGS reserves the right to update
+                                the software as needed pursuant to further analysis and review. No warranty, expressed or
+                                implied, is made by the USGS or the U.S. Government as to the functionality of the software
+                                and related material nor shall the fact of release constitute any such warranty. Furthermore,
+                                the software is released on condition that neither the USGS nor the U.S. Government shall
+                                be held liable for any damages resulting from its authorized or unauthorized use.
                             </p>
                             <p class="p-meta p-light fullwidth">
-                                <b>USGS Product Names Disclaimer:</b><br/>Any use of trade, firm, or product names is for descriptive purposes only and does not imply endorsement by the U.S. Government.
+                                <b>USGS Product Names Disclaimer:</b>
+                                <br/>Any use of trade, firm, or product names is for descriptive purposes only and does not imply
+                                endorsement by the U.S. Government.
                             </p>
                             <p class="p-meta p-light fullwidth">
-                                This web application functions best in Chrome, Firefox, or Safari. Internet Explorer works but with slower performance.                            
+                                This web application functions best in Chrome, Firefox, or Safari. Internet Explorer works but with slower performance.
                             </p>
                             <p class="p-meta p-light fullwidth">
-                                This web application has been made possible by the following open-source projects: <br/>  
-                                Lobipanel <a href="https://github.com/arboshiki/lobipanel" target="_blank"> https://github.com/arboshiki/lobipanel</a><br/>
-                                Boostrap Select <a href="https://silviomoreto.github.io/bootstrap-select" target="_blank"> https://silviomoreto.github.io/bootstrap-select</a><br/>
-                                
-                                
+                                This web application has been made possible by the following open-source projects:
+                                <br/> Lobipanel
+                                <a href="https://github.com/arboshiki/lobipanel" target="_blank"> https://github.com/arboshiki/lobipanel</a>
+                                <br/> Boostrap Select
+                                <a href="https://silviomoreto.github.io/bootstrap-select" target="_blank"> https://silviomoreto.github.io/bootstrap-select</a>
+                                <br/>
 
-                                
+
+
+
                             </p>
                             <p class="p-meta p-light fullwidth">
-                                <b>Link to SPARROW REST Services:</b><br/> 
+                                <b>Link to SPARROW REST Services:</b>
+                                <br/>
                                 <a href="https://sparrowtest.wim.usgs.gov/arcgis/rest/services/SparrowEast/SparrowEast/MapServer/" target="_blank">SPARROW Eastern U.S. TEST REST Services</a>
                             </p>
-                    
+
                         </div>
 
                     </div>
@@ -317,8 +415,10 @@
 
                 <div class="modal-footer">
                     <p class="p-meta fullwidth" style="color:black; text-align:center">
-                        For more information about the SPARROW Web Interface please contact <a href="http://wim.usgs.gov/"
-                            target="_blank"><img src="images/wim_abbr_black.png" id="wim_logo"></a>
+                        For more information about the SPARROW Web Interface please contact
+                        <a href="http://wim.usgs.gov/" target="_blank">
+                            <img src="images/wim_abbr_black.png" id="wim_logo">
+                        </a>
                     </p>
                     <button type="button" data-dismiss="modal" aria-hidden="true" class="btn-black">Close</button>
                 </div>
@@ -333,37 +433,63 @@
         <div class="modal-dialog  modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="ion-close"></i></button>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        <i class="ion-close"></i>
+                    </button>
                     <h3 style="margin: 0;">Map Interface User Guide</h3>
                 </div>
                 <div id="aboutModalBody" class="modal-body">
                     <ul class="nav nav-tabs" id="userGuideModalTabs">
-                        <li role="presentation" class="active"><a id="searchTab" href="#searchTabPane" data-toggle="tab"><i class="fa fa-search"></i>&nbsp;Search, Zoom</a></li>
-                        <li role="presentation"><a id="iconTab" href="#iconTabPane" data-toggle="tab"><i class="fa fa-list"></i>&nbsp;Explanation</a></li>
-                        <li role="presentation"><a id="layersTab" href="#layersTabPane" data-toggle="tab"><i class="fa fa-map"></i>&nbsp;Map selection options</a></li>
-                        <li role="presentation"><a id="chartTab" href="#chartInfoTabPane" data-toggle="tab"><i class="fa fa-map"></i>&nbsp;Data Display</a></li>
+                        <li role="presentation" class="active">
+                            <a id="searchTab" href="#searchTabPane" data-toggle="tab">
+                                <i class="fa fa-search"></i>&nbsp;Search, Zoom</a>
+                        </li>
+                        <li role="presentation">
+                            <a id="iconTab" href="#iconTabPane" data-toggle="tab">
+                                <i class="fa fa-list"></i>&nbsp;Explanation</a>
+                        </li>
+                        <li role="presentation">
+                            <a id="layersTab" href="#layersTabPane" data-toggle="tab">
+                                <i class="fa fa-map"></i>&nbsp;Map selection options</a>
+                        </li>
+                        <li role="presentation">
+                            <a id="chartTab" href="#chartInfoTabPane" data-toggle="tab">
+                                <i class="fa fa-map"></i>&nbsp;Data Display</a>
+                        </li>
                     </ul>
                     <div class="tab-content">
                         <div role="tabpanel" class="tab-pane active" id="searchTabPane">
                             <span class="user-guide-header">Search, and zoom capabilities</span>
                             <div class="user-guide-item">
-                                <div class="user-guide-item-image"><img src="images/userguide/search.png" /></div>
-                                <p><b>Searching</b>In addition to city, state, zip code, or general place names, USGS gaging
+                                <div class="user-guide-item-image">
+                                    <img src="images/userguide/search.png" />
+                                </div>
+                                <p>
+                                    <b>Searching</b>In addition to city, state, zip code, or general place names, USGS gaging
                                     stations and Hydrologic Unit Codes (HUCs) are also searchable.</p>
                             </div>
                             <div class="user-guide-item">
-                                <div class="user-guide-item-image"><img src="images/userguide/zoom.png" /></div>
-                                <p><b>Navigating the map</b>The scroll wheel on the mouse can be used to zoom, and in the upper
+                                <div class="user-guide-item-image">
+                                    <img src="images/userguide/zoom.png" />
+                                </div>
+                                <p>
+                                    <b>Navigating the map</b>The scroll wheel on the mouse can be used to zoom, and in the upper
                                     left area of the tool are "+" and "&#45;" icons to zoom in and out, respectively.</p>
                             </div>
                             <div class="user-guide-item">
-                                <div class="user-guide-item-image"><img src="images/userguide/home.png" /></div>
-                                <p><b>Home Location</b>The crosshair button will zoom the map to your location, and the home
+                                <div class="user-guide-item-image">
+                                    <img src="images/userguide/home.png" />
+                                </div>
+                                <p>
+                                    <b>Home Location</b>The crosshair button will zoom the map to your location, and the home
                                     button will center the US on the map.</p>
                             </div>
                             <div class="user-guide-item">
-                                <div class="user-guide-item-image"><img src="images/userguide/mappoints.png" /></div>
-                                <p><b>Opening a chart</b>Clicking on a nutrient model feature will generate a chart showing
+                                <div class="user-guide-item-image">
+                                    <img src="images/userguide/mappoints.png" />
+                                </div>
+                                <p>
+                                    <b>Opening a chart</b>Clicking on a nutrient model feature will generate a chart showing
                                     the individual sources for the selected feature. The chart also contains a button to
                                     switch to a chart of all features currently displayed. (For more on the Chart features,
                                     see Data Display)</p>
@@ -372,12 +498,18 @@
                         <div role="tabpanel" class="tab-pane" id="iconTabPane">
                             <span class="user-guide-header">Explanation</span>
                             <div class="user-guide-item">
-                                <div class="user-guide-item-image"><img src="images/userguide/legend.png" /></div>
-                                <p><b>Explanation display</b>The Explanation box can be expanded and collapsed</p>
+                                <div class="user-guide-item-image">
+                                    <img src="images/userguide/legend.png" />
+                                </div>
+                                <p>
+                                    <b>Explanation display</b>The Explanation box can be expanded and collapsed</p>
                             </div>
                             <div class="user-guide-item">
-                                <div class="user-guide-item-image"><img src="images/userguide/legendfull.png" /></div>
-                                <p><b>Using the Explanation</b>The expanded Explanation box contains a legend for the currently
+                                <div class="user-guide-item-image">
+                                    <img src="images/userguide/legendfull.png" />
+                                </div>
+                                <p>
+                                    <b>Using the Explanation</b>The expanded Explanation box contains a legend for the currently
                                     selected Nutrient Model Results. The legend displays class breaks and values for the
                                     model results currently visible on the map, and updates dynamically with any change in
                                     mapped area.</p>
@@ -386,51 +518,77 @@
                         <div role="tabpanel" class="tab-pane" id="layersTabPane">
                             <span class="user-guide-header">Map selection options</span>
                             <div class="user-guide-item">
-                                <div class="user-guide-item-image"><img src="images/userguide/basemaps.png" /></div>
-                                <p><b>Changing the basemap style</b>The "Basemaps" panel allows a user to show various geographic
+                                <div class="user-guide-item-image">
+                                    <img src="images/userguide/basemaps.png" />
+                                </div>
+                                <p>
+                                    <b>Changing the basemap style</b>The "Basemaps" panel allows a user to show various geographic
                                     information or landscape imagery as a background layer.</p>
                             </div>
                             <div class="user-guide-item">
-                                <div class="user-guide-item-image"><img src="images/userguide/maplayers.png" /></div>
-                                <p><b>Changing or adding map layers</b>The "Map Layers" sidebar allows a user to add or remove
+                                <div class="user-guide-item-image">
+                                    <img src="images/userguide/maplayers.png" />
+                                </div>
+                                <p>
+                                    <b>Changing or adding map layers</b>The "Map Layers" sidebar allows a user to add or remove
                                     layers as well as control the opacity of each individual layer.</p>
                             </div>
                             <div class="user-guide-item">
-                                <div class="user-guide-item-image"><img src="images/userguide/nutrientmodel.png" /></div>
-                                <p><b>Selecting a Nutrient Model</b>The Nutrient Model can be changed at any time to view total
+                                <div class="user-guide-item-image">
+                                    <img src="images/userguide/nutrientmodel.png" />
+                                </div>
+                                <p>
+                                    <b>Selecting a Nutrient Model</b>The Nutrient Model can be changed at any time to view total
                                     phosphorus or total nitrogen.</p>
                             </div>
                             <div class="user-guide-item">
-                                <div class="user-guide-item-image"><img src="images/userguide/areaofinterest.png" /></div>
-                                <p><b>Selecting an Area of Interest</b> The Area of Interest dropdown menus can be used to customize
-                                    the geographic area of the model results.</p>
+                                <div class="user-guide-item-image">
+                                    <img src="images/userguide/areaofinterest.png" />
+                                </div>
+                                <p>
+                                    <b>Selecting an Area of Interest</b> The Area of Interest dropdown menus can be used to
+                                    customize the geographic area of the model results.</p>
                             </div>
                             <div class="user-guide-item">
-                                <div class="user-guide-item-image"><img src="images/userguide/metricgrouping.png" /></div>
-                                <p style="display:inline"><b>Selecting a Displayed Metric and Group Results By</b>Yields and loads can be viewed by
+                                <div class="user-guide-item-image">
+                                    <img src="images/userguide/metricgrouping.png" />
+                                </div>
+                                <p style="display:inline">
+                                    <b>Selecting a Displayed Metric and Group Results By</b>Yields and loads can be viewed by
                                     making changes to the Displayed Metric dropdown. The area of aggregation is controlled
-                                    by the Group Results dropdown. To read more about metric definitions visit the About section or click 
-                                    <a style="cursor:pointer" class="showAboutDefinitions">here</a></p>
+                                    by the Group Results dropdown. To read more about metric definitions visit the About
+                                    section or click
+                                    <a style="cursor:pointer" class="showAboutDefinitions">here</a>
+                                </p>
                             </div>
                         </div>
                         <div role="tabpanel" class="tab-pane" id="chartInfoTabPane">
                             <span class="user-guide-header">Polygon selection capabilities, Chart, and Table</span>
                             <div class="user-guide-item">
-                                <div class="user-guide-item-image" style="height:200px;"><img src="images/userguide/dataDisplay.png" /></div>
-                                <p><b>Data Display Options</b>Once the Display Filters have been chosen, there are several ways
-                                    to display data about the polygons of interest in the Data Display settings.</p>
+                                <div class="user-guide-item-image" style="height:200px;">
+                                    <img src="images/userguide/dataDisplay.png" />
+                                </div>
+                                <p>
+                                    <b>Data Display Options</b>Once the Display Filters have been chosen, there are several
+                                    ways to display data about the polygons of interest in the Data Display settings.</p>
                             </div>
                             <div class="user-guide-item">
-                                <div class="user-guide-item-image"><img src="images/userguide/singleSelecting.png" /></div>
-                                <p><b>+ Select</b>Clicking the Select button allows individual map feature selection. Multiple
+                                <div class="user-guide-item-image">
+                                    <img src="images/userguide/singleSelecting.png" />
+                                </div>
+                                <p>
+                                    <b>+ Select</b>Clicking the Select button allows individual map feature selection. Multiple
                                     features can be selected. To unselect, hold the Shift key then Click the feature to unselect
                                     it. After all features of interest have been selected, click Stop Selecting.
                                 </p>
                             </div>
                             <div class="user-guide-item">
-                                <div class="user-guide-item-image"><img src="images/userguide/chart.png" /></div>
-                                <p><b>Show Chart</b>Clicking the Show Chart button will show a window with two tabs; Chart and
-                                    Table. The information in the Chart and Table will either represent the full feature
+                                <div class="user-guide-item-image">
+                                    <img src="images/userguide/chart.png" />
+                                </div>
+                                <p>
+                                    <b>Show Chart</b>Clicking the Show Chart button will show a window with two tabs; Chart
+                                    and Table. The information in the Chart and Table will either represent the full feature
                                     layer visible on the map, or it will represent the selection chosen from individual selecting
                                     features. This window can be repositioned to view underlying map information. The Chart
                                     tab shows a chart for the full layer visible in the map based on the filters chosen in
@@ -440,8 +598,11 @@
                                 </p>
                             </div>
                             <div class="user-guide-item">
-                                <div class="user-guide-item-image"><img src="images/userguide/selectedChartSegment.png" /></div>
-                                <p><b>Selected Chart Segment</b>To see a magnified segment of the chart, click+drag over the
+                                <div class="user-guide-item-image">
+                                    <img src="images/userguide/selectedChartSegment.png" />
+                                </div>
+                                <p>
+                                    <b>Selected Chart Segment</b>To see a magnified segment of the chart, click+drag over the
                                     chart bars. The selected features are highlighted on the map. Moving the mouse over the
                                     chart bars will give the values for each source as well as show an additional highlight
                                     to the cooresponding map feature. To return to the previous chart view, click the Reset
@@ -449,14 +610,21 @@
                                 </p>
                             </div>
                             <div class="user-guide-item">
-                                <div class="user-guide-item-image"><img src="images/userguide/chartOptions.png" /></div>
-                                <p><b>Chart Options</b>The Chart Options button contains the option to change the background transparency. Clicking Change background
-                                    transparency will toggle the background transparency between transparent and not transparent.
+                                <div class="user-guide-item-image">
+                                    <img src="images/userguide/chartOptions.png" />
+                                </div>
+                                <p>
+                                    <b>Chart Options</b>The Chart Options button contains the option to change the background
+                                    transparency. Clicking Change background transparency will toggle the background transparency
+                                    between transparent and not transparent.
                                 </p>
                             </div>
                             <div class="user-guide-item">
-                                <div class="user-guide-item-image"><img src="images/userguide/tabletab.png" /></div>
-                                <p><b>Table</b>The Table tab shows a tabular representation of the chart information on the
+                                <div class="user-guide-item-image">
+                                    <img src="images/userguide/tabletab.png" />
+                                </div>
+                                <p>
+                                    <b>Table</b>The Table tab shows a tabular representation of the chart information on the
                                     Chart tab. The table can be sorted by any column. Moving the mouse over any table row
                                     will highlight that map feature on the map. Any zooming or resetting on the Chart tab
                                     will update the Table tab's contents.</p>
@@ -478,14 +646,16 @@
         <div class="modal-dialog  modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="ion-close"></i></button>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        <i class="ion-close"></i>
+                    </button>
                     <h3 style="margin: 0;">Download Geospatial Data</h3>
                 </div>
                 <div id="ddModalBody" class="modal-body">
                     <div style="padding: 35px 0;">
                         <p style="max-width: none; width: 100%; text-align:center;">
                             <b style="text-align:center; margin: 0 auto; ">All Model Results</b>
-                            <div  style="text-align:center;">
+                            <div style="text-align:center;">
                                 <button type="button" class="btn-blue" id="phosphorusDownload">
                                     <span class="glyphicon glyphicon-download"></span> Download Phosphorus Model Results
                                 </button>
@@ -534,7 +704,9 @@
         <div class="modal-dialog  modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                     <h4 class="modal-title" id="tableModalTitle"></h4>
                 </div>
                 <div class="modal-body">
@@ -558,14 +730,30 @@
                     </div>
                     <div id="basemapsPanel" class="panel-collapse collapse" role="tabpanel" aria-labelledby="basemapsHeader">
                         <div class="panel-body collapse in">
-                            <button id="btnStreets" class="btn btn-default basemapBtn equalize"><img class="basemapThumb" alt="" src="images/streets.jpg"><br class="basemapThumb">Streets</button>
-                            <button id="btnSatellite" class="btn btn-default basemapBtn equalize"><img class="basemapThumb" alt="" src="images/satellite.jpg"><br class="basemapThumb">Satellite</button>
-                            <button id="btnHybrid" class="btn btn-default basemapBtn equalize"><img class="basemapThumb" alt="" src="images/imagery_labels.jpg"><br class="basemapThumb">Hybrid</button>
-                            <button id="btnTopo" class="btn btn-default basemapBtn equalize"><img class="basemapThumb" alt="" src="images/topo.jpg"><br class="basemapThumb">Topo</button>
-                            <button id="btnTerrain" class="btn btn-default basemapBtn equalize"><img class="basemapThumb" alt="" src="images/terrain.jpg"><br class="basemapThumb">Terrain</button>
-                            <button id="btnGray" class="btn btn-default basemapBtn equalize"><img class="basemapThumb" alt="" src="images/gray.jpg"><br class="basemapThumb">Gray</button>
-                            <button id="btnOSM" class="btn btn-default basemapBtn equalize"><img class="basemapThumb" alt="" src="images/osm.jpg"><br class="basemapThumb">OSM</button>
-                            <button id="btnNatGeo" class="btn btn-default basemapBtn equalize"><img class="basemapThumb" alt="" src="images/natgeo.jpg"><br class="basemapThumb">NatGeo</button>
+                            <button id="btnStreets" class="btn btn-default basemapBtn equalize">
+                                <img class="basemapThumb" alt="" src="images/streets.jpg">
+                                <br class="basemapThumb">Streets</button>
+                            <button id="btnSatellite" class="btn btn-default basemapBtn equalize">
+                                <img class="basemapThumb" alt="" src="images/satellite.jpg">
+                                <br class="basemapThumb">Satellite</button>
+                            <button id="btnHybrid" class="btn btn-default basemapBtn equalize">
+                                <img class="basemapThumb" alt="" src="images/imagery_labels.jpg">
+                                <br class="basemapThumb">Hybrid</button>
+                            <button id="btnTopo" class="btn btn-default basemapBtn equalize">
+                                <img class="basemapThumb" alt="" src="images/topo.jpg">
+                                <br class="basemapThumb">Topo</button>
+                            <button id="btnTerrain" class="btn btn-default basemapBtn equalize">
+                                <img class="basemapThumb" alt="" src="images/terrain.jpg">
+                                <br class="basemapThumb">Terrain</button>
+                            <button id="btnGray" class="btn btn-default basemapBtn equalize">
+                                <img class="basemapThumb" alt="" src="images/gray.jpg">
+                                <br class="basemapThumb">Gray</button>
+                            <button id="btnOSM" class="btn btn-default basemapBtn equalize">
+                                <img class="basemapThumb" alt="" src="images/osm.jpg">
+                                <br class="basemapThumb">OSM</button>
+                            <button id="btnNatGeo" class="btn btn-default basemapBtn equalize">
+                                <img class="basemapThumb" alt="" src="images/natgeo.jpg">
+                                <br class="basemapThumb">NatGeo</button>
                         </div>
                     </div>
                 </div>
@@ -601,13 +789,13 @@
                             <!-- <div id="nutrientRadio" class="btn-gorup" data-toggle="buttons"> -->
                             <div id="modelResultsRadio">
                                 <label for="radio1" class="rdo row radio active">
-                                  <input type="radio" name="radio1" id="radio1" value="option1" checked />
-                                  <span>Total Phosphorus</span>
-                              </label>
+                                    <input type="radio" name="radio1" id="radio1" value="option1" checked />
+                                    <span>Total Phosphorus</span>
+                                </label>
                                 <label for="radio2" class="rdo row radio">
-                                  <input type="radio" name="radio1" id="radio2" value="option2" />
-                                  <span>Total Nitrogen</span>
-                              </label>
+                                    <input type="radio" name="radio1" id="radio2" value="option2" />
+                                    <span>Total Nitrogen</span>
+                                </label>
                             </div>
 
 
@@ -635,7 +823,8 @@
 
                             <select id="grp3-select" class="selectpicker 3 aoiSelect" data-live-search="true" title="HUC12" data-size="10"></select>
 
-                            <button type="button" class="btn-blue" id="clearAOIButton" <span class="glyphicon glyphicon-remove"></span> Clear Area of Interest
+                            <button type="button" class="btn-blue" id="clearAOIButton" <span class="glyphicon glyphicon-remove">
+                                </span> Clear Area of Interest
                             </button>
 
                             <hr/>
@@ -674,13 +863,16 @@
                             <h6 class="alignc">Select on Map</h6>
                             <!--'Click' Button ( select polygon by polygon. all selected get highlighted) -->
                             <button type="button" class="btn-blue" id="clickPolyButton">
-                                  <span class="glyphicon glyphicon-plus"></span> Click
-                              </button>
+                                <span class="glyphicon glyphicon-plus"></span> Click
+                            </button>
                             <br />
+                            <div id="chartButtonWrapper">
+                                <button type="button" class="btn-blue" id="chartButton">
+                                    <span class="glyphicon glyphicon-signal"></span> Show Chart
+                                    <span style="visibility: hidden"></span>
+                                </button>
+                            </div>
 
-                            <button type="button" class="btn-blue" id="chartButton">
-                                  <span class="glyphicon glyphicon-signal"></span> Show Chart for All Map Features
-                              </button>
                         </div>
                     </div>
                 </div>
@@ -716,37 +908,37 @@
                         </div>
                         <div id="legendCollapse" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
                             <div id="legendDiv" class="panel-body"></div>
+                            <div class="alert alert-info" id="legendDisclaimer">Classes are based on quantiles. </div>
                         </div>
                     </div>
 
-                    <!--LOBIPANEL EXPERIMENTAL________________________________________________________________________________________________________________________-->
-
-
                     <div id="chartWindowDiv" class="panel panel-default chartWindowMaximize" role="tabpanel">
-                            <div class="panel-heading">
-                                <div class="panel-title">
-                                    <h4 id="chartWindowPanelTitle"></h4>
+                        <div class="panel-heading">
+                            <div class="panel-title">
+                                <h4 id="chartWindowPanelTitle"></h4>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <ul class="nav nav-tabs" id="lobiPanelTabs">
+                                <li role="presentation" class="active">
+                                    <a id="chartTab" href="#chartTabPane" data-toggle="tab">
+                                        <i class="fa fa-line-chart"></i>&nbsp;Chart</a>
+                                </li>
+                                <li role="presentation">
+                                    <a id="tableTab" href="#tableTabPane" data-toggle="tab">
+                                        <i class="fa fa-list"></i>&nbsp;Table</a>
+                                </li>
+                            </ul>
+                            <div id="chartTabContent" class="tab-content">
+                                <div role="tabpanel" class="tab-pane active" id="chartTabPane">
+                                    <div id="chartWindowContainer"></div>
+                                </div>
+                                <div role="tabpanel" class="tab-pane" id="tableTabPane">
+                                    <table class="table tablesorter" id="resultsTable"></table>
+                                    <p>Tabular data available for download in chart tab</p>
                                 </div>
                             </div>
-                            <div class="panel-body">
-                                <ul class="nav nav-tabs" id="lobiPanelTabs">
-                                    <li role="presentation" class="active">
-                                        <a id="chartTab" href="#chartTabPane" data-toggle="tab"><i class="fa fa-line-chart"></i>&nbsp;Chart</a>
-                                    </li>
-                                    <li role="presentation">
-                                        <a id="tableTab" href="#tableTabPane" data-toggle="tab"><i class="fa fa-list"></i>&nbsp;Table</a>
-                                    </li>
-                                </ul>
-                                <div id="chartTabContent" class="tab-content">
-                                    <div role="tabpanel" class="tab-pane active" id="chartTabPane">
-                                        <div id="chartWindowContainer"></div>
-                                    </div>
-                                    <div role="tabpanel" class="tab-pane" id="tableTabPane">
-                                        <table class="table tablesorter" id="resultsTable"></table>
-                                        <p>Tabular data available for download in chart tab</p>
-                                    </div>
-                                </div>
-                            </div>
+                        </div>
 
                     </div>
                 </div>
@@ -756,11 +948,18 @@
                 <div id="locateButton"></div>
 
                 <div id="latLngScale" class="latLngScale">
-                    <span class="hover-content"> <b>Map scale </b></span> 1:
-                    <span id="scale"></span> <br>
-                    <span class="hover-content"><b>Latitude</b></span>
+                    <span class="hover-content">
+                        <b>Map scale </b>
+                    </span> 1:
+                    <span id="scale"></span>
+                    <br>
+                    <span class="hover-content">
+                        <b>Latitude</b>
+                    </span>
                     <span id="latitude">y</span> |
-                    <span class="hover-content"> <b>Longitude</b></span>
+                    <span class="hover-content">
+                        <b>Longitude</b>
+                    </span>
                     <span id="longitude">x</span>
                     <span id="mapCenterLabel" class="hover-content"> (center)</span>
                 </div>
@@ -784,7 +983,7 @@
         </div>
     </div>
 
-    
+
 
 
 </body>
