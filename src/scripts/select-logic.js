@@ -557,12 +557,12 @@ function generateRenderer() {
                         $("#toast_body").html(
                             "Cannot show chart for " +
                                 app.polygonResponseCount +
-                                " features. Please narrow Area of Interest or Group Results and try again."
+                                " features. <br/>Please narrow Area of Interest or Group Results to less than " + chartFeatureMax + " features and try again."
                         );
                         $("#toast-fixed").fadeIn();
                         setTimeout(function() {
                             $("#toast-fixed").fadeOut();
-                        }, 5000);
+                        }, 9000);
                         app.map.graphics.clear();
                         $("#chartButton").html("Show Chart");
                         app.formattedHighlightString = "";
