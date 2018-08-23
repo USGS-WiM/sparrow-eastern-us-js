@@ -1187,13 +1187,13 @@ require([
                             //UPDATE important! make sure the field names below match what is in the REST layer
                             calibrationTemplateN.setContent(
                                 "<div><b>Station Name:</b> " +
-                                    responseObj.feature.attributes.NAME +
+                                    responseObj.feature.attributes.name +
                                     "</div><br>" +
                                     "<div><b>Station ID:</b> </b>" +
-                                    responseObj.feature.attributes.STATION_ID +
+                                    responseObj.feature.attributes.station_id +
                                     "</div><br>" +
                                     "<div><b>SPARROW Reach ID: </b>" +
-                                    responseObj.feature.attributes.COMID +
+                                    responseObj.feature.attributes.comid +
                                     "</div><br>" +
                                     "<div><b>Fluxmaster Load " +
                                     chartUnits +
@@ -1231,13 +1231,7 @@ require([
                         var fields = getChartOutfields(app.map.getLayer("SparrowRanking").visibleLayers[0]);
                         var attributes = response[0].feature.attributes;
                         var valuePairs = {};
-
-                        //need to wrap value in single quotes for ESRI REST Service query.  Catchment COMID's are not strings
-                        if (response[0].layerId == 0 || response[0].layerId == 9) {
-                            var chartQueryArg = response[0].displayFieldName + " = " + response[0].value;
-                        } else {
-                            var chartQueryArg = response[0].displayFieldName + " = " + "'" + response[0].value + "'";
-                        }
+                        var chartQueryArg = response[0].displayFieldName + " = " + "'" + response[0].value + "'";
 
                         $.each(fields, function(index, obj) {
                             //console.log(obj.attribute);
@@ -2206,12 +2200,8 @@ require([
                                     graphicsQuery.outSpatialReference = app.map.spatialReference; //important!
                                     graphicsQuery.outFields = [fieldName];
 
-                                    //if (fieldName != "COMID") {
                                     graphicsQuery.where = fieldName + "= '" + category + "'";
-                                    //} else {
-                                    //COMID (but ST_COMID is) field is NOT a string!!!
-                                    //graphicsQuery.where = fieldName + " = " + category;
-                                    //}
+
 
                                     queryTask.execute(graphicsQuery, responseHandler);
 
@@ -2390,12 +2380,8 @@ require([
         graphicsQuery.returnGeometry = true; //important!
         graphicsQuery.outSpatialReference = app.map.spatialReference; //important!
         graphicsQuery.outFields = [fieldName];
+        graphicsQuery.where = fieldName + "= '" + category + "'";
 
-        if (fieldName == "COMID") {
-            graphicsQuery.where = fieldName + " = " + category;
-        } else {
-            graphicsQuery.where = fieldName + "= '" + category + "'";
-        }
 
         queryTask.execute(graphicsQuery, responseHandler);
 
