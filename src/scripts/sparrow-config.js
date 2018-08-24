@@ -34,15 +34,6 @@ var groupResultsLabels = {
     e : "State"
 }
 
-//populate group results Labels right away
-/* //TODO figure out race condition
-$.each(groupResultsLabels, function (i, item) {
-    $("#groupResultsSelect").append('<option value=' + item +'>' + item + '</option>');
-
-  }); */
-
-
-
 //download locations
 var phosphorusShapefileURL = 'https://sparrow.wim.usgs.gov/east-us/downloads/east_us_shapefiles_phosphorus.zip';
 var nitrogenShapefileURL = 'https://sparrow.wim.usgs.gov/east-us/downloads/east_us_shapefiles_nitrogen.zip';
