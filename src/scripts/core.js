@@ -1093,6 +1093,8 @@ require([
 
         app.identifyParams.geometry = evt.mapPoint;
         app.identifyParams.mapExtent = app.map.extent;
+        app.identifyParams.tolerance = 1;
+        app.identifyParams.maxAllowableOffset = 200;
 
         //Deferred callback
         var deferred = app.identifyTask.execute(app.identifyParams).addCallback(function(response) {
@@ -1119,8 +1121,8 @@ require([
                         if (app.userSelectedDispFieldName == "") {
                             app.userSelectedDispFieldName = respObj.displayFieldName;
                         }
-                        // make sure 'Show Chart for All Map Features' button now says 'Show Chart for selected features'
-                        $("#chartButton").html("Show Chart for selected features");
+                        // make sure chart button changes name
+                        $("#chartButton").html("Show Chart for selection");
                     } else {
                         //removing
                         var symbolToRemove = app.map.graphics.graphics.filter(function(g) {
@@ -1965,6 +1967,7 @@ require([
                             graphicsQuery.returnGeometry = true; //important!
                             graphicsQuery.outSpatialReference = app.map.spatialReference; //important!
                             graphicsQuery.outFields = [fieldName];
+                            graphicsQuery.maxAllowableOffset = 2000;
 
                             if (e.resetSelection != true) {
                                 var categoryStr = "";
@@ -2199,6 +2202,7 @@ require([
                                     graphicsQuery.returnGeometry = true; //important!
                                     graphicsQuery.outSpatialReference = app.map.spatialReference; //important!
                                     graphicsQuery.outFields = [fieldName];
+                                    graphicsQuery.maxAllowableOffset = 2000;
 
                                     graphicsQuery.where = fieldName + "= '" + category + "'";
 
@@ -2364,10 +2368,7 @@ require([
 
     //hover over table row, go highlight region on map
     $(document).on("mouseenter", "#tableBody tr", function(e) {
-        var category =
-            $("#groupResultsSelect")[0].selectedIndex == 0
-                ? e.currentTarget.id.substring(3)
-                : e.currentTarget.cells[0].innerHTML; //this.category;  //refers to the selected chart area
+        var category = e.currentTarget.cells[0].innerHTML; //this.category;  //refers to the selected chart area
         var visibleLayers = app.map.getLayer("SparrowRanking").visibleLayers[0];
         var URL = app.map.getLayer("SparrowRanking").url;
 
@@ -2381,6 +2382,7 @@ require([
         graphicsQuery.outSpatialReference = app.map.spatialReference; //important!
         graphicsQuery.outFields = [fieldName];
         graphicsQuery.where = fieldName + "= '" + category + "'";
+        maxAllowableOffset = 2000;
 
 
         queryTask.execute(graphicsQuery, responseHandler);
