@@ -1121,8 +1121,7 @@ require([
                         if (app.userSelectedDispFieldName == "") {
                             app.userSelectedDispFieldName = respObj.displayFieldName;
                         }
-                        // make sure chart button changes name
-                        $("#chartButton").html("Show Chart for selection");
+                        
                     } else {
                         //removing
                         var symbolToRemove = app.map.graphics.graphics.filter(function(g) {
@@ -1132,11 +1131,16 @@ require([
                         //remove this from array of responses
                         app.userSelectedShapes.splice(app.userSelectedShapes.indexOf(respValue), 1);
                         // if all selected have been removed, change Show Chart button back to say All
-                        if (app.userSelectedShapes.length == 0 && app.userSelectedShapes.length < chartFeatureMax) {
-                            $("#chartButton").html("Show Chart");
-                        }
+                        
                     }
                 });
+                if (app.userSelectedShapes.length == 0 && app.userSelectedShapes.length < chartFeatureMax) {
+                    $("#chartButton").html("Show Chart");
+                } else{
+                    $("#chartButton").html("Show Chart for selection");
+                }
+
+ 
             } else {
                 var calibrationInfoWindow = false;
                 app.map.graphics.clear();
@@ -1343,6 +1347,7 @@ require([
             chartQuery.where = whereClause;
 
             chartQueryTask.execute(chartQuery, showChart);
+            $("#chartButton").html("Show Chart");
 
             //$('#chartWindowDiv').addClass("content-loading");
             $("#chartTabContent").addClass("content-loading");
@@ -2382,7 +2387,7 @@ require([
         graphicsQuery.outSpatialReference = app.map.spatialReference; //important!
         graphicsQuery.outFields = [fieldName];
         graphicsQuery.where = fieldName + "= '" + category + "'";
-        maxAllowableOffset = 2000;
+        graphicsQuery.maxAllowableOffset = 2000;
 
 
         queryTask.execute(graphicsQuery, responseHandler);
