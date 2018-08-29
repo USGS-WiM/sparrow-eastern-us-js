@@ -2346,7 +2346,7 @@ require([
             htmlArr.push("<tr id='row" + rowI + "'>");
             $.each(feature, function(key, value) {
                 if (key == "total") {
-                    if ($("#groupResultsSelect")[0].selectedIndex = 0){
+                    if ($("#groupResultsSelect")[0].selectedIndex == 0){
                         htmlArr.splice(-2, 0, "<td>" + value + "</td>");
                     } else{
                         htmlArr.splice(-1, 0, "<td>" + value + "</td>");
