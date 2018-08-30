@@ -5,8 +5,8 @@ If you are impressed with the capabilities  of this SPARROW Application, and wou
 ## Instructions ## 
 <ol> 
 <li> Start by creating a Repo for your sparrow project on github.com. You can learn how to create a repo by  going to the following website: <a href ="http://kbroman.org/github_tutorial/pages/init.html">Repo Tutorial </a></li>
-<lI> Clone  this sparrow project onto your machine. </li>
-<lI> Run NPM Install, and Bower Install. In your command prompt. </li> 
+<lI> Using a command prompt clone this sparrow project onto your machine. </li>
+<lI> Run NPM Install, and Bower Install in your command prompt. </li> 
 <li> Using an IDE or a Text Editor open the Sparrow-Config file and make changes to the following sections: 
   
    _Note: The clone comes with a json-lock file, this file needs to be deleted in order to ensure no security issues_ 
