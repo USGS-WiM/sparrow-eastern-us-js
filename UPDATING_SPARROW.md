@@ -15,6 +15,7 @@ If you are impressed with the capabilities  of this SPARROW Application, and wou
   *Note: one of the attribute within thst match the ID in the core file*
 
 	 - var appTitle
+	 - var mapCenter 
 	 - var groupResultsLabel
 	 - var aggregateDefinitions
 	 - var catchmentDefinitions 
@@ -47,6 +48,9 @@ If you are impressed with the capabilities  of this SPARROW Application, and wou
 	
      - If in the catchments for the phosphorus and Nitrogen have a different ID Use Search and Replace to change all the ID's that are in captial letters.  </li>
 </ol> 
+
+## Testing your changes ## 
+ In your command prompt where you installed npm and bower, run  gulp watch, this will bring up a locally hosted verision of the application, review the application to ensure the tables, map and other componets of the application work as expected.  
 
 ## Adding the files to your repo ##
 <ol> 
