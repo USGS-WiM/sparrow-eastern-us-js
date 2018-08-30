@@ -22,7 +22,7 @@ If you are impressed with the capabilities  of this SPARROW Application, and wou
 	 - var phosphorusSourceDefinitions 
 	 - var nitrogenSourceDefinitions 
 	 - var Catchments for Phospherous and Nitriogin  
-	 - var  Group3, Group 2, and Group 1 
+	 - var Group3, Group 2, and Group 1 
 	 - var ST 
 	 - var catchments_st
 	 - var group 3 (this one is under the states)
@@ -31,7 +31,7 @@ If you are impressed with the capabilities  of this SPARROW Application, and wou
 	 - var Group1_st
    </li>
    
-<li>  Open the HTML File.  The following list will showcase what aspects of this file you need to change:
+<li>  Open the HTML file make changes to these sections:
     
     - Title 
     - Subtitle  
@@ -42,16 +42,18 @@ If you are impressed with the capabilities  of this SPARROW Application, and wou
  
  
  _Note: This step is only required if you changed the ID for the application_
-<li> Open the Core File  </li>
-    - If in the catchments for the phosphorus and Nitrogen have a different ID Use Search and Replace to change all the ID's that are in captial letters. </li> 
+ 
+<li> Open the Core File: 
+	
+     - If in the catchments for the phosphorus and Nitrogen have a different ID Use Search and Replace to change all the ID's that are in captial letters.  </li>
 </ol> 
 
+## Adding the files to your repo ##
+<ol> 
+	<li> Git status to ensure all the correct files will be added to the repo.  </li> 
+	<li> Git add * or add each file individually, to ensure all files that need to be changed are added to staging </li>
+	<li> Git committ -m "add message about changes you made" </li> 
+	<li> Git push to push  all files to github repo. </li> 
+</ol> 
 
-
-
-
-
-
-    
-    
-    
+	
