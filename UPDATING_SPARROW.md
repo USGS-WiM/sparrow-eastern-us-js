@@ -39,8 +39,9 @@ If you are impressed with the capabilities  of this SPARROW Application, and wou
     - About Section
     - Data Limitation Section
     - References 
-    - Contact Information for both the scientist and the office. </li> 
- 
+    - Contact Information for both the scientist and the office. 
+  
+</li> 
  
  _Note: This step is only required if you changed the ID for the application_
  
