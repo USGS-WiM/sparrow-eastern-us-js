@@ -1,10 +1,10 @@
 ## Updating Sparrow Instructions ##
 
-If you are impressed with the capabilities  of this SPARROW Application, and would like to update a sparrow application in order to use your own data; the following steps will help you create your own sparrow application. 
+If you are impressed with the capabilities  of this SPARROW Application, and would like to update a sparrow application in order to use your own data; the following steps will help you create your own SPARROW Application. 
  
 ## Instructions ## 
 <ol> 
-<li> Start by creating a Repo for your sparrow project on github.com. You can learn how to create a repo by  going to the following website: <a href ="http://kbroman.org/github_tutorial/pages/init.html">Repo Tutorial </a></li>
+<li> Start by creating a Repo for your SPARROW project on github.com. You can learn how to create a repo by  going to the following website: <a href ="http://kbroman.org/github_tutorial/pages/init.html">Repo Tutorial </a></li>
 <lI> Using a command prompt clone this sparrow project onto your machine. </li>
 <lI> Run NPM Install, and Bower Install in your command prompt. </li> 
 <li> Using an IDE or a Text Editor open the Sparrow-Config file and make changes to the following sections: 
