@@ -1,4 +1,4 @@
-
+![WiM](wimlogo.png)
 
 ## Updating Sparrow Instructions ##
 
