@@ -1,0 +1,45 @@
+[
+  {
+    "name": "sparrow-eastern-us-js",
+    "organization": "U.S. Geological Survey",
+    "description": "Eastern United States NHD model",
+    "version": "v0.0.0",
+    "status": ["Development"],
+
+    "permissions": {
+      "usageType": "openSource",
+      "licenses": [
+        {
+          "name": "Public Domain",
+          "URL": "https://github.com/USGS-WiM/sparrow-eastern-us-js/blob/master/LICENSE.md"
+        }
+      ]
+    },
+
+    "homepageURL": "https://wim.usgs.gov",
+    "downloadURL": "https://github.com/USGS-WiM/sparrow-eastern-us-js/archive/master.zip",
+    "disclaimerURL": "https://github.com/USGS-WiM/sparrow-eastern-us-js/blob/master/DISCLAIMER.md",
+    "repositoryUrl": "https://github.com/USGS-WiM/sparrow-eastern-us-js",
+    "vcs": "git",
+
+    "laborHours": null,
+
+    "tags": [
+      "sparrow",
+      "eastern"
+    ],
+
+    "languages": [
+      "javascript"
+    ],
+
+    "contact": {
+      "name": "Erik Myers",
+      "email": "emyers@usgs.gov"
+    },
+
+    "date": {
+      "metadataLastUpdated": "2018-04-19"
+    }
+  }
+]
