@@ -637,8 +637,7 @@ function generateRenderer() {
             //calculate legend values to 3 significant figures
             function sigFigures(n) {
                 if (n > 0) {
-                    var mult = Math.pow(10, 3 - Math.floor(Math.log(n) / Math.LN10) - 1);
-                    return Math.round(n * mult) / mult;
+                    return parseFloat(n.toPrecision(3));
                 } else {
                     return n;
                 }
