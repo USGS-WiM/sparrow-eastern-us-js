@@ -228,9 +228,9 @@ function loadEventHandlers() {
             case 1: //huc12
                 /***AOI Logic (Disable Tributary(GP2) & clear value if any) ***/
                 //Tributary
-                if (app.getLayerDefObj().AOI2) {
+                /* if (app.getLayerDefObj().AOI2) {
                     clearAOIandAppendWarning("grp2-warning", "HUC8", "HUC12", "#grp2-select", "AOI2");
-                }
+                } */
                 //DISABLE HUC12 @ full extent because it has too many options
                 if( AOIhasValue() === false ){
                     $("#grp3-select").attr("disabled", "disabled");

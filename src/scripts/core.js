@@ -253,7 +253,7 @@ require([
         if (layerDefObj.AOI2) {
             // if Trib has value NO: [1] HUC8, [3] Main River Basin, [4] State Group By
             var disForTrib = document.getElementById("groupResultsSelect").getElementsByTagName("option");
-            disForTrib[1].disabled = true; // trib
+            //disForTrib[1].disabled = true; // trib
             disForTrib[3].disabled = true; // main river basin
             disForTrib[4].disabled = true; // state
             $("#groupResultsSelect").selectpicker("render");
@@ -512,7 +512,7 @@ require([
     app.updateAOIs = function(selectedId) {
         // for four AOI options
         var filteredAOIOptions = [];
-
+        //find lengngth of the layerDefObj (number of AOIs with selected values)
         switch (Object.keys(app.getLayerDefObj()).length) {
             case 4:
                 var responseArray = fourAOIsSelected(selectedId); // returns array containing objects {filteredAOIs, prop, select, whichAOI}
