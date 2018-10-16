@@ -2432,7 +2432,7 @@ require([
     });
 
     function showAboutModal() {
-        $("#aboutModalHeader").html("About " + appTitle + " " + appVersion);
+        $("#aboutModalHeader").html("About " + appTitle + " ");
         $("#aboutModal").modal("show");
     }
     $("#aboutNav").click(function() {
