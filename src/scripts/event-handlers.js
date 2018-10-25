@@ -423,6 +423,10 @@ function loadEventHandlers() {
         app.map.setBasemap("gray");
         app.map.removeLayer(nationalMapBasemap);
     });
+    $("#btnDark").on("click", function() {
+        app.map.setBasemap("dark-gray");
+        app.map.removeLayer(nationalMapBasemap);
+    });
     $("#btnNatGeo").on("click", function() {
         app.map.setBasemap("national-geographic");
         app.map.removeLayer(nationalMapBasemap);
