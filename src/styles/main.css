@@ -648,6 +648,11 @@ table.hover-highlight tbody > tr.even:hover > td {
     width: 100%;
 }
 
+.panel-body select{
+    display: block;
+    width: 100%;
+}
+
 .btn-group{
     display: block;
     width: 100% !important;
@@ -1067,6 +1072,10 @@ Mitch GH Issues Aug 28
     width: 100% !important;
 	  height: 100% !important;
 } 
+
+.aoiSelect{
+    padding:5px;
+}
 
 #popupChartButton.disabled{
     cursor: not-allowed;
