@@ -4,7 +4,7 @@
   "dependencies": {
     "jquery": "^2.1.3",
     "fontawesome": "^4.3.0",
-    "jquery.nicescroll": "^3.7.6",
+    "jquery.nicescroll": "jquery-nicescroll#v3.6.8-fix",
     "bootstrap": "latest",
     "wim-styles": "USGS-WiM/wim-styles",
     "bootstrap-sidebar": "^0.2.0",

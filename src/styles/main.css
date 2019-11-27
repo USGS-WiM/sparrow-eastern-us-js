@@ -179,7 +179,7 @@ body {
     position:absolute;
     padding:4px;
     bottom:1.6em;
-    left: 20px;
+    left: 18% !important;
     /*width:250px*/
     /*height:320px;*/
     z-index:1;
@@ -211,6 +211,7 @@ body {
 }
 
 #legendCollapse {
+    width:325px;	
     /*max-height: inherit;*/
 }
 
@@ -1068,3 +1069,80 @@ Mitch GH Issues Aug 28
     cursor: not-allowed;
 }
 
+
+
+.panel-body select{	
+    display: block;	
+    width: 100%;	
+}
+
+.aoiSelect{	
+    padding:5px;	
+}	
+.lyrTogDiv #SparrowRanking{	
+    cursor: not-allowed !important;	
+}	
+/* About Modal Header and Canada logo */	
+/* Oct 19 - @mitch-wim */	
+.modal-header{	
+    padding-top: 0;	
+    padding-bottom: 0;	
+    padding-right: 0;	
+}	
+.modal-header .close{	
+    margin-top: 0;	
+    display: -webkit-flex;	
+    display: flex;	
+    -webkit-flex-direction: column;	
+    flex-direction: column;	
+    -webkit-justify-content: center;	
+    justify-content: center;	
+    height: 50px;	
+}	
+.modal-header h3{	
+    font-size: 16px;	
+    height: 40px;	
+    line-height: 16px;	
+    display: -webkit-flex;	
+    display: flex;	
+    -webkit-flex-direction: column;	
+    flex-direction: column;	
+    -webkit-justify-content: center;	
+    justify-content: center;	
+    height: 50px;	
+}	
+#aboutModalHeader{	
+    padding-right: 180px;	
+}	
+/* Canada logo */	
+#aboutModalHeaderLogo{	
+    position: absolute;	
+    right: 50px;	
+    top: 3px;	
+}	
+#aboutModalHeaderLogo img{	
+    width: 110px;	
+    height: auto;	
+    margin: 0 auto;	
+}	
+.aoiSelect{	
+    padding:5px;	
+}	
+#auxiliaryLayers .btn {	
+    text-transform: none;	
+}	
+#wim_logo{	
+    width: 55px !important;	
+    height: auto !important;	
+}	
+.downloadButton{	
+    margin:10px;	
+}	
+#legendInfoButton{	
+    margin: 0 auto 15 auto;	
+    width: 80%;	
+    display: block;	
+}	
+.esriScalebar{	
+    right : 175px !important;	
+} 
