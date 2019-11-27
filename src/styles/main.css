@@ -200,6 +200,10 @@ body {
     font-weight: bold;
 }
 
+.lyrTogDiv #SparrowRanking{
+    cursor: not-allowed !important;
+}
+
 .alert {
     margin-top: 0px;
     margin-bottom: 0px;
@@ -211,7 +215,7 @@ body {
 }
 
 #legendCollapse {
-    width:325px;	
+    width: 325px;
     /*max-height: inherit;*/
 }
 
@@ -595,7 +599,7 @@ table.hover-highlight tbody > tr.even:hover > td {
 
 /*Mitch Mar 9*/
 #legendElement{
-    max-width: 280px;
+    max-width: 425px;
     height: auto !important;
     overflow: auto;  /*Erik Edited from scroll to auto 3/17/17*/
     max-height: 400px;
@@ -633,14 +637,17 @@ table.hover-highlight tbody > tr.even:hover > td {
 #toggle{
     padding: 25px 0 !important;
 }
-.panel-body{
 
-}
 .panel-body .btn{
     display: block;
     width: 100%;
 }
 .panel-body button{
+    display: block;
+    width: 100%;
+}
+
+.panel-body select{
     display: block;
     width: 100%;
 }
@@ -1064,6 +1071,10 @@ Mitch GH Issues Aug 28
     width: 100% !important;
 	  height: 100% !important;
 } 
+
+.aoiSelect{
+    padding:5px;
+}
 
 #popupChartButton.disabled{
     cursor: not-allowed;

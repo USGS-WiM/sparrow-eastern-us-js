@@ -2432,7 +2432,7 @@ require([
     });
 
     function showAboutModal() {
-        $("#aboutModalHeader").html("About " + appTitle + " " + appVersion);
+        $("#aboutModalHeader").html("About " + appTitle + " ");
         $("#aboutModal").modal("show");
     }
     $("#aboutNav").click(function() {
@@ -2578,7 +2578,7 @@ require([
                 var button = $(
                     '<div class="btn-group-vertical lyrTogDiv" style="cursor: pointer;" > <button id="' +
                         layer.id +
-                        '"type="button" class="btn btn-default active" aria-pressed="true" style="font-weight: bold;text-align: left"><i class="glyphspan fa fa-check-square-o"></i>&nbsp;&nbsp;' +
+                        '"type="button" class="btn btn-default active" aria-pressed="true" style="font-weight: bold;text-align: left"><i class="glyphspan fa fa-check-square"></i>&nbsp;&nbsp;' +
                         layerName +
                         '<span id="opacity' +
                         camelize(layerName) +
@@ -2605,43 +2605,46 @@ require([
             //click listener for regular
             button.click(function(e) {
                 //toggle checkmark
-                $(this)
-                    .find("i.glyphspan")
-                    .toggleClass("fa-check-square-o fa-square-o");
-                $(this)
-                    .find("button")
-                    .button("toggle");
+                if (e.currentTarget.firstElementChild.id != "SparrowRanking"){
+                    $(this)
+                        .find("i.glyphspan")
+                        .toggleClass("fa-check-square-o fa-square-o");
+                    $(this)
+                        .find("button")
+                        .button("toggle");
 
-                e.preventDefault();
-                e.stopPropagation();
+                    e.preventDefault();
+                    e.stopPropagation();
 
-                $("#" + camelize(layerName)).toggle();
+                    $("#" + camelize(layerName)).toggle();
 
-                //layer toggle
-                if (layer.visible) {
-                    layer.setVisibility(false);
-                    //find id, remove from legend
-                    var ids = [];
-                    $.each(app.legend.layerInfos, function(i, infos) {
-                        ids.push(infos.layer.id);
-                    });
+                    //layer toggle
+                    if (layer.visible) {
+                        layer.setVisibility(false);
+                        //find id, remove from legend
+                        var ids = [];
+                        $.each(app.legend.layerInfos, function(i, infos) {
+                            ids.push(infos.layer.id);
+                        });
 
-                    var index = ids.indexOf(layer.id);
-                    if (index > -1) {
-                        app.legend.layerInfos.splice(index, 1);
+                        var index = ids.indexOf(layer.id);
+                        if (index > -1) {
+                            app.legend.layerInfos.splice(index, 1);
+                        }
+                        app.legend.refresh();
+                    } else {
+                        layer.setVisibility(true);
+                        //add to legend.
+                        app.legend.layerInfos.push({
+                            layer: layer,
+                            title: e.currentTarget.innerText
+                        });
+                        app.legend.refresh();
+
+                        //TODO: note that layers that are turned on won't show up in the legend on instantiation
                     }
-                    app.legend.refresh();
-                } else {
-                    layer.setVisibility(true);
-                    //add to legend.
-                    app.legend.layerInfos.push({
-                        layer: layer,
-                        title: e.currentTarget.innerText
-                    });
-                    app.legend.refresh();
-
-                    //TODO: note that layers that are turned on won't show up in the legend on instantiation
                 }
+                
             });
 
             //group heading logic

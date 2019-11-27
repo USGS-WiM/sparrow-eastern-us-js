@@ -3,7 +3,7 @@
     "name": "sparrow-eastern-us-js",
     "organization": "U.S. Geological Survey",
     "description": "Eastern United States NHD model",
-    "version": "v0.0.0",
+    "version": "v1.0.0",
     "status": ["Development"],
 
     "permissions": {
