@@ -153,23 +153,6 @@ require([
                         includeLegend: false
                     }
                 },
-                "SPARROW Model Area": {
-                    url: serviceBaseURL,
-                    visibleLayers: [23],
-                    options: {
-                        id: "modelArea",
-                        visible: false,
-                        opacity: 0.35
-                    },
-                    wimOptions: {
-                        type: "layer",
-                        layerType: "agisDynamic",
-                        includeInLayerList: true,
-                        hasOpacitySlider: true,
-                        hasZoomto: false,
-                        includeLegend: false
-                    }
-                },
                 "Land Use 2002": {
                     url:
                         "https://gis.wim.usgs.gov/arcgis/rest/services/SWTrends/lu2002_100515_test/ImageServer",
