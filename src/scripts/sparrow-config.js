@@ -6,7 +6,7 @@ THIS CONFIG REMOVES CATCHMENT AND AGGREGATE LABELS FROM THE CHARTOUTFIELS OBJECT
 Also removes PNAME and replaces it with COMID and ST_COMID
 */
 
-var appTitle = "Eastern United States Nutrient Loading";
+var appTitle = "Eastern United States 2002 Nutrient Loading";
 var appVersion = "v0.9.0";
 
 var serviceBaseURL = "https://sparrowtest.wim.usgs.gov/arcgis/rest/services/SparrowEast/SparrowEast/MapServer/"; //important! UPDATE rest service URL
@@ -35,10 +35,10 @@ var groupResultsLabels = {
 }
 
 //download locations
-var phosphorusShapefileURL = 'https://sparrow.wim.usgs.gov/east-us/downloads/east_us_shapefiles_phosphorus.zip';
-var nitrogenShapefileURL = 'https://sparrow.wim.usgs.gov/east-us/downloads/east_us_shapefiles_nitrogen.zip';
-var phosCalibrationURL = 'https://sparrow.wim.usgs.gov/east-us/downloads/east_us_phosphorus_calibration_sites.zip';
-var nitroCalibrationURL = 'https://sparrow.wim.usgs.gov/east-us/downloads/east_us_nitrogen_calibration_sites.zip';
+var phosphorusShapefileURL = 'https://sparrow.wim.usgs.gov/sparrow-east-2002/downloads/east_us_shapefiles_phosphorus.zip';
+var nitrogenShapefileURL = 'https://sparrow.wim.usgs.gov/sparrow-east-2002/downloads/east_us_shapefiles_nitrogen.zip';
+var phosCalibrationURL = 'https://sparrow.wim.usgs.gov/sparrow-east-2002/downloads/east_us_phosphorus_calibration_sites.zip';
+var nitroCalibrationURL = 'https://sparrow.wim.usgs.gov/sparrow-east-2002/downloads/east_us_nitrogen_calibration_sites.zip';
 
 var tableOutFields = [
     { field: "FID", name: "Unique Feature Id"},
