@@ -35,10 +35,10 @@ var groupResultsLabels = {
 }
 
 //download locations
-var phosphorusShapefileURL = 'https://sparrow.wim.usgs.gov/east-us/downloads/east_us_shapefiles_phosphorus.zip';
-var nitrogenShapefileURL = 'https://sparrow.wim.usgs.gov/east-us/downloads/east_us_shapefiles_nitrogen.zip';
-var phosCalibrationURL = 'https://sparrow.wim.usgs.gov/east-us/downloads/east_us_phosphorus_calibration_sites.zip';
-var nitroCalibrationURL = 'https://sparrow.wim.usgs.gov/east-us/downloads/east_us_nitrogen_calibration_sites.zip';
+var phosphorusShapefileURL = 'https://sparrow.wim.usgs.gov/sparrow-east-2002/downloads/east_us_shapefiles_phosphorus.zip';
+var nitrogenShapefileURL = 'https://sparrow.wim.usgs.gov/sparrow-east-2002/downloads/east_us_shapefiles_nitrogen.zip';
+var phosCalibrationURL = 'https://sparrow.wim.usgs.gov/sparrow-east-2002/downloads/east_us_phosphorus_calibration_sites.zip';
+var nitroCalibrationURL = 'https://sparrow.wim.usgs.gov/sparrow-east-2002/downloads/east_us_nitrogen_calibration_sites.zip';
 
 var tableOutFields = [
     { field: "FID", name: "Unique Feature Id"},
