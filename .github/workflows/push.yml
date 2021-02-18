@@ -1,0 +1,33 @@
+on:
+  push:
+    branches:
+      - master
+name: Deploy to Test
+jobs:
+  pushToTest:
+    name: Push To Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Set Up Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '10.15'
+      - run: npm run-script build
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-2
+      - run:
+          aws s3 cp /home/runner/work/sparrow-eastern-us-js/sparrow-eastern-us-js/build/ s3://test.wim.usgs.gov/sparrow-east-test/
+          --recursive
+
+      - name: GitHub Action for Slack
+        uses: Ilshidur/action-slack@a6d9e9ed519555c498265694cf2d7367d9dc6926
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+        with:
+          args: Successfully deployed to test site @ https://test.wim.usgs.gov/sparrow-east-test/
